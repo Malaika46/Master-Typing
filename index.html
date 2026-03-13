@@ -1,899 +1,1472 @@
-<html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Master Typing Pro</title>
     
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&amp;display=swap" rel="stylesheet">
-    
-    <!-- Icons -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-    
-    <!-- Tailwind -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
         :root {
-            --bg-deep: #0a0f1f;
-            --surf-1: #1a1f35;
-            --surf-2: #2a2f45;
-            --grad-start: #6c5ce7;
-            --grad-end: #00d2ff;
-            --accent-green: #00b894;
-            --accent-red: #d63031;
-            --accent-yellow: #fdcb6e;
-            --text-main: #ffffff;
-            --text-sec: #b2bec3;
+            --void: #050810;
+            --deep: #090d1a;
+            --panel: #0f1525;
+            --lift: #161e33;
+            --edge: #1e2840;
+            --edge2: #263050;
+
+            --neon: #00f5c8;
+            --neon2: #7c6fff;
+            --flame: #ff6b35;
+            --gold: #ffd166;
+            --rose: #ff4d6d;
+            --sky: #00b4d8;
+
+            --text: #e8eaf6;
+            --text-dim: #6b7299;
+            --text-mid: #9ba3c7;
+
+            --mono: 'Space Mono', monospace;
+            --display: 'Syne', sans-serif;
+            --body: 'DM Sans', sans-serif;
+
+            --glow-neon: 0 0 20px rgba(0, 245, 200, 0.3), 0 0 60px rgba(0, 245, 200, 0.1);
+            --glow-purple: 0 0 20px rgba(124, 111, 255, 0.4), 0 0 60px rgba(124, 111, 255, 0.15);
+            --glow-flame: 0 0 20px rgba(255, 107, 53, 0.4);
         }
 
-        /* Animations */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(1rem); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-in-up { animation: fadeInUp 0.5s ease-out forwards; }
+        html { scroll-behavior: smooth; }
 
-        @keyframes bounceDots {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-4px); }
-        }
-        .animate-bounce-dots { animation: bounceDots 1s infinite; }
-
-        @keyframes pulseSoft {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-        .animate-pulse-soft { animation: pulseSoft 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
-
-        @keyframes rotate3D {
-            0% { transform: perspective(1000px) rotateX(0deg) rotateY(0deg); }
-            100% { transform: perspective(1000px) rotateX(360deg) rotateY(360deg); }
-        }
-        .animate-3d-logo { animation: rotate3D 10s linear infinite; }
-
-        @keyframes gradientMove {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        body {
+            background: var(--void);
+            color: var(--text);
+            font-family: var(--body);
+            min-height: 100vh;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Utilities */
-        .gradient-text {
-            background: linear-gradient(135deg, var(--grad-start), var(--grad-end));
+        /* ── NOISE OVERLAY ── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.6;
+        }
+
+        /* ── GRID BG ── */
+        body::after {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(0,245,200,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,245,200,0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* ── SCREENS ── */
+        .screen {
+            position: relative;
+            z-index: 10;
+            min-height: 100vh;
+            width: 100%;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 24px;
+        }
+        .screen.active { display: flex; }
+
+        .max-w { max-width: 880px; width: 100%; margin: 0 auto; }
+
+        /* ── ANIMATIONS ── */
+        @keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+        @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+        @keyframes scanline { 0% { transform:translateY(-100%); } 100% { transform:translateY(100vh); } }
+        @keyframes blink { 0%,100% { opacity:1; } 50% { opacity:0; } }
+        @keyframes pulse-ring { 0% { transform:scale(0.9); opacity:1; } 100% { transform:scale(1.6); opacity:0; } }
+        @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        @keyframes floatY { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-8px); } }
+        @keyframes gradShift { 0%,100% { background-position:0% 50%; } 50% { background-position:100% 50%; } }
+        @keyframes spin { to { transform:rotate(360deg); } }
+        @keyframes countUp { from { opacity:0; transform:scale(0.5); } to { opacity:1; transform:scale(1); } }
+        @keyframes barFill { from { width:0; } to { width:var(--target-w); } }
+        @keyframes waveBar { 0%,100% { scaleY:0.6; } 50% { scaleY:1; } }
+
+        .fu { animation: fadeUp 0.5s ease forwards; }
+        .fu1 { animation: fadeUp 0.5s 0.1s ease both; }
+        .fu2 { animation: fadeUp 0.5s 0.2s ease both; }
+        .fu3 { animation: fadeUp 0.5s 0.3s ease both; }
+        .fu4 { animation: fadeUp 0.5s 0.4s ease both; }
+
+        /* ── SCANLINE EFFECT ── */
+        .scanline-wrap { position:fixed; inset:0; pointer-events:none; z-index:9; overflow:hidden; }
+        .scanline-wrap::after {
+            content:'';
+            position:absolute;
+            left:0; width:100%; height:2px;
+            background: linear-gradient(transparent, rgba(0,245,200,0.06), transparent);
+            animation: scanline 8s linear infinite;
+        }
+
+        /* ── GLASS PANEL ── */
+        .glass {
+            background: rgba(15,21,37,0.8);
+            border: 1px solid var(--edge);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .glass-neon {
+            background: rgba(0,245,200,0.04);
+            border: 1px solid rgba(0,245,200,0.15);
+        }
+
+        /* ── NEON TEXT ── */
+        .neon-text {
+            color: var(--neon);
+            text-shadow: 0 0 20px rgba(0,245,200,0.6), 0 0 40px rgba(0,245,200,0.3);
+        }
+        .grad-text {
+            background: linear-gradient(135deg, var(--neon), var(--neon2));
             background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-size: 200% auto;
-            animation: gradientMove 4s ease infinite;
         }
+        .flame-text { color: var(--flame); text-shadow: var(--glow-flame); }
 
-        .gradient-bg {
-            background: linear-gradient(135deg, var(--grad-start), var(--grad-end));
-            background-size: 200% auto;
-            transition: background-position 0.3s ease;
+        /* ── BUTTONS ── */
+        .btn-primary {
+            background: linear-gradient(135deg, var(--neon2), var(--neon));
+            color: var(--void);
+            border: none;
+            padding: 14px 32px;
+            border-radius: 4px;
+            font-family: var(--display);
+            font-weight: 700;
+            font-size: 13px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+            overflow: hidden;
         }
-        .gradient-bg:hover { background-position: 100% 50%; }
-
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: white;
+            opacity: 0;
+            transition: opacity 0.2s;
         }
+        .btn-primary:hover::before { opacity: 0.1; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: var(--glow-neon); }
+        .btn-primary:active { transform: translateY(0); }
 
-        /* Interactive Elements */
-        .btn-pop { transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
-        .btn-pop:hover { transform: scale(1.05); }
-        .btn-pop:active { transform: scale(0.95); }
-        
-        .card-lift { transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; }
-        .card-lift:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 25px -5px rgba(0, 210, 255, 0.15);
-            border-color: rgba(108, 92, 231, 0.4);
-        }
-
-        /* Custom Toggles */
-        .toggle-checkbox:checked { right: 0; border-color: var(--grad-start); }
-        .toggle-checkbox:checked + .toggle-label { background-color: var(--grad-start); }
-        
-        /* Custom Range Slider */
-        input[type=range] {
-            -webkit-appearance: none;
+        .btn-ghost {
             background: transparent;
-        }
-        input[type=range]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            height: 16px; width: 16px;
-            border-radius: 50%;
-            background: var(--text-main);
+            color: var(--text-mid);
+            border: 1px solid var(--edge2);
+            padding: 13px 28px;
+            border-radius: 4px;
+            font-family: var(--display);
+            font-weight: 600;
+            font-size: 13px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
             cursor: pointer;
-            margin-top: -6px;
-            box-shadow: 0 0 10px rgba(108, 92, 231, 0.5);
+            transition: all 0.2s;
         }
-        input[type=range]::-webkit-slider-runnable-track {
-            width: 100%; height: 4px;
+        .btn-ghost:hover { border-color: var(--neon); color: var(--neon); }
+
+        /* ── TICKER ── */
+        .ticker-wrap {
+            width: 100%;
+            overflow: hidden;
+            border-top: 1px solid var(--edge);
+            border-bottom: 1px solid var(--edge);
+            padding: 10px 0;
+            background: rgba(0,245,200,0.02);
+        }
+        .ticker-inner {
+            display: flex;
+            gap: 60px;
+            white-space: nowrap;
+            animation: ticker 20s linear infinite;
+            width: max-content;
+        }
+        .ticker-item {
+            font-family: var(--mono);
+            font-size: 10px;
+            color: var(--text-dim);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .ticker-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--neon); }
+
+        /* ── NAV ── */
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            margin-bottom: 48px;
+        }
+        .logo {
+            font-family: var(--display);
+            font-size: 18px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+        .logo span { color: var(--neon); }
+        .back-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: none;
+            border: none;
+            color: var(--text-dim);
+            font-family: var(--mono);
+            font-size: 12px;
             cursor: pointer;
-            background: var(--surf-2);
+            transition: color 0.2s;
+            letter-spacing: 0.08em;
+        }
+        .back-btn:hover { color: var(--neon); }
+
+        /* ── STAT CARDS ── */
+        .stat-card {
+            background: var(--panel);
+            border: 1px solid var(--edge);
             border-radius: 2px;
+            padding: 24px;
+            transition: border-color 0.3s, transform 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 2px; height: 100%;
+            background: var(--neon);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .stat-card:hover { border-color: var(--neon2); transform: translateY(-3px); }
+        .stat-card:hover::before { opacity: 1; }
+        .stat-label {
+            font-family: var(--mono);
+            font-size: 9px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            margin-bottom: 8px;
+        }
+        .stat-val {
+            font-family: var(--display);
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--text);
+            line-height: 1;
         }
 
-        /* Typing Feedback */
-        .char-correct { color: var(--accent-green); text-shadow: 0 0 8px rgba(0, 184, 148, 0.3); }
-        .char-wrong { 
-            color: var(--accent-red); 
-            text-decoration: underline; 
-            text-decoration-style: wavy; 
-            text-decoration-color: rgba(214, 48, 49, 0.5); 
-            text-underline-offset: 4px;
+        /* ── OPTION PILLS ── */
+        .opt-row { display: flex; gap: 8px; flex-wrap: wrap; }
+        .opt-pill {
+            padding: 10px 20px;
+            border-radius: 2px;
+            font-family: var(--mono);
+            font-size: 12px;
+            letter-spacing: 0.1em;
+            border: 1px solid var(--edge2);
+            background: var(--panel);
+            color: var(--text-mid);
+            cursor: pointer;
+            transition: all 0.2s;
+            text-transform: uppercase;
         }
-        .active-char { position: relative; color: var(--text-main); }
-        .active-char::before {
-            content: ""; position: absolute; left: -1px; top: 10%; height: 80%; width: 2px;
-            background-color: var(--grad-start); animation: blink 1s step-end infinite; border-radius: 1px;
+        .opt-pill.active {
+            border-color: var(--neon);
+            background: rgba(0,245,200,0.08);
+            color: var(--neon);
         }
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        .opt-pill:hover:not(.active) { border-color: var(--neon2); color: var(--neon2); }
 
-        .hide-scrollbar::-webkit-scrollbar { display: none; }
-        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .mode-card {
+            padding: 20px;
+            border: 1px solid var(--edge2);
+            border-radius: 2px;
+            background: var(--panel);
+            cursor: pointer;
+            transition: all 0.2s;
+            flex: 1;
+        }
+        .mode-card.active { border-color: var(--neon); background: rgba(0,245,200,0.05); }
+        .mode-card:hover:not(.active) { border-color: var(--neon2); }
+        .mode-title { font-family: var(--display); font-weight: 700; font-size: 14px; margin-bottom: 4px; }
+        .mode-desc { font-size: 12px; color: var(--text-dim); font-family: var(--mono); }
 
-        /* Progress Ring */
-        .progress-ring__circle {
-            transition: stroke-dashoffset 1s linear;
-            transform: rotate(-90deg);
-            transform-origin: 50% 50%;
+        /* ── SECTION LABEL ── */
+        .sec-label {
+            font-family: var(--mono);
+            font-size: 10px;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .sec-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: var(--edge);
         }
 
-        /* Particles */
-        .particle { position: absolute; border-radius: 50%; background: rgba(255,255,255,0.05); pointer-events: none; animation: float 20s infinite linear; }
-        @keyframes float { 0% { transform: translateY(0) rotate(0deg); opacity: 0; } 50% { opacity: 1; } 100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; } }
+        /* ── SELECT ── */
+        select {
+            width: 100%;
+            background: var(--panel);
+            border: 1px solid var(--edge2);
+            color: var(--text);
+            padding: 12px 16px;
+            border-radius: 2px;
+            font-family: var(--mono);
+            font-size: 12px;
+            appearance: none;
+            cursor: pointer;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        select:focus { border-color: var(--neon); }
+
+        /* ── TOGGLE ── */
+        .toggle-wrap { display: flex; align-items: center; justify-content: space-between; }
+        .toggle-label { font-size: 13px; color: var(--text-mid); font-family: var(--mono); letter-spacing: 0.05em; }
+        .toggle {
+            width: 44px; height: 24px;
+            background: var(--edge2);
+            border-radius: 12px;
+            position: relative;
+            cursor: pointer;
+            transition: background 0.3s;
+            border: none;
+        }
+        .toggle::after {
+            content: '';
+            position: absolute;
+            width: 18px; height: 18px;
+            background: var(--text-dim);
+            border-radius: 50%;
+            top: 3px; left: 3px;
+            transition: all 0.3s;
+        }
+        .toggle.on { background: rgba(0,245,200,0.2); border: 1px solid var(--neon); }
+        .toggle.on::after { left: 23px; background: var(--neon); box-shadow: var(--glow-neon); }
+
+        /* ── GAMEPLAY ── */
+        #text-display {
+            font-family: var(--mono);
+            font-size: 20px;
+            line-height: 1.9;
+            letter-spacing: 0.03em;
+            color: rgba(107, 114, 153, 0.5);
+            background: var(--panel);
+            border: 1px solid var(--edge);
+            border-radius: 2px;
+            padding: 36px 40px;
+            max-height: 200px;
+            overflow: hidden;
+            position: relative;
+            user-select: none;
+        }
+        .char-correct { color: var(--neon); }
+        .char-wrong {
+            color: var(--rose);
+            border-bottom: 2px solid rgba(255,77,109,0.5);
+        }
+        .char-active {
+            color: var(--text);
+            position: relative;
+        }
+        .char-active::before {
+            content: '';
+            position: absolute;
+            left: -2px; top: 10%; height: 80%; width: 2px;
+            background: var(--neon);
+            box-shadow: var(--glow-neon);
+            animation: blink 1s step-end infinite;
+            border-radius: 1px;
+        }
+
+        /* ── TIMER ── */
+        .timer-ring { transform: rotate(-90deg); }
+        .ring-track { stroke: var(--edge2); }
+        .ring-fill {
+            stroke: var(--neon);
+            stroke-linecap: round;
+            transition: stroke-dashoffset 1s linear, stroke 0.3s;
+            filter: drop-shadow(0 0 4px rgba(0,245,200,0.5));
+        }
+
+        /* ── HUD STAT ── */
+        .hud-stat { display: flex; flex-direction: column; gap: 2px; }
+        .hud-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); }
+        .hud-val { font-family: var(--display); font-size: 24px; font-weight: 800; color: var(--text); line-height: 1; }
+
+        /* ── PROGRESS BAR ── */
+        .prog-bar { height: 2px; background: var(--edge); border-radius: 1px; overflow: hidden; }
+        .prog-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--neon2), var(--neon));
+            border-radius: 1px;
+            transition: width 0.3s ease;
+            box-shadow: 0 0 8px var(--neon);
+        }
+
+        /* ── RESULTS ── */
+        .result-big {
+            font-family: var(--display);
+            font-size: 80px;
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: -0.03em;
+        }
+
+        /* ── CHART ── */
+        .chart-bar {
+            background: linear-gradient(to top, var(--neon2), var(--neon));
+            border-radius: 2px 2px 0 0;
+            position: relative;
+            transition: height 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            min-height: 4px;
+        }
+        .chart-bar:hover::after {
+            content: attr(data-val);
+            position: absolute;
+            top: -24px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: var(--mono);
+            font-size: 10px;
+            color: var(--neon);
+            white-space: nowrap;
+        }
+
+        /* ── LEADERBOARD ── */
+        .lb-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 20px;
+            border: 1px solid var(--edge);
+            border-radius: 2px;
+            background: var(--panel);
+            transition: border-color 0.2s;
+        }
+        .lb-row:hover { border-color: var(--neon2); }
+        .lb-row.you { border-color: var(--neon); background: rgba(0,245,200,0.04); }
+        .lb-rank { font-family: var(--mono); font-size: 11px; color: var(--text-dim); width: 36px; }
+        .lb-name { font-family: var(--display); font-weight: 600; font-size: 14px; }
+        .lb-wpm { font-family: var(--mono); font-size: 13px; color: var(--neon); }
+
+        /* ── PODIUM ── */
+        .podium-bar {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            border-radius: 2px 2px 0 0;
+        }
+        .podium-name { font-family: var(--display); font-size: 12px; font-weight: 700; margin-bottom: 6px; }
+        .podium-wpm { font-family: var(--mono); font-size: 10px; color: var(--text-dim); margin-bottom: 10px; }
+
+        /* ── PAUSE OVERLAY ── */
+        #screen-pause {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            background: rgba(5,8,16,0.92);
+            backdrop-filter: blur(16px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+        #screen-pause.active { display: flex; }
+
+        /* ── PROGRESS SCREEN ── */
+        .progress-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px;
+            border: 1px solid var(--edge);
+            border-radius: 2px;
+            background: var(--panel);
+        }
+        .progress-bar-track {
+            flex: 1;
+            height: 4px;
+            background: var(--edge2);
+            border-radius: 2px;
+            margin: 0 16px;
+            overflow: hidden;
+        }
+        .progress-bar-fill {
+            height: 100%;
+            border-radius: 2px;
+            background: linear-gradient(90deg, var(--neon2), var(--neon));
+            box-shadow: 0 0 6px var(--neon);
+        }
+
+        /* ── TABS ── */
+        .tab-bar { display: flex; gap: 0; border-bottom: 1px solid var(--edge); margin-bottom: 24px; }
+        .tab {
+            padding: 12px 20px;
+            font-family: var(--mono);
+            font-size: 11px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -1px;
+            transition: all 0.2s;
+            background: none;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+        }
+        .tab.active { color: var(--neon); border-bottom-color: var(--neon); }
+        .tab:hover:not(.active) { color: var(--text-mid); }
+
+        /* ── STREAK BADGE ── */
+        .streak-badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(255,209,102,0.08);
+            border: 1px solid rgba(255,209,102,0.25);
+            border-radius: 2px;
+            font-family: var(--mono);
+            font-size: 11px;
+            color: var(--gold);
+            letter-spacing: 0.08em;
+        }
+
+        /* ── GRID LAYOUTS ── */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+
+        @media (max-width: 640px) {
+            .grid-4 { grid-template-columns: repeat(2, 1fr); }
+            .grid-3 { grid-template-columns: 1fr 1fr; }
+            .result-big { font-size: 56px; }
+            #text-display { font-size: 16px; padding: 24px 20px; }
+        }
+
+        /* ── SPLASH ── */
+        #screen-splash {
+            background: var(--void);
+            cursor: pointer;
+            justify-content: center;
+            align-items: center;
+            gap: 0;
+        }
+
+        .splash-logo {
+            font-family: var(--display);
+            font-size: 72px;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 1;
+            animation: floatY 4s ease-in-out infinite;
+        }
+
+        .hint-pulse {
+            font-family: var(--mono);
+            font-size: 10px;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            animation: blink 2s ease-in-out infinite;
+            margin-top: 60px;
+        }
+
+        /* ── SCROLLBAR ── */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: var(--void); }
+        ::-webkit-scrollbar-thumb { background: var(--edge2); border-radius: 2px; }
+
+        .divider { height: 1px; background: var(--edge); width: 100%; }
+        .spacer-sm { height: 16px; }
+        .spacer { height: 32px; }
+        .spacer-lg { height: 48px; }
     </style>
 </head>
-<body class="bg-[#0a0f1f] text-[#b2bec3] min-h-screen flex flex-col items-center overflow-x-hidden selection:bg-[#6c5ce7]/30 selection:text-white" style="font-family: 'Inter', sans-serif;">
+<body>
 
-    <!-- Background Particles -->
-    <div id="particles-container" class="fixed inset-0 overflow-hidden pointer-events-none z-0"></div>
+<!-- Scanline -->
+<div class="scanline-wrap"></div>
 
-    <!-- ================= SCREEN 1: SPLASH ================= -->
-    <section id="screen-splash" class="relative z-10 w-full min-h-screen flex flex-col items-center justify-center gap-8 cursor-pointer" onclick="switchScreen('dashboard')">
-        <div class="animate-3d-logo flex items-center justify-center w-24 h-24 glass-panel rounded-2xl border border-[#2a2f45]">
-            <span class="text-3xl font-medium tracking-tighter text-[#ffffff]">M<span class="text-[#6c5ce7]">T</span></span>
+<!-- =================== SPLASH =================== -->
+<section id="screen-splash" class="screen active" onclick="goTo('dashboard')">
+    <div style="text-align:center; display:flex; flex-direction:column; align-items:center;">
+        <p class="fu" style="font-family:var(--mono); font-size:10px; letter-spacing:0.3em; text-transform:uppercase; color:var(--text-dim); margin-bottom:24px;">
+            v 2.0 — Professional Edition
+        </p>
+        <div class="splash-logo fu1">
+            <span class="grad-text">MASTER</span><br>
+            <span style="color:var(--text);">TYPING</span>
         </div>
-        <div class="text-center flex flex-col items-center gap-2">
-            <h1 class="text-4xl md:text-5xl font-medium tracking-tight text-[#ffffff] gradient-text">Master Typing</h1>
-            <p class="text-xs text-[#b2bec3] tracking-widest uppercase mt-1">Version 2.0</p>
+        <div style="display:flex; gap:32px; margin-top:40px;" class="fu2">
+            <div style="text-align:center;">
+                <div style="font-family:var(--mono); font-size:20px; color:var(--neon);" id="sp-tests">0</div>
+                <div style="font-family:var(--mono); font-size:9px; color:var(--text-dim); letter-spacing:0.2em; margin-top:4px;">TESTS</div>
+            </div>
+            <div style="width:1px; background:var(--edge);"></div>
+            <div style="text-align:center;">
+                <div style="font-family:var(--mono); font-size:20px; color:var(--neon);" id="sp-best">0</div>
+                <div style="font-family:var(--mono); font-size:9px; color:var(--text-dim); letter-spacing:0.2em; margin-top:4px;">BEST WPM</div>
+            </div>
+            <div style="width:1px; background:var(--edge);"></div>
+            <div style="text-align:center;">
+                <div style="font-family:var(--mono); font-size:20px; color:var(--neon);" id="sp-streak">3</div>
+                <div style="font-family:var(--mono); font-size:9px; color:var(--text-dim); letter-spacing:0.2em; margin-top:4px;">STREAK</div>
+            </div>
         </div>
-        <div class="flex items-center gap-1 mt-8">
-            <div class="w-1.5 h-1.5 rounded-full bg-[#6c5ce7] animate-bounce-dots" style="animation-delay: 0s;"></div>
-            <div class="w-1.5 h-1.5 rounded-full bg-[#6c5ce7] animate-bounce-dots" style="animation-delay: 0.2s;"></div>
-            <div class="w-1.5 h-1.5 rounded-full bg-[#6c5ce7] animate-bounce-dots" style="animation-delay: 0.4s;"></div>
-        </div>
-        <div class="absolute bottom-12 text-sm text-[#b2bec3] animate-pulse-soft tracking-wide">
-            Tap anywhere to continue
-        </div>
-    </section>
+        <p class="hint-pulse">tap anywhere to enter</p>
+    </div>
+</section>
 
-    <!-- ================= SCREEN 2: DASHBOARD ================= -->
-    <section id="screen-dashboard" class="hidden relative z-10 w-full max-w-5xl px-6 md:px-12 flex-col items-center gap-10 min-h-screen py-12">
-        
-        <header class="w-full flex items-center justify-between animate-fade-in-up">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 glass-panel rounded-xl flex items-center justify-center">
-                    <span class="text-sm font-medium tracking-tighter text-[#ffffff]">MT</span>
+<!-- =================== DASHBOARD =================== -->
+<section id="screen-dashboard" class="screen">
+    <div class="max-w">
+        <div class="ticker-wrap fu" style="margin-bottom:40px; border-radius:2px;">
+            <div class="ticker-inner">
+                <div class="ticker-item"><span class="ticker-dot"></span>GLOBAL TOP WPM: 145</div>
+                <div class="ticker-item"><span class="ticker-dot"></span>YOUR RANK: #428</div>
+                <div class="ticker-item"><span class="ticker-dot"></span>TESTS TODAY: 12,840</div>
+                <div class="ticker-item"><span class="ticker-dot"></span>AVG ACCURACY: 94.2%</div>
+                <div class="ticker-item"><span class="ticker-dot"></span>GLOBAL TOP WPM: 145</div>
+                <div class="ticker-item"><span class="ticker-dot"></span>YOUR RANK: #428</div>
+                <div class="ticker-item"><span class="ticker-dot"></span>TESTS TODAY: 12,840</div>
+                <div class="ticker-item"><span class="ticker-dot"></span>AVG ACCURACY: 94.2%</div>
+            </div>
+        </div>
+
+        <nav class="nav">
+            <div class="logo">M<span>T</span>PRO</div>
+            <div class="streak-badge">
+                <iconify-icon icon="solar:fire-bold" style="color:var(--gold);"></iconify-icon>
+                3 Day Streak
+            </div>
+        </nav>
+
+        <!-- Stats -->
+        <div class="grid-4 fu1" style="margin-bottom:32px;">
+            <div class="stat-card">
+                <div class="stat-label">Avg WPM</div>
+                <div class="stat-val" id="dash-avg">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Best Score</div>
+                <div class="stat-val grad-text" id="dash-best">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Tests Taken</div>
+                <div class="stat-val" id="dash-tests">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Global Rank</div>
+                <div class="stat-val" style="color:var(--neon2);">#428</div>
+            </div>
+        </div>
+
+        <!-- Main Menu -->
+        <div class="grid-2 fu2" style="gap:16px; margin-bottom:16px;">
+            <div class="stat-card" style="cursor:pointer; padding:36px 32px; border-color:rgba(124,111,255,0.3);" onclick="goTo('customization')" onmouseenter="this.style.borderColor='var(--neon2)'" onmouseleave="this.style.borderColor='rgba(124,111,255,0.3)'">
+                <iconify-icon icon="solar:keyboard-bold-duotone" style="font-size:36px; color:var(--neon2); margin-bottom:16px; display:block;"></iconify-icon>
+                <div style="font-family:var(--display); font-size:22px; font-weight:800; color:var(--text); margin-bottom:6px;">Start New Test</div>
+                <div style="font-size:13px; color:var(--text-dim); font-family:var(--mono);">Customize your test settings</div>
+                <div style="margin-top:24px; display:flex; align-items:center; gap:8px; color:var(--neon2); font-family:var(--mono); font-size:11px; letter-spacing:0.1em; text-transform:uppercase;">
+                    Begin <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
                 </div>
-                <div>
-                    <h2 class="text-xl font-medium tracking-tight text-[#ffffff]">Welcome back</h2>
-                    <p class="text-xs text-[#b2bec3]">Ready to break records?</p>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:16px;">
+                <div class="stat-card" style="cursor:pointer; flex:1;" onclick="goTo('leaderboard')">
+                    <iconify-icon icon="solar:cup-star-bold-duotone" style="font-size:24px; color:var(--gold); margin-bottom:12px; display:block;"></iconify-icon>
+                    <div style="font-family:var(--display); font-size:16px; font-weight:700; color:var(--text);">Leaderboard</div>
+                    <div style="font-size:12px; color:var(--text-dim); font-family:var(--mono); margin-top:4px;">Global rankings</div>
                 </div>
-            </div>
-            <div class="flex items-center gap-2 px-3 py-1.5 glass-panel rounded-full">
-                <iconify-icon icon="solar:fire-bold" class="text-[#fdcb6e] text-base"></iconify-icon>
-                <span class="text-sm font-medium text-[#ffffff]">3 Day Streak</span>
-            </div>
-        </header>
-
-        <!-- Stats Grid -->
-        <div class="w-full grid grid-cols-2 md:grid-cols-4 gap-4 animate-fade-in-up" style="animation-delay: 0.1s;">
-            <div class="card-lift glass-panel rounded-2xl p-5 flex flex-col gap-2">
-                <span class="text-xs text-[#b2bec3] uppercase tracking-widest">Avg WPM</span>
-                <span class="text-3xl font-medium tracking-tight text-[#ffffff]" id="dash-avg-wpm">0</span>
-            </div>
-            <div class="card-lift glass-panel rounded-2xl p-5 flex flex-col gap-2">
-                <span class="text-xs text-[#b2bec3] uppercase tracking-widest">Best Score</span>
-                <span class="text-3xl font-medium tracking-tight text-[#ffffff]" id="dash-best-wpm">0</span>
-            </div>
-            <div class="card-lift glass-panel rounded-2xl p-5 flex flex-col gap-2">
-                <span class="text-xs text-[#b2bec3] uppercase tracking-widest">Tests Taken</span>
-                <span class="text-3xl font-medium tracking-tight text-[#ffffff]" id="dash-tests">0</span>
-            </div>
-            <div class="card-lift glass-panel rounded-2xl p-5 flex flex-col gap-2">
-                <span class="text-xs text-[#b2bec3] uppercase tracking-widest">Global Rank</span>
-                <span class="text-3xl font-medium tracking-tight gradient-text">#428</span>
+                <div class="stat-card" style="cursor:pointer; flex:1;" onclick="goTo('progress')">
+                    <iconify-icon icon="solar:chart-2-bold-duotone" style="font-size:24px; color:var(--sky); margin-bottom:12px; display:block;"></iconify-icon>
+                    <div style="font-family:var(--display); font-size:16px; font-weight:700; color:var(--text);">My Progress</div>
+                    <div style="font-size:12px; color:var(--text-dim); font-family:var(--mono); margin-top:4px;">Track growth over time</div>
+                </div>
             </div>
         </div>
+    </div>
+</section>
 
-        <!-- Menu Grid -->
-        <div class="w-full grid grid-cols-1 md:grid-cols-3 gap-6 animate-fade-in-up" style="animation-delay: 0.2s;">
-            <button onclick="switchScreen('customization')" class="md:col-span-2 btn-pop group relative overflow-hidden glass-panel border border-[#6c5ce7]/30 rounded-3xl p-8 flex flex-col items-start justify-center text-left gap-4 hover:bg-[#1a1f35]/80 transition-colors">
-                <div class="absolute right-[-10%] top-[-20%] w-64 h-64 bg-[#6c5ce7]/10 rounded-full blur-3xl group-hover:bg-[#6c5ce7]/20 transition-colors"></div>
-                <div class="w-12 h-12 rounded-full bg-[#6c5ce7]/20 flex items-center justify-center text-[#6c5ce7]">
-                    <iconify-icon icon="solar:keyboard-linear" stroke-width="1.5" class="text-2xl"></iconify-icon>
-                </div>
-                <div>
-                    <h3 class="text-2xl font-medium tracking-tight text-[#ffffff] mb-1">Start New Test</h3>
-                    <p class="text-sm text-[#b2bec3]">Customize your duration and text style.</p>
-                </div>
+<!-- =================== CUSTOMIZATION =================== -->
+<section id="screen-customization" class="screen">
+    <div class="max-w">
+        <nav class="nav">
+            <button class="back-btn" onclick="goTo('dashboard')">
+                <iconify-icon icon="solar:arrow-left-linear"></iconify-icon> BACK
             </button>
-            
-            <button onclick="switchScreen('leaderboard')" class="btn-pop glass-panel rounded-3xl p-6 flex flex-col items-start gap-4 hover:bg-[#1a1f35]/80 transition-colors">
-                <div class="w-10 h-10 rounded-full bg-[#00d2ff]/10 flex items-center justify-center text-[#00d2ff]">
-                    <iconify-icon icon="solar:cup-star-linear" stroke-width="1.5" class="text-xl"></iconify-icon>
-                </div>
-                <div>
-                    <h3 class="text-lg font-medium tracking-tight text-[#ffffff]">Leaderboard</h3>
-                    <p class="text-xs text-[#b2bec3] mt-1">View global rankings.</p>
-                </div>
-            </button>
-        </div>
-    </section>
+            <div class="logo">TEST <span>SETUP</span></div>
+            <div style="width:80px;"></div>
+        </nav>
 
-    <!-- ================= SCREEN 3: CUSTOMIZATION ================= -->
-    <section id="screen-customization" class="hidden relative z-10 w-full max-w-3xl px-6 md:px-12 flex-col items-center gap-8 min-h-screen py-12">
-        <header class="w-full flex items-center justify-between mb-4">
-            <button onclick="switchScreen('dashboard')" class="text-[#b2bec3] hover:text-[#ffffff] transition-colors flex items-center gap-2 text-sm font-medium">
-                <iconify-icon icon="solar:arrow-left-linear" class="text-lg"></iconify-icon>
-                Back
-            </button>
-            <h2 class="text-xl font-medium tracking-tight text-[#ffffff]">Test Settings</h2>
-            <div class="w-16"></div> <!-- Spacer -->
-        </header>
-
-        <div class="w-full flex flex-col gap-8">
+        <div style="display:flex; flex-direction:column; gap:28px;">
             <!-- Duration -->
-            <div class="flex flex-col gap-3">
-                <span class="text-xs text-[#b2bec3] uppercase tracking-widest font-medium">Duration</span>
-                <div class="flex items-center gap-3">
-                    <button class="duration-btn flex-1 py-3 glass-panel rounded-xl text-sm font-medium text-[#ffffff] border-[#6c5ce7] border transition-colors bg-[#6c5ce7]/10" onclick="setDuration(15, this)">15s</button>
-                    <button class="duration-btn flex-1 py-3 glass-panel rounded-xl text-sm font-medium text-[#b2bec3] border-transparent border hover:border-[#2a2f45] transition-colors" onclick="setDuration(30, this)">30s</button>
-                    <button class="duration-btn flex-1 py-3 glass-panel rounded-xl text-sm font-medium text-[#b2bec3] border-transparent border hover:border-[#2a2f45] transition-colors" onclick="setDuration(60, this)">60s</button>
-                    <button class="duration-btn flex-1 py-3 glass-panel rounded-xl text-sm font-medium text-[#b2bec3] border-transparent border hover:border-[#2a2f45] transition-colors" onclick="setDuration(120, this)">120s</button>
+            <div class="fu1">
+                <div class="sec-label">Duration</div>
+                <div class="opt-row" id="dur-opts">
+                    <button class="opt-pill active" onclick="setDur(15,this)">15 SEC</button>
+                    <button class="opt-pill" onclick="setDur(30,this)">30 SEC</button>
+                    <button class="opt-pill" onclick="setDur(60,this)">60 SEC</button>
+                    <button class="opt-pill" onclick="setDur(120,this)">120 SEC</button>
                 </div>
             </div>
 
-            <!-- Text Type -->
-            <div class="flex flex-col gap-3">
-                <span class="text-xs text-[#b2bec3] uppercase tracking-widest font-medium">Mode</span>
-                <div class="grid grid-cols-2 gap-3">
-                    <button class="mode-btn p-4 glass-panel rounded-xl text-left border-[#6c5ce7] border transition-colors bg-[#6c5ce7]/10 flex flex-col gap-1" onclick="setMode('random', this)">
-                        <span class="text-sm font-medium text-[#ffffff]">Random Words</span>
-                        <span class="text-xs text-[#b2bec3]">Standard vocabulary</span>
-                    </button>
-                    <button class="mode-btn p-4 glass-panel rounded-xl text-left border-transparent border hover:border-[#2a2f45] transition-colors flex flex-col gap-1" onclick="setMode('quotes', this)">
-                        <span class="text-sm font-medium text-[#ffffff]">Programming Quotes</span>
-                        <span class="text-xs text-[#b2bec3]">Punctuation &amp; caps</span>
-                    </button>
+            <!-- Mode -->
+            <div class="fu2">
+                <div class="sec-label">Text Mode</div>
+                <div style="display:flex; gap:12px;" id="mode-opts">
+                    <div class="mode-card active" onclick="setMode('random',this)">
+                        <iconify-icon icon="solar:text-bold-duotone" style="font-size:20px; color:var(--neon); margin-bottom:8px; display:block;"></iconify-icon>
+                        <div class="mode-title">Random Words</div>
+                        <div class="mode-desc">Standard vocabulary</div>
+                    </div>
+                    <div class="mode-card" onclick="setMode('quotes',this)">
+                        <iconify-icon icon="solar:code-bold-duotone" style="font-size:20px; color:var(--neon2); margin-bottom:8px; display:block;"></iconify-icon>
+                        <div class="mode-title">Code Quotes</div>
+                        <div class="mode-desc">Punctuation & caps</div>
+                    </div>
+                    <div class="mode-card" onclick="setMode('numbers',this)">
+                        <iconify-icon icon="solar:hashtag-bold-duotone" style="font-size:20px; color:var(--flame); margin-bottom:8px; display:block;"></iconify-icon>
+                        <div class="mode-title">Numbers</div>
+                        <div class="mode-desc">Numeric challenge</div>
+                    </div>
                 </div>
             </div>
 
             <!-- Difficulty & Toggles -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="flex flex-col gap-3">
-                    <span class="text-xs text-[#b2bec3] uppercase tracking-widest font-medium">Difficulty</span>
-                    <select id="setting-difficulty" class="w-full glass-panel border border-[#2a2f45] rounded-xl p-3 text-sm text-[#ffffff] appearance-none focus:outline-none focus:border-[#6c5ce7] bg-[#1a1f35]">
+            <div class="grid-2 fu3">
+                <div>
+                    <div class="sec-label">Difficulty</div>
+                    <select id="sel-diff">
                         <option value="easy">Easy</option>
-                        <option value="medium" selected="">Medium</option>
+                        <option value="medium" selected>Medium</option>
                         <option value="hard">Hard</option>
                     </select>
                 </div>
-
-                <div class="flex flex-col gap-4 justify-center">
-                    <label class="flex items-center justify-between cursor-pointer group">
-                        <span class="text-sm font-medium text-[#ffffff] group-hover:text-[#b2bec3] transition-colors">Show mistakes instantly</span>
-                        <div class="relative">
-                            <input type="checkbox" id="setting-mistakes" class="sr-only toggle-checkbox" checked="">
-                            <div class="block w-10 h-6 bg-[#2a2f45] rounded-full toggle-label transition-colors"></div>
-                            <div class="dot absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition transform peer-checked:translate-x-full"></div>
-                        </div>
-                    </label>
+                <div style="display:flex; flex-direction:column; gap:20px; justify-content:center;">
+                    <div class="toggle-wrap">
+                        <span class="toggle-label">Show mistakes instantly</span>
+                        <button class="toggle on" id="tog-mistakes" onclick="this.classList.toggle('on')"></button>
+                    </div>
+                    <div class="toggle-wrap">
+                        <span class="toggle-label">Sound effects</span>
+                        <button class="toggle" id="tog-sound" onclick="this.classList.toggle('on')"></button>
+                    </div>
                 </div>
+            </div>
+
+            <button class="btn-primary fu4" onclick="initTest()" style="display:flex; align-items:center; justify-content:center; gap:10px; width:100%;">
+                <iconify-icon icon="solar:play-bold"></iconify-icon>
+                LAUNCH TEST
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- =================== GAMEPLAY =================== -->
+<section id="screen-gameplay" class="screen">
+    <div class="max-w" style="display:flex; flex-direction:column; gap:20px; width:100%;">
+        
+        <!-- HUD -->
+        <div class="glass" style="display:flex; align-items:center; justify-content:space-between; padding:16px 24px; border-radius:2px;">
+            <div style="display:flex; align-items:center; gap:24px;">
+                <!-- Timer Ring -->
+                <div style="position:relative; width:56px; height:56px; flex-shrink:0;">
+                    <svg width="56" height="56" viewBox="0 0 56 56" class="timer-ring">
+                        <circle class="ring-track" stroke-width="3" stroke="currentColor" fill="transparent" r="24" cx="28" cy="28"/>
+                        <circle id="ring-fill" class="ring-fill" stroke-width="3" stroke-dasharray="150.8" stroke-dashoffset="0" fill="transparent" r="24" cx="28" cy="28"/>
+                    </svg>
+                    <span id="timer-txt" style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-size:13px; font-weight:700; color:var(--text);">15</span>
+                </div>
+                <div class="hud-stat">
+                    <span class="hud-label">WPM</span>
+                    <span class="hud-val" id="live-wpm">0</span>
+                </div>
+                <div class="hud-stat">
+                    <span class="hud-label">Accuracy</span>
+                    <span class="hud-val"><span id="live-acc">100</span><span style="font-size:14px; color:var(--text-dim);">%</span></span>
+                </div>
+                <div class="hud-stat">
+                    <span class="hud-label">Errors</span>
+                    <span class="hud-val" id="live-err" style="color:var(--rose);">0</span>
+                </div>
+            </div>
+            <div style="display:flex; gap:8px;">
+                <button onclick="pauseTest()" style="background:var(--panel); border:1px solid var(--edge); width:40px; height:40px; border-radius:2px; color:var(--text-dim); cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all 0.2s;" onmouseenter="this.style.borderColor='var(--neon)';this.style.color='var(--neon)'" onmouseleave="this.style.borderColor='var(--edge)';this.style.color='var(--text-dim)'">
+                    <iconify-icon icon="solar:pause-bold" style="font-size:16px;"></iconify-icon>
+                </button>
+                <button onclick="initTest()" style="background:var(--panel); border:1px solid var(--edge); width:40px; height:40px; border-radius:2px; color:var(--text-dim); cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all 0.2s;" onmouseenter="this.style.borderColor='var(--neon)';this.style.color='var(--neon)'" onmouseleave="this.style.borderColor='var(--edge)';this.style.color='var(--text-dim)'">
+                    <iconify-icon icon="solar:restart-bold" style="font-size:16px;"></iconify-icon>
+                </button>
             </div>
         </div>
-
-        <button onclick="initTestArea()" class="mt-4 btn-pop gradient-bg text-white w-full py-4 rounded-xl font-medium text-sm tracking-wide shadow-lg shadow-[#6c5ce7]/20 flex items-center justify-center gap-2">
-            Start Test Now
-            <iconify-icon icon="solar:arrow-right-linear" class="text-lg"></iconify-icon>
-        </button>
-    </section>
-
-    <!-- ================= SCREEN 4: GAMEPLAY ================= -->
-    <section id="screen-gameplay" class="hidden relative z-10 w-full max-w-4xl px-6 md:px-12 flex-col items-center gap-6 min-h-screen py-8">
-        
-        <!-- Top Bar -->
-        <header class="flex items-center justify-between w-full glass-panel px-6 py-4 rounded-2xl">
-            <div class="flex items-center gap-6">
-                <div class="relative w-12 h-12 flex items-center justify-center">
-                    <svg class="absolute inset-0 w-full h-full transform -rotate-90" viewBox="0 0 36 36">
-                        <circle class="text-[#2a2f45]" stroke-width="2.5" stroke="currentColor" fill="transparent" r="16" cx="18" cy="18"></circle>
-                        <circle id="timer-circle" class="text-[#6c5ce7] progress-ring__circle" stroke-width="2.5" stroke-dasharray="100.53" stroke-dashoffset="0" stroke-linecap="round" stroke="currentColor" fill="transparent" r="16" cx="18" cy="18"></circle>
-                    </svg>
-                    <span id="timer-text" class="text-xs font-medium text-[#ffffff] absolute">15</span>
-                </div>
-                <div class="flex flex-col">
-                    <span class="text-[10px] text-[#b2bec3] uppercase tracking-widest">WPM</span>
-                    <span id="live-wpm" class="text-xl font-medium tracking-tight text-[#ffffff]">0</span>
-                </div>
-                <div class="flex flex-col">
-                    <span class="text-[10px] text-[#b2bec3] uppercase tracking-widest">ACC</span>
-                    <span class="text-xl font-medium tracking-tight text-[#ffffff]"><span id="live-acc">100</span><span class="text-xs text-[#b2bec3]">%</span></span>
-                </div>
-            </div>
-
-            <div class="flex items-center gap-2">
-                <button onclick="pauseTest()" class="text-[#b2bec3] hover:text-[#ffffff] transition-colors p-2 rounded-full hover:bg-[#2a2f45] flex items-center justify-center">
-                    <iconify-icon icon="solar:pause-linear" class="text-xl"></iconify-icon>
-                </button>
-                <button onclick="initTestArea()" class="text-[#b2bec3] hover:text-[#ffffff] transition-colors p-2 rounded-full hover:bg-[#2a2f45] flex items-center justify-center">
-                    <iconify-icon icon="solar:restart-linear" class="text-xl"></iconify-icon>
-                </button>
-            </div>
-        </header>
 
         <!-- Progress Bar -->
-        <div class="w-full h-1 bg-[#2a2f45] rounded-full overflow-hidden">
-            <div id="test-progress" class="h-full bg-gradient-to-r from-[#6c5ce7] to-[#00d2ff] w-0 transition-all duration-300"></div>
+        <div class="prog-bar">
+            <div class="prog-fill" id="prog-fill" style="width:0%;"></div>
         </div>
 
-        <!-- Main Test Area -->
-        <div class="w-full flex flex-col gap-6 mt-4 relative">
-            
-            <!-- Overlay Countdown (for resume) -->
-            <div id="resume-countdown" class="hidden absolute inset-0 z-20 flex items-center justify-center glass-panel rounded-2xl backdrop-blur-md">
-                <span id="countdown-text" class="text-6xl font-medium text-[#ffffff] animate-pulse-soft">3</span>
-            </div>
+        <!-- Text Display -->
+        <div id="text-display"></div>
 
-            <!-- Text Display -->
-            <div id="text-display" class="text-xl md:text-2xl tracking-tight leading-relaxed font-normal text-[#b2bec3]/50 select-none break-words w-full hide-scrollbar max-h-[180px] overflow-hidden glass-panel p-8 rounded-2xl border border-[#2a2f45]/50 transition-all">
-                <!-- Spans injected here -->
-            </div>
-
-            <!-- Input Area -->
-            <div class="relative w-full opacity-0 absolute h-0 overflow-hidden">
-                <!-- Hidden input, we capture keystrokes on document instead for cleaner UX -->
-                <input type="text" id="hidden-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
-            </div>
-            
-            <div class="text-center text-xs text-[#b2bec3] flex justify-center items-center gap-2">
-                <iconify-icon icon="solar:keyboard-linear"></iconify-icon>
-                Start typing to begin
-            </div>
-        </div>
-    </section>
-
-    <!-- ================= SCREEN 5: PAUSE MENU (OVERLAY) ================= -->
-    <section id="screen-pause" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-[#0a0f1f]/80 backdrop-blur-sm">
-        <div class="glass-panel border border-[#2a2f45] rounded-3xl p-10 flex flex-col items-center gap-8 max-w-sm w-full mx-6 transform scale-100 transition-transform">
-            <h2 class="text-2xl font-medium tracking-tight text-[#ffffff]">Test Paused</h2>
-            
-            <div class="flex items-center gap-6 text-center w-full justify-center">
-                <div flex="" flex-col="">
-                    <span class="text-xs text-[#b2bec3] uppercase tracking-widest">Time Left</span>
-                    <div class="text-2xl font-medium text-[#ffffff] mt-1" id="pause-time">0s</div>
-                </div>
-            </div>
-
-            <div class="flex flex-col w-full gap-3">
-                <button onclick="resumeTest()" class="btn-pop bg-[#ffffff] text-[#0a0f1f] w-full py-3 rounded-xl font-medium text-sm transition-colors">Resume</button>
-                <button onclick="initTestArea()" class="btn-pop glass-panel w-full py-3 rounded-xl font-medium text-sm text-[#ffffff] transition-colors hover:bg-[#2a2f45]">Restart</button>
-                <button onclick="switchScreen('dashboard')" class="text-sm text-[#b2bec3] hover:text-[#ffffff] transition-colors mt-2">Exit to Dashboard</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- ================= SCREEN 6: RESULTS ================= -->
-    <section id="screen-results" class="hidden relative z-10 w-full max-w-4xl px-6 md:px-12 flex-col items-center gap-8 min-h-screen py-12">
-        
-        <div class="text-center flex flex-col items-center gap-2 animate-fade-in-up">
-            <div id="new-high-score" class="hidden mb-2 px-3 py-1 rounded-full bg-[#00b894]/20 border border-[#00b894]/30 text-[#00b894] text-xs font-medium tracking-wide flex items-center gap-1.5">
-                <iconify-icon icon="solar:cup-star-bold"></iconify-icon>
-                New High Score!
-            </div>
-            <h2 class="text-3xl md:text-4xl font-medium tracking-tight text-[#ffffff]">Test Complete</h2>
+        <!-- Hint -->
+        <div style="display:flex; align-items:center; justify-content:center; gap:8px; font-family:var(--mono); font-size:10px; color:var(--text-dim); letter-spacing:0.15em; text-transform:uppercase;">
+            <iconify-icon icon="solar:keyboard-linear"></iconify-icon>
+            Start typing to begin
         </div>
 
-        <!-- Main Results Grid -->
-        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 w-full animate-fade-in-up" style="animation-delay: 0.1s;">
-            <div class="glass-panel border border-[#2a2f45] rounded-2xl p-6 flex flex-col items-center justify-center gap-1 text-center md:col-span-1 col-span-2 bg-[#6c5ce7]/5">
-                <span class="text-xs text-[#b2bec3] uppercase tracking-widest font-medium">WPM</span>
-                <span class="text-5xl font-medium tracking-tight gradient-text" id="res-wpm">0</span>
-            </div>
-            
-            <div class="glass-panel border border-[#2a2f45] rounded-2xl p-6 flex flex-col items-center justify-center gap-1 text-center">
-                <span class="text-xs text-[#b2bec3] uppercase tracking-widest font-medium">Accuracy</span>
-                <div class="flex items-baseline gap-1">
-                    <span class="text-3xl font-medium tracking-tight text-[#ffffff]" id="res-acc">0</span>
-                    <span class="text-base text-[#b2bec3]">%</span>
-                </div>
-            </div>
+        <!-- WPM Graph -->
+        <div id="wpm-graph" style="display:flex; align-items:flex-end; gap:3px; height:40px; margin-top:4px; opacity:0.6;"></div>
+    </div>
+</section>
 
-            <div class="glass-panel border border-[#2a2f45] rounded-2xl p-6 flex flex-col items-center justify-center gap-1 text-center">
-                <span class="text-xs text-[#b2bec3] uppercase tracking-widest font-medium">Errors</span>
-                <span class="text-3xl font-medium tracking-tight text-[#d63031]" id="res-err">0</span>
-            </div>
+<!-- =================== PAUSE OVERLAY =================== -->
+<section id="screen-pause">
+    <div class="glass" style="border-radius:2px; padding:48px 40px; max-width:360px; width:100%; margin:24px; text-align:center; border-color:rgba(0,245,200,0.15);">
+        <iconify-icon icon="solar:pause-circle-bold-duotone" style="font-size:48px; color:var(--neon); margin-bottom:20px; display:block;"></iconify-icon>
+        <div style="font-family:var(--display); font-size:28px; font-weight:800; margin-bottom:8px;">PAUSED</div>
+        <div style="font-family:var(--mono); font-size:11px; color:var(--text-dim); letter-spacing:0.15em; margin-bottom:32px;">TIME REMAINING: <span id="pause-time" style="color:var(--neon);">0s</span></div>
+        <div style="display:flex; flex-direction:column; gap:10px;">
+            <button class="btn-primary" onclick="resumeTest()" style="width:100%;">RESUME</button>
+            <button class="btn-ghost" onclick="initTest()" style="width:100%;">RESTART</button>
+            <button style="background:none; border:none; color:var(--text-dim); font-family:var(--mono); font-size:11px; letter-spacing:0.1em; cursor:pointer; margin-top:4px; transition:color 0.2s; text-transform:uppercase;" onclick="goTo('dashboard')" onmouseenter="this.style.color='var(--text)'" onmouseleave="this.style.color='var(--text-dim)'">Exit to Dashboard</button>
+        </div>
+    </div>
+</section>
 
-            <div class="glass-panel border border-[#2a2f45] rounded-2xl p-6 flex flex-col items-center justify-center gap-1 text-center">
-                <span class="text-xs text-[#b2bec3] uppercase tracking-widest font-medium">Time Taken</span>
-                <span class="text-2xl font-medium tracking-tight text-[#ffffff]"><span id="res-time">0</span>s</span>
+<!-- =================== RESULTS =================== -->
+<section id="screen-results" class="screen">
+    <div class="max-w">
+        <div style="text-align:center; margin-bottom:40px;" class="fu">
+            <div id="new-best-badge" style="display:none; margin-bottom:16px; display:inline-flex; align-items:center; gap:8px; padding:8px 16px; background:rgba(0,245,200,0.08); border:1px solid rgba(0,245,200,0.3); border-radius:2px; font-family:var(--mono); font-size:10px; letter-spacing:0.15em; color:var(--neon); text-transform:uppercase;">
+                <iconify-icon icon="solar:cup-star-bold"></iconify-icon> NEW HIGH SCORE
             </div>
+            <div class="result-big grad-text" id="res-wpm">0</div>
+            <div style="font-family:var(--mono); font-size:11px; color:var(--text-dim); letter-spacing:0.25em; text-transform:uppercase; margin-top:8px;">Words Per Minute</div>
+        </div>
 
-            <div class="glass-panel border border-[#2a2f45] rounded-2xl p-6 flex flex-col items-center justify-center gap-1 text-center">
-                <span class="text-xs text-[#b2bec3] uppercase tracking-widest font-medium">Typed Chars</span>
-                <span class="text-2xl font-medium tracking-tight text-[#ffffff]"><span id="res-chars-correct" class="text-[#00b894]">0</span> / <span id="res-chars-total" class="text-[#b2bec3]">0</span></span>
+        <div class="grid-3 fu1" style="margin-bottom:24px;">
+            <div class="stat-card" style="text-align:center;">
+                <div class="stat-label">Accuracy</div>
+                <div class="stat-val" id="res-acc" style="color:var(--neon);">0%</div>
             </div>
-
-            <div class="glass-panel border border-[#2a2f45] rounded-2xl p-6 flex flex-col items-center justify-center gap-1 text-center">
-                <span class="text-xs text-[#b2bec3] uppercase tracking-widest font-medium">Consistency</span>
-                <span class="text-2xl font-medium tracking-tight text-[#ffffff]"><span id="res-cons">0</span>%</span>
+            <div class="stat-card" style="text-align:center;">
+                <div class="stat-label">Errors</div>
+                <div class="stat-val" id="res-err" style="color:var(--rose);">0</div>
+            </div>
+            <div class="stat-card" style="text-align:center;">
+                <div class="stat-label">Time Taken</div>
+                <div class="stat-val" id="res-time">0s</div>
+            </div>
+            <div class="stat-card" style="text-align:center;">
+                <div class="stat-label">Correct Chars</div>
+                <div class="stat-val" id="res-correct" style="color:var(--neon);">0</div>
+            </div>
+            <div class="stat-card" style="text-align:center;">
+                <div class="stat-label">Total Typed</div>
+                <div class="stat-val" id="res-total">0</div>
+            </div>
+            <div class="stat-card" style="text-align:center;">
+                <div class="stat-label">Consistency</div>
+                <div class="stat-val" id="res-cons">0%</div>
             </div>
         </div>
 
-        <!-- Action Buttons -->
-        <div class="flex flex-col sm:flex-row items-center gap-4 mt-4 w-full justify-center animate-fade-in-up" style="animation-delay: 0.2s;">
-            <button onclick="initTestArea()" class="btn-pop gradient-bg text-white px-8 py-3.5 rounded-full font-medium text-sm tracking-wide flex items-center gap-2 w-full sm:w-auto justify-center">
-                <iconify-icon icon="solar:restart-circle-linear" class="text-lg"></iconify-icon>
-                Try Again
+        <div style="display:flex; gap:12px; flex-wrap:wrap;" class="fu2">
+            <button class="btn-primary" onclick="initTest()" style="flex:1; display:flex; align-items:center; justify-content:center; gap:8px; min-width:160px;">
+                <iconify-icon icon="solar:restart-bold"></iconify-icon> TRY AGAIN
             </button>
-            <button onclick="switchScreen('dashboard')" class="btn-pop glass-panel border border-[#2a2f45] text-[#ffffff] hover:bg-[#2a2f45] px-8 py-3.5 rounded-full font-medium text-sm tracking-wide transition-colors flex items-center gap-2 w-full sm:w-auto justify-center">
-                <iconify-icon icon="solar:home-smile-linear" class="text-lg"></iconify-icon>
-                Dashboard
+            <button class="btn-ghost" onclick="goTo('dashboard')" style="flex:1; display:flex; align-items:center; justify-content:center; gap:8px; min-width:160px;">
+                <iconify-icon icon="solar:home-smile-linear"></iconify-icon> DASHBOARD
+            </button>
+            <button class="btn-ghost" onclick="goTo('progress')" style="flex:1; display:flex; align-items:center; justify-content:center; gap:8px; min-width:160px;">
+                <iconify-icon icon="solar:chart-2-linear"></iconify-icon> MY PROGRESS
             </button>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- ================= SCREEN 7: LEADERBOARD & HISTORY ================= -->
-    <section id="screen-leaderboard" class="hidden relative z-10 w-full max-w-4xl px-6 md:px-12 flex-col items-center gap-8 min-h-screen py-12">
-        <header class="w-full flex items-center justify-between mb-2">
-            <button onclick="switchScreen('dashboard')" class="text-[#b2bec3] hover:text-[#ffffff] transition-colors flex items-center gap-2 text-sm font-medium">
-                <iconify-icon icon="solar:arrow-left-linear" class="text-lg"></iconify-icon>
-                Back
+<!-- =================== PROGRESS (NEW SCREEN) =================== -->
+<section id="screen-progress" class="screen">
+    <div class="max-w">
+        <nav class="nav">
+            <button class="back-btn" onclick="goTo('dashboard')">
+                <iconify-icon icon="solar:arrow-left-linear"></iconify-icon> BACK
             </button>
-            <h2 class="text-xl font-medium tracking-tight text-[#ffffff]">Rankings</h2>
-            <div class="w-16"></div>
-        </header>
+            <div class="logo">MY <span>PROGRESS</span></div>
+            <div style="width:80px;"></div>
+        </nav>
 
-        <!-- Tabs -->
-        <div class="flex p-1 glass-panel rounded-xl w-full max-w-xs mx-auto">
-            <button class="flex-1 py-2 rounded-lg text-sm font-medium bg-[#2a2f45] text-[#ffffff] shadow-sm" id="tab-global">Global</button>
-            <button class="flex-1 py-2 rounded-lg text-sm font-medium text-[#b2bec3] hover:text-[#ffffff] transition-colors" id="tab-personal">Personal</button>
+        <div class="tab-bar fu">
+            <button class="tab active" onclick="switchTab('overview',this)">Overview</button>
+            <button class="tab" onclick="switchTab('history',this)">History</button>
+            <button class="tab" onclick="switchTab('goals',this)">Goals</button>
         </div>
 
-        <!-- Podium (Global) -->
-        <div class="flex items-end justify-center gap-4 h-48 mt-4 w-full max-w-lg">
-            <!-- 2nd -->
-            <div class="flex flex-col items-center gap-2">
-                <span class="text-sm font-medium text-[#b2bec3]">AlexK</span>
-                <span class="text-xs text-[#00d2ff]">132 WPM</span>
-                <div class="w-20 h-24 glass-panel bg-[#2a2f45]/50 rounded-t-lg border-t-2 border-[#b2bec3] flex items-start justify-center pt-2">
-                    <span class="text-xl font-medium text-[#b2bec3]">2</span>
+        <!-- OVERVIEW TAB -->
+        <div id="tab-overview" style="display:flex; flex-direction:column; gap:24px;">
+            <div class="grid-3 fu1">
+                <div class="stat-card" style="text-align:center;">
+                    <div class="stat-label">Personal Best</div>
+                    <div class="stat-val grad-text" id="pr-best">0</div>
+                    <div style="font-family:var(--mono); font-size:9px; color:var(--text-dim); margin-top:4px; letter-spacing:0.15em;">WPM</div>
+                </div>
+                <div class="stat-card" style="text-align:center;">
+                    <div class="stat-label">Avg WPM (Last 10)</div>
+                    <div class="stat-val" id="pr-avg">0</div>
+                </div>
+                <div class="stat-card" style="text-align:center;">
+                    <div class="stat-label">Total Tests</div>
+                    <div class="stat-val" id="pr-total">0</div>
                 </div>
             </div>
-            <!-- 1st -->
-            <div class="flex flex-col items-center gap-2">
-                <span class="text-sm font-medium text-[#ffffff]">TypeGod</span>
-                <span class="text-xs text-[#fdcb6e]">145 WPM</span>
-                <div class="w-24 h-32 gradient-bg rounded-t-lg border-t-2 border-[#fdcb6e] flex items-start justify-center pt-2 shadow-[0_0_30px_rgba(108,92,231,0.4)]">
-                    <span class="text-2xl font-medium text-[#ffffff]">1</span>
+
+            <!-- WPM History Chart -->
+            <div class="fu2">
+                <div class="sec-label">WPM History</div>
+                <div style="background:var(--panel); border:1px solid var(--edge); border-radius:2px; padding:24px; height:140px; display:flex; align-items:flex-end; gap:4px; overflow:hidden;" id="history-chart">
+                    <div style="font-family:var(--mono); font-size:11px; color:var(--text-dim); margin:auto; letter-spacing:0.1em;">No data yet. Take a test!</div>
                 </div>
             </div>
-            <!-- 3rd -->
-            <div class="flex flex-col items-center gap-2">
-                <span class="text-sm font-medium text-[#b2bec3]">Sarah99</span>
-                <span class="text-xs text-[#6c5ce7]">128 WPM</span>
-                <div class="w-20 h-16 glass-panel bg-[#2a2f45]/50 rounded-t-lg border-t-2 border-[#d63031] flex items-start justify-center pt-2">
-                    <span class="text-xl font-medium text-[#b2bec3]">3</span>
+
+            <!-- Skill Breakdown -->
+            <div class="fu3">
+                <div class="sec-label">Skill Breakdown</div>
+                <div style="display:flex; flex-direction:column; gap:8px;">
+                    <div class="progress-item">
+                        <div style="font-family:var(--mono); font-size:11px; color:var(--text-mid); width:90px; letter-spacing:0.05em;">Speed</div>
+                        <div class="progress-bar-track"><div class="progress-bar-fill" id="skill-speed" style="width:0%;"></div></div>
+                        <div style="font-family:var(--mono); font-size:12px; color:var(--neon); width:36px; text-align:right;" id="skill-speed-val">0%</div>
+                    </div>
+                    <div class="progress-item">
+                        <div style="font-family:var(--mono); font-size:11px; color:var(--text-mid); width:90px; letter-spacing:0.05em;">Accuracy</div>
+                        <div class="progress-bar-track"><div class="progress-bar-fill" id="skill-acc" style="width:0%; background:linear-gradient(90deg, var(--neon2), var(--sky));"></div></div>
+                        <div style="font-family:var(--mono); font-size:12px; color:var(--sky); width:36px; text-align:right;" id="skill-acc-val">0%</div>
+                    </div>
+                    <div class="progress-item">
+                        <div style="font-family:var(--mono); font-size:11px; color:var(--text-mid); width:90px; letter-spacing:0.05em;">Consistency</div>
+                        <div class="progress-bar-track"><div class="progress-bar-fill" id="skill-cons" style="width:0%; background:linear-gradient(90deg, var(--flame), var(--gold));"></div></div>
+                        <div style="font-family:var(--mono); font-size:12px; color:var(--gold); width:36px; text-align:right;" id="skill-cons-val">0%</div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- List -->
-        <div class="w-full flex flex-col gap-2">
-            <div class="glass-panel p-4 rounded-xl flex items-center justify-between">
-                <div class="flex items-center gap-4">
-                    <span class="text-[#b2bec3] text-sm w-6 text-center">4</span>
-                    <span class="text-[#ffffff] text-sm font-medium">JohnDoe</span>
-                </div>
-                <span class="text-[#ffffff] text-sm font-medium">120 WPM</span>
-            </div>
-            <div class="glass-panel p-4 rounded-xl flex items-center justify-between bg-[#6c5ce7]/10 border-[#6c5ce7]/30">
-                <div class="flex items-center gap-4">
-                    <span class="text-[#6c5ce7] text-sm w-6 text-center">428</span>
-                    <span class="text-[#ffffff] text-sm font-medium">You (Current)</span>
-                </div>
-                <span class="text-[#ffffff] text-sm font-medium" id="leaderboard-your-wpm">0 WPM</span>
+        <!-- HISTORY TAB -->
+        <div id="tab-history" style="display:none; flex-direction:column; gap:10px;">
+            <div id="history-list">
+                <div style="font-family:var(--mono); font-size:11px; color:var(--text-dim); text-align:center; padding:40px; letter-spacing:0.1em;">NO TESTS YET</div>
             </div>
         </div>
-    </section>
 
-    <script>
-        // --- Data & Config ---
-        const TEXT_BANKS = {
-            random: "ocean brief custom method chapter silent detail verify logic matrix syntax build framework quantum neural pixel stream vector array cloud cipher hash scope route cache logic query sync push pull merge fetch route parse scope build layer grid".split(" "),
-            quotes: [
-                "Programs must be written for people to read, and only incidentally for machines to execute.",
-                "Any fool can write code that a computer can understand. Good programmers write code that humans can understand.",
-                "First, solve the problem. Then, write the code.",
-                "Experience is the name everyone gives to their mistakes.",
-                "In order to understand recursion, one must first understand recursion."
-            ]
-        };
+        <!-- GOALS TAB -->
+        <div id="tab-goals" style="display:none; flex-direction:column; gap:16px;">
+            <div class="glass" style="border-radius:2px; padding:24px; border-color:rgba(0,245,200,0.15);">
+                <div style="font-family:var(--display); font-size:16px; font-weight:700; margin-bottom:4px;">Reach 60 WPM</div>
+                <div style="font-family:var(--mono); font-size:11px; color:var(--text-dim); margin-bottom:16px; letter-spacing:0.05em;">Beginner Goal</div>
+                <div class="prog-bar" style="height:6px;">
+                    <div class="prog-fill" id="goal1-fill" style="width:0%;"></div>
+                </div>
+                <div style="font-family:var(--mono); font-size:10px; color:var(--text-dim); margin-top:8px;" id="goal1-txt">0 / 60 WPM</div>
+            </div>
+            <div class="glass" style="border-radius:2px; padding:24px; border-color:rgba(124,111,255,0.2);">
+                <div style="font-family:var(--display); font-size:16px; font-weight:700; margin-bottom:4px;">Reach 100 WPM</div>
+                <div style="font-family:var(--mono); font-size:11px; color:var(--text-dim); margin-bottom:16px; letter-spacing:0.05em;">Intermediate Goal</div>
+                <div class="prog-bar" style="height:6px;">
+                    <div style="height:100%; border-radius:1px; background:linear-gradient(90deg, var(--neon2), var(--sky)); transition:width 1s;" id="goal2-fill" style="width:0%;"></div>
+                </div>
+                <div style="font-family:var(--mono); font-size:10px; color:var(--text-dim); margin-top:8px;" id="goal2-txt">0 / 100 WPM</div>
+            </div>
+            <div class="glass" style="border-radius:2px; padding:24px; border-color:rgba(255,209,102,0.15);">
+                <div style="font-family:var(--display); font-size:16px; font-weight:700; margin-bottom:4px;">Complete 50 Tests</div>
+                <div style="font-family:var(--mono); font-size:11px; color:var(--text-dim); margin-bottom:16px; letter-spacing:0.05em;">Dedication Badge</div>
+                <div class="prog-bar" style="height:6px;">
+                    <div style="height:100%; border-radius:1px; background:linear-gradient(90deg, var(--flame), var(--gold)); transition:width 1s;" id="goal3-fill" style="width:0%;"></div>
+                </div>
+                <div style="font-family:var(--mono); font-size:10px; color:var(--text-dim); margin-top:8px;" id="goal3-txt">0 / 50 Tests</div>
+            </div>
+        </div>
+    </div>
+</section>
 
-        const CIRCLE_CIRCUMFERENCE = 100.53;
+<!-- =================== LEADERBOARD =================== -->
+<section id="screen-leaderboard" class="screen">
+    <div class="max-w">
+        <nav class="nav">
+            <button class="back-btn" onclick="goTo('dashboard')">
+                <iconify-icon icon="solar:arrow-left-linear"></iconify-icon> BACK
+            </button>
+            <div class="logo">RANK<span>INGS</span></div>
+            <div style="width:80px;"></div>
+        </nav>
 
-        // --- State ---
-        let appState = {
-            duration: 15,
-            mode: 'random',
-            bestWpm: 0,
-            testsTaken: 0,
-            history: []
-        };
+        <!-- Podium -->
+        <div style="display:flex; align-items:flex-end; justify-content:center; gap:12px; height:180px; margin-bottom:32px;" class="fu1">
+            <div style="display:flex; flex-direction:column; align-items:center;">
+                <div class="podium-name" style="color:var(--text-mid);">AlexK</div>
+                <div class="podium-wpm">132 WPM</div>
+                <div style="width:80px; height:90px; background:var(--lift); border:1px solid var(--text-dim); border-radius:2px 2px 0 0; display:flex; align-items:center; justify-content:center;">
+                    <span style="font-family:var(--display); font-size:28px; font-weight:800; color:var(--text-mid);">2</span>
+                </div>
+            </div>
+            <div style="display:flex; flex-direction:column; align-items:center;">
+                <div class="podium-name" style="color:var(--gold);">TypeGod</div>
+                <div class="podium-wpm">145 WPM</div>
+                <div style="width:96px; height:128px; background:linear-gradient(to top, var(--neon2), var(--neon)); border-radius:2px 2px 0 0; display:flex; align-items:center; justify-content:center; box-shadow:var(--glow-neon);">
+                    <span style="font-family:var(--display); font-size:36px; font-weight:800; color:var(--void);">1</span>
+                </div>
+            </div>
+            <div style="display:flex; flex-direction:column; align-items:center;">
+                <div class="podium-name" style="color:var(--flame);">Sarah99</div>
+                <div class="podium-wpm">128 WPM</div>
+                <div style="width:80px; height:68px; background:var(--lift); border:1px solid var(--flame); border-radius:2px 2px 0 0; display:flex; align-items:center; justify-content:center;">
+                    <span style="font-family:var(--display); font-size:28px; font-weight:800; color:var(--flame);">3</span>
+                </div>
+            </div>
+        </div>
 
-        let testState = {
-            targetChars: [],
-            typedChars: [],
-            timeLeft: 15,
-            timerInterval: null,
-            isTyping: false,
-            isPaused: false,
-            correctKeystrokes: 0,
-            errors: 0,
-            startTime: null
-        };
+        <div style="display:flex; flex-direction:column; gap:6px;" class="fu2">
+            <div class="lb-row">
+                <span class="lb-rank">4</span>
+                <span class="lb-name">JohnDoe</span>
+                <span style="font-family:var(--mono); font-size:11px; color:var(--text-dim);">120 WPM</span>
+            </div>
+            <div class="lb-row">
+                <span class="lb-rank">5</span>
+                <span class="lb-name">FastFingers</span>
+                <span style="font-family:var(--mono); font-size:11px; color:var(--text-dim);">118 WPM</span>
+            </div>
+            <div class="lb-row">
+                <span class="lb-rank">6</span>
+                <span class="lb-name">Coder42</span>
+                <span style="font-family:var(--mono); font-size:11px; color:var(--text-dim);">115 WPM</span>
+            </div>
+            <div class="lb-row">
+                <span class="lb-rank">7</span>
+                <span class="lb-name">NightOwl</span>
+                <span style="font-family:var(--mono); font-size:11px; color:var(--text-dim);">112 WPM</span>
+            </div>
+            <div class="divider"></div>
+            <div class="lb-row you">
+                <span class="lb-rank" style="color:var(--neon);">428</span>
+                <span class="lb-name" style="color:var(--neon);">You <span style="font-weight:400; color:var(--text-dim); font-size:12px;">(current)</span></span>
+                <span class="lb-wpm" id="lb-your-wpm">0 WPM</span>
+            </div>
+        </div>
+    </div>
+</section>
 
-        // --- Init ---
-        window.addEventListener('DOMContentLoaded', () => {
-            generateParticles();
-            loadLocalData();
-            updateDashboardStats();
-            
-            // Listen to hidden keyboard events for the game
-            document.addEventListener('keydown', handleGlobalKeydown);
+<script>
+// =============================================
+//  DATA & CONFIG
+// =============================================
+const TEXTS = {
+    random: "the quick brown fox jumps over the lazy dog pack my box with five dozen liquor jugs how vexingly quick daft zebras jump sphinx of black quartz judge my vow ocean brief custom method chapter silent detail verify logic matrix syntax build framework quantum neural pixel stream vector array cloud cipher hash scope route cache query sync push pull merge fetch parse layer grid wave node link".split(" "),
+    quotes: [
+        "Programs must be written for people to read, and only incidentally for machines to execute.",
+        "Any fool can write code that a computer can understand. Good programmers write code that humans can understand.",
+        "First, solve the problem. Then, write the code.",
+        "Simplicity is the soul of efficiency.",
+        "In order to understand recursion, one must first understand recursion."
+    ],
+    numbers: "4729 8153 6047 2938 7461 3852 9176 5234 8062 1473 6928 3017 5849 2736 9401 7253 4618 8302 1567 4923".split(" ")
+};
+
+const CIRC = 150.8;
+
+let app = { dur: 15, mode: 'random', bestWpm: 0, testCount: 0, history: [] };
+let t = { chars: [], typed: [], timeLeft: 15, timer: null, running: false, paused: false, correct: 0, errors: 0, start: null, wpmLog: [] };
+
+// =============================================
+//  INIT
+// =============================================
+window.addEventListener('DOMContentLoaded', () => {
+    load();
+    updateDash();
+    document.getElementById('sp-best').textContent = app.bestWpm;
+    document.getElementById('sp-tests').textContent = app.testCount;
+    document.addEventListener('keydown', onKey);
+});
+
+function load() {
+    try {
+        const d = localStorage.getItem('mtp2_data');
+        if (d) { const p = JSON.parse(d); Object.assign(app, p); }
+    } catch(e) {}
+}
+
+function save() {
+    try { localStorage.setItem('mtp2_data', JSON.stringify(app)); } catch(e) {}
+}
+
+// =============================================
+//  NAVIGATION
+// =============================================
+const allScreens = ['splash','dashboard','customization','gameplay','results','leaderboard','progress'];
+
+function goTo(id) {
+    allScreens.forEach(s => {
+        const el = document.getElementById('screen-' + s);
+        if (el) el.classList.remove('active');
+    });
+    const target = document.getElementById('screen-' + id);
+    if (target) target.classList.add('active');
+
+    if (id === 'dashboard') updateDash();
+    if (id === 'leaderboard') document.getElementById('lb-your-wpm').textContent = app.bestWpm + ' WPM';
+    if (id === 'progress') updateProgress();
+}
+
+// =============================================
+//  DASHBOARD
+// =============================================
+function updateDash() {
+    document.getElementById('dash-best').textContent = app.bestWpm;
+    document.getElementById('dash-tests').textContent = app.testCount;
+    const avg = app.history.length ? Math.round(app.history.slice(-10).reduce((a,b) => a + b.wpm, 0) / Math.min(app.history.length, 10)) : 0;
+    document.getElementById('dash-avg').textContent = avg;
+}
+
+// =============================================
+//  CUSTOMIZATION
+// =============================================
+function setDur(val, btn) {
+    app.dur = val;
+    document.querySelectorAll('#dur-opts .opt-pill').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+}
+
+function setMode(val, card) {
+    app.mode = val;
+    document.querySelectorAll('#mode-opts .mode-card').forEach(c => c.classList.remove('active'));
+    card.classList.add('active');
+}
+
+// =============================================
+//  GAMEPLAY
+// =============================================
+function genText() {
+    const bank = TEXTS[app.mode] || TEXTS.random;
+    if (app.mode === 'quotes') return bank[Math.floor(Math.random() * bank.length)];
+    return Array.from({length: 50}, () => bank[Math.floor(Math.random() * bank.length)]).join(' ');
+}
+
+function initTest() {
+    goTo('gameplay');
+    clearInterval(t.timer);
+    t = { chars: [], typed: [], timeLeft: app.dur, timer: null, running: false, paused: false, correct: 0, errors: 0, start: null, wpmLog: [] };
+    t.chars = genText().split('');
+
+    document.getElementById('timer-txt').textContent = t.timeLeft;
+    document.getElementById('ring-fill').style.strokeDashoffset = '0';
+    document.getElementById('ring-fill').style.stroke = 'var(--neon)';
+    document.getElementById('live-wpm').textContent = '0';
+    document.getElementById('live-acc').textContent = '100';
+    document.getElementById('live-err').textContent = '0';
+    document.getElementById('prog-fill').style.width = '0%';
+    document.getElementById('wpm-graph').innerHTML = '';
+
+    renderText();
+}
+
+function renderText() {
+    const el = document.getElementById('text-display');
+    el.innerHTML = '';
+    t.chars.forEach((c, i) => {
+        const s = document.createElement('span');
+        s.textContent = c;
+        if (i < t.typed.length) {
+            s.className = t.typed[i] === c ? 'char-correct' : 'char-wrong';
+        } else if (i === t.typed.length) {
+            s.className = 'char-active';
+        }
+        el.appendChild(s);
+    });
+    // autoscroll
+    const active = el.querySelector('.char-active');
+    if (active) {
+        const er = el.getBoundingClientRect(), sr = active.getBoundingClientRect();
+        if (sr.bottom > er.bottom - 20) el.scrollTop += 36;
+        else if (sr.top < er.top + 20) el.scrollTop -= 36;
+    }
+}
+
+function onKey(e) {
+    const gp = document.getElementById('screen-gameplay');
+    if (!gp.classList.contains('active') || t.paused) return;
+    if (e.ctrlKey || e.altKey || e.metaKey) return;
+    if (e.key.length > 1 && e.key !== 'Backspace') return;
+
+    if (e.key === ' ') e.preventDefault();
+
+    if (e.key === 'Backspace') {
+        if (t.typed.length > 0) { t.typed.pop(); renderText(); }
+        return;
+    }
+
+    if (!t.running) {
+        t.running = true;
+        t.start = Date.now();
+        startTimer();
+    }
+
+    const idx = t.typed.length;
+    if (idx < t.chars.length) {
+        t.typed.push(e.key);
+        if (e.key === t.chars[idx]) t.correct++;
+        else t.errors++;
+        updateHUD();
+        renderText();
+        if (t.typed.length >= t.chars.length) endTest();
+    }
+}
+
+function startTimer() {
+    t.timer = setInterval(() => {
+        t.timeLeft--;
+        document.getElementById('timer-txt').textContent = t.timeLeft;
+
+        const ratio = t.timeLeft / app.dur;
+        const offset = CIRC * ratio;
+        const ring = document.getElementById('ring-fill');
+        ring.style.strokeDashoffset = CIRC - (CIRC * (1 - ratio));
+        document.getElementById('prog-fill').style.width = `${(1 - ratio) * 100}%`;
+
+        if (t.timeLeft <= 5) ring.style.stroke = 'var(--rose)';
+
+        // log wpm for graph
+        const elapsed = (Date.now() - t.start) / 60000;
+        const wpm = elapsed > 0 ? Math.round((t.correct / 5) / elapsed) : 0;
+        t.wpmLog.push(wpm);
+        updateMiniGraph();
+
+        updateHUD();
+        if (t.timeLeft <= 0) endTest();
+    }, 1000);
+}
+
+function updateHUD() {
+    if (!t.start) return;
+    const elapsed = (Date.now() - t.start) / 60000;
+    const wpm = elapsed > 0 ? Math.max(0, Math.round((t.correct / 5) / elapsed)) : 0;
+    const acc = t.typed.length === 0 ? 100 : Math.round((t.correct / t.typed.length) * 100);
+    document.getElementById('live-wpm').textContent = wpm;
+    document.getElementById('live-acc').textContent = acc;
+    document.getElementById('live-err').textContent = t.errors;
+}
+
+function updateMiniGraph() {
+    const graph = document.getElementById('wpm-graph');
+    graph.innerHTML = '';
+    const vals = t.wpmLog.slice(-30);
+    const max = Math.max(...vals, 1);
+    vals.forEach(v => {
+        const bar = document.createElement('div');
+        bar.style.cssText = `flex:1; min-width:4px; height:${Math.max(4, (v/max)*40)}px; background:linear-gradient(to top, var(--neon2), var(--neon)); border-radius:1px; opacity:0.7;`;
+        bar.setAttribute('data-val', v);
+        graph.appendChild(bar);
+    });
+}
+
+// =============================================
+//  PAUSE
+// =============================================
+function pauseTest() {
+    if (!t.running) return;
+    t.paused = true;
+    clearInterval(t.timer);
+    document.getElementById('pause-time').textContent = t.timeLeft + 's';
+    document.getElementById('screen-pause').classList.add('active');
+}
+
+function resumeTest() {
+    document.getElementById('screen-pause').classList.remove('active');
+    let count = 3;
+    // Show countdown
+    const td = document.getElementById('text-display');
+    const overlay = document.createElement('div');
+    overlay.style.cssText = 'position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(9,13,26,0.85);z-index:10;border-radius:2px;font-family:var(--display);font-size:64px;font-weight:800;color:var(--neon);';
+    overlay.id = 'countdown-overlay';
+    overlay.textContent = count;
+    td.parentElement.style.position = 'relative';
+    td.parentElement.appendChild(overlay);
+
+    const ci = setInterval(() => {
+        count--;
+        if (count > 0) { overlay.textContent = count; }
+        else {
+            clearInterval(ci);
+            overlay.remove();
+            t.paused = false;
+            t.start = Date.now() - ((app.dur - t.timeLeft) * 1000);
+            startTimer();
+        }
+    }, 1000);
+}
+
+// =============================================
+//  END TEST
+// =============================================
+function endTest() {
+    clearInterval(t.timer);
+    t.running = false;
+
+    const elapsed = Math.max(1, app.dur - t.timeLeft);
+    const wpm = Math.max(0, Math.round((t.correct / 5) / (elapsed / 60)));
+    const acc = t.typed.length === 0 ? 0 : Math.round((t.correct / t.typed.length) * 100);
+    const cons = Math.max(0, 100 - t.errors * 2);
+
+    app.testCount++;
+    let isNew = false;
+    if (wpm > app.bestWpm) { app.bestWpm = wpm; isNew = true; }
+    app.history.push({ wpm, acc, cons, time: elapsed, date: new Date().toISOString() });
+    save();
+
+    document.getElementById('res-wpm').textContent = wpm;
+    document.getElementById('res-acc').textContent = acc + '%';
+    document.getElementById('res-err').textContent = t.errors;
+    document.getElementById('res-time').textContent = elapsed + 's';
+    document.getElementById('res-correct').textContent = t.correct;
+    document.getElementById('res-total').textContent = t.typed.length;
+    document.getElementById('res-cons').textContent = cons + '%';
+
+    const badge = document.getElementById('new-best-badge');
+    badge.style.display = isNew ? 'inline-flex' : 'none';
+
+    goTo('results');
+}
+
+// =============================================
+//  PROGRESS SCREEN
+// =============================================
+function updateProgress() {
+    const h = app.history;
+    document.getElementById('pr-best').textContent = app.bestWpm;
+    document.getElementById('pr-total').textContent = app.testCount;
+
+    const avg10 = h.length ? Math.round(h.slice(-10).reduce((a,b) => a+b.wpm,0) / Math.min(h.length,10)) : 0;
+    document.getElementById('pr-avg').textContent = avg10;
+
+    const avgAcc = h.length ? Math.round(h.reduce((a,b) => a+b.acc,0) / h.length) : 0;
+    const avgCons = h.length ? Math.round(h.reduce((a,b) => a+(b.cons||0),0) / h.length) : 0;
+    const speedPct = Math.min(100, Math.round((app.bestWpm / 150) * 100));
+
+    setTimeout(() => {
+        document.getElementById('skill-speed').style.width = speedPct + '%';
+        document.getElementById('skill-speed-val').textContent = speedPct + '%';
+        document.getElementById('skill-acc').style.width = avgAcc + '%';
+        document.getElementById('skill-acc-val').textContent = avgAcc + '%';
+        document.getElementById('skill-cons').style.width = avgCons + '%';
+        document.getElementById('skill-cons-val').textContent = avgCons + '%';
+    }, 200);
+
+    // Goals
+    const g1 = Math.min(100, Math.round((app.bestWpm / 60) * 100));
+    const g2 = Math.min(100, Math.round((app.bestWpm / 100) * 100));
+    const g3 = Math.min(100, Math.round((app.testCount / 50) * 100));
+    setTimeout(() => {
+        document.getElementById('goal1-fill').style.width = g1 + '%';
+        document.getElementById('goal1-txt').textContent = app.bestWpm + ' / 60 WPM';
+        document.getElementById('goal2-fill').style.width = g2 + '%';
+        document.getElementById('goal2-txt').textContent = app.bestWpm + ' / 100 WPM';
+        document.getElementById('goal3-fill').style.width = g3 + '%';
+        document.getElementById('goal3-txt').textContent = app.testCount + ' / 50 Tests';
+    }, 300);
+
+    // History chart
+    const chart = document.getElementById('history-chart');
+    if (h.length === 0) {
+        chart.innerHTML = '<div style="font-family:var(--mono); font-size:11px; color:var(--text-dim); margin:auto; letter-spacing:0.1em;">No data yet. Take a test!</div>';
+    } else {
+        const vals = h.slice(-20).map(x => x.wpm);
+        const max = Math.max(...vals, 1);
+        chart.innerHTML = '';
+        chart.style.alignItems = 'flex-end';
+        vals.forEach(v => {
+            const bar = document.createElement('div');
+            const h2 = Math.max(8, Math.round((v / max) * 90));
+            bar.className = 'chart-bar';
+            bar.style.cssText = `flex:1; height:${h2}px;`;
+            bar.setAttribute('data-val', v + ' WPM');
+            chart.appendChild(bar);
         });
+    }
 
-        function loadLocalData() {
-            const data = localStorage.getItem('mt_pro_data');
-            if (data) {
-                const parsed = JSON.parse(data);
-                appState.bestWpm = parsed.bestWpm || 0;
-                appState.testsTaken = parsed.testsTaken || 0;
-                appState.history = parsed.history || [];
-            }
-        }
+    // History list
+    const list = document.getElementById('history-list');
+    if (h.length === 0) {
+        list.innerHTML = '<div style="font-family:var(--mono); font-size:11px; color:var(--text-dim); text-align:center; padding:40px; letter-spacing:0.1em;">NO TESTS YET</div>';
+    } else {
+        list.innerHTML = '';
+        [...h].reverse().slice(0, 20).forEach((item, i) => {
+            const d = new Date(item.date);
+            const dateStr = d.toLocaleDateString('en', {month:'short', day:'numeric'}) + ' ' + d.toLocaleTimeString('en', {hour:'2-digit', minute:'2-digit'});
+            const row = document.createElement('div');
+            row.className = 'progress-item';
+            row.style.marginBottom = '6px';
+            row.innerHTML = `
+                <div style="font-family:var(--mono); font-size:10px; color:var(--text-dim); width:80px; letter-spacing:0.05em;">${dateStr}</div>
+                <div style="font-family:var(--display); font-size:18px; font-weight:700; color:var(--neon);">${item.wpm}<span style="font-size:11px; color:var(--text-dim); font-family:var(--mono);"> WPM</span></div>
+                <div style="font-family:var(--mono); font-size:11px; color:var(--text-mid);">${item.acc}% acc</div>
+            `;
+            list.appendChild(row);
+        });
+    }
+}
 
-        function saveData() {
-            localStorage.setItem('mt_pro_data', JSON.stringify({
-                bestWpm: appState.bestWpm,
-                testsTaken: appState.testsTaken,
-                history: appState.history
-            }));
-        }
-
-        function generateParticles() {
-            const container = document.getElementById('particles-container');
-            for(let i=0; i<20; i++) {
-                const p = document.createElement('div');
-                p.className = 'particle';
-                p.style.width = Math.random() * 4 + 2 + 'px';
-                p.style.height = p.style.width;
-                p.style.left = Math.random() * 100 + 'vw';
-                p.style.top = Math.random() * 100 + 'vh';
-                p.style.animationDuration = (Math.random() * 20 + 10) + 's';
-                p.style.animationDelay = (Math.random() * 5) + 's';
-                container.appendChild(p);
-            }
-        }
-
-        // --- Navigation ---
-        const screens = ['splash', 'dashboard', 'customization', 'gameplay', 'pause', 'results', 'leaderboard'];
-        function switchScreen(screenId) {
-            screens.forEach(s => {
-                const el = document.getElementById(`screen-${s}`);
-                if (el) {
-                    if (s === 'pause') {
-                        el.classList.add('hidden');
-                    } else {
-                        el.classList.add('hidden');
-                        el.classList.remove('flex', 'animate-fade-in-up');
-                    }
-                }
-            });
-            const target = document.getElementById(`screen-${screenId}`);
-            if (target) {
-                target.classList.remove('hidden');
-                target.classList.add('flex');
-                if (screenId !== 'pause') target.classList.add('animate-fade-in-up');
-            }
-
-            if (screenId === 'dashboard') updateDashboardStats();
-            if (screenId === 'leaderboard') document.getElementById('leaderboard-your-wpm').innerText = `${appState.bestWpm} WPM`;
-        }
-
-        // --- Dashboard ---
-        function updateDashboardStats() {
-            document.getElementById('dash-best-wpm').innerText = appState.bestWpm;
-            document.getElementById('dash-tests').innerText = appState.testsTaken;
-            
-            const avg = appState.history.length > 0 
-                ? Math.round(appState.history.reduce((a, b) => a + b.wpm, 0) / appState.history.length) 
-                : 0;
-            document.getElementById('dash-avg-wpm').innerText = avg;
-        }
-
-        // --- Customization ---
-        function setDuration(val, btn) {
-            appState.duration = val;
-            document.querySelectorAll('.duration-btn').forEach(el => {
-                el.classList.remove('border-[#6c5ce7]', 'bg-[#6c5ce7]/10', 'text-[#ffffff]');
-                el.classList.add('border-transparent', 'text-[#b2bec3]');
-            });
-            btn.classList.add('border-[#6c5ce7]', 'bg-[#6c5ce7]/10', 'text-[#ffffff]');
-            btn.classList.remove('border-transparent', 'text-[#b2bec3]');
-        }
-
-        function setMode(mode, btn) {
-            appState.mode = mode;
-            document.querySelectorAll('.mode-btn').forEach(el => {
-                el.classList.remove('border-[#6c5ce7]', 'bg-[#6c5ce7]/10');
-                el.classList.add('border-transparent');
-            });
-            btn.classList.add('border-[#6c5ce7]', 'bg-[#6c5ce7]/10');
-            btn.classList.remove('border-transparent');
-        }
-
-        // --- Gameplay Logic ---
-        function generateText() {
-            let text = "";
-            if (appState.mode === 'random') {
-                let words = [];
-                for(let i=0; i<50; i++) {
-                    words.push(TEXT_BANKS.random[Math.floor(Math.random() * TEXT_BANKS.random.length)]);
-                }
-                text = words.join(" ");
-            } else {
-                text = TEXT_BANKS.quotes[Math.floor(Math.random() * TEXT_BANKS.quotes.length)];
-            }
-            return text;
-        }
-
-        function initTestArea() {
-            switchScreen('gameplay');
-            clearInterval(testState.timerInterval);
-            
-            testState.timeLeft = appState.duration;
-            testState.isTyping = false;
-            testState.isPaused = false;
-            testState.correctKeystrokes = 0;
-            testState.errors = 0;
-            testState.typedChars = [];
-            testState.startTime = null;
-
-            const targetText = generateText();
-            testState.targetChars = targetText.split('');
-            
-            // UI Reset
-            document.getElementById('timer-text').innerText = testState.timeLeft;
-            const timerCircle = document.getElementById('timer-circle');
-            timerCircle.style.strokeDashoffset = '0';
-            timerCircle.classList.replace('text-[#d63031]', 'text-[#6c5ce7]');
-            
-            document.getElementById('live-wpm').innerText = '0';
-            document.getElementById('live-acc').innerText = '100';
-            document.getElementById('test-progress').style.width = '0%';
-            
-            renderTextDisplay();
-        }
-
-        function renderTextDisplay() {
-            const display = document.getElementById('text-display');
-            display.innerHTML = '';
-            
-            testState.targetChars.forEach((char, i) => {
-                const span = document.createElement('span');
-                span.innerText = char;
-                span.className = 'transition-colors duration-100';
-                
-                if (i < testState.typedChars.length) {
-                    if (testState.typedChars[i] === char) {
-                        span.classList.add('char-correct');
-                    } else {
-                        span.classList.add('char-wrong');
-                    }
-                } else if (i === testState.typedChars.length) {
-                    span.classList.add('active-char');
-                }
-                display.appendChild(span);
-            });
-
-            // Auto-scroll
-            const activeSpan = display.querySelector('.active-char');
-            if (activeSpan) {
-                const parentRect = display.getBoundingClientRect();
-                const spanRect = activeSpan.getBoundingClientRect();
-                if (spanRect.bottom > parentRect.bottom - 20) {
-                    display.scrollTop += 32;
-                } else if (spanRect.top < parentRect.top + 20) {
-                    display.scrollTop -= 32;
-                }
-            }
-        }
-
-        function handleGlobalKeydown(e) {
-            // Only process if on gameplay screen and not paused
-            const gameplayScreen = document.getElementById('screen-gameplay');
-            if (gameplayScreen.classList.contains('hidden') || testState.isPaused) return;
-            
-            // Ignore modifiers
-            if (e.ctrlKey || e.altKey || e.metaKey || e.key.length > 1 && e.key !== 'Backspace') return;
-            if (e.key === 'Backspace') {
-                if (testState.typedChars.length > 0) {
-                    testState.typedChars.pop();
-                    renderTextDisplay();
-                }
-                return;
-            }
-
-            // Prevent space from scrolling
-            if (e.key === ' ') e.preventDefault();
-
-            // Start test on first keystroke
-            if (!testState.isTyping) {
-                testState.isTyping = true;
-                testState.startTime = Date.now();
-                startTimer();
-            }
-
-            const currentIndex = testState.typedChars.length;
-            if (currentIndex < testState.targetChars.length) {
-                const typedChar = e.key;
-                const targetChar = testState.targetChars[currentIndex];
-                
-                testState.typedChars.push(typedChar);
-                
-                if (typedChar === targetChar) {
-                    testState.correctKeystrokes++;
-                } else {
-                    testState.errors++;
-                }
-
-                updateLiveStats();
-                renderTextDisplay();
-
-                if (testState.typedChars.length >= testState.targetChars.length) {
-                    endTest();
-                }
-            }
-        }
-
-        function startTimer() {
-            testState.timerInterval = setInterval(() => {
-                testState.timeLeft--;
-                document.getElementById('timer-text').innerText = testState.timeLeft;
-                
-                const progressRatio = 1 - (testState.timeLeft / appState.duration);
-                const offset = CIRCLE_CIRCUMFERENCE - (1 - progressRatio) * CIRCLE_CIRCUMFERENCE;
-                const timerCircle = document.getElementById('timer-circle');
-                timerCircle.style.strokeDashoffset = offset;
-
-                document.getElementById('test-progress').style.width = `${progressRatio * 100}%`;
-
-                if (testState.timeLeft <= 5) {
-                    timerCircle.classList.replace('text-[#6c5ce7]', 'text-[#d63031]');
-                }
-
-                updateLiveStats(); // Update WPM dynamically
-
-                if (testState.timeLeft <= 0) {
-                    endTest();
-                }
-            }, 1000);
-        }
-
-        function updateLiveStats() {
-            const timeElapsed = (Date.now() - testState.startTime) / 1000 / 60; // in minutes
-            if (timeElapsed <= 0) return;
-
-            const netWpm = Math.max(0, Math.round((testState.correctKeystrokes / 5) / timeElapsed));
-            const totalTyped = testState.typedChars.length;
-            const acc = totalTyped === 0 ? 100 : Math.round((testState.correctKeystrokes / totalTyped) * 100);
-
-            document.getElementById('live-wpm').innerText = netWpm;
-            document.getElementById('live-acc').innerText = acc;
-        }
-
-        // --- Pause Logic ---
-        function pauseTest() {
-            if (!testState.isTyping) return;
-            testState.isPaused = true;
-            clearInterval(testState.timerInterval);
-            document.getElementById('pause-time').innerText = testState.timeLeft + 's';
-            document.getElementById('screen-pause').classList.remove('hidden');
-        }
-
-        function resumeTest() {
-            document.getElementById('screen-pause').classList.add('hidden');
-            const overlay = document.getElementById('resume-countdown');
-            const text = document.getElementById('countdown-text');
-            overlay.classList.remove('hidden');
-            
-            let count = 3;
-            text.innerText = count;
-            
-            const countInt = setInterval(() => {
-                count--;
-                if (count > 0) {
-                    text.innerText = count;
-                } else {
-                    clearInterval(countInt);
-                    overlay.classList.add('hidden');
-                    testState.isPaused = false;
-                    // Adjust start time to account for pause duration conceptually, 
-                    // or just resume interval (simpler for this scope)
-                    testState.startTime = Date.now() - ((appState.duration - testState.timeLeft) * 1000);
-                    startTimer();
-                }
-            }, 1000);
-        }
-
-        // --- End Test ---
-        function endTest() {
-            clearInterval(testState.timerInterval);
-            testState.isTyping = false;
-            
-            const timeElapsed = (appState.duration - testState.timeLeft) || 1;
-            const minutesElapsed = timeElapsed / 60;
-            const totalTyped = testState.typedChars.length;
-            
-            const netWpm = Math.max(0, Math.round((testState.correctKeystrokes / 5) / minutesElapsed));
-            const finalAcc = totalTyped === 0 ? 0 : Math.round((testState.correctKeystrokes / totalTyped) * 100);
-            
-            // Calculate dummy consistency based on errors
-            const consistency = Math.max(0, 100 - (testState.errors * 2));
-
-            // Update App State
-            appState.testsTaken++;
-            let isNewBest = false;
-            if (netWpm > appState.bestWpm) {
-                appState.bestWpm = netWpm;
-                isNewBest = true;
-            }
-
-            appState.history.push({
-                wpm: netWpm,
-                acc: finalAcc,
-                date: new Date().toISOString()
-            });
-
-            saveData();
-
-            // Populate Results Screen
-            document.getElementById('res-wpm').innerText = netWpm;
-            document.getElementById('res-acc').innerText = finalAcc;
-            document.getElementById('res-err').innerText = testState.errors;
-            document.getElementById('res-time').innerText = timeElapsed;
-            document.getElementById('res-chars-correct').innerText = testState.correctKeystrokes;
-            document.getElementById('res-chars-total').innerText = totalTyped;
-            document.getElementById('res-cons').innerText = consistency;
-
-            const newHighEl = document.getElementById('new-high-score');
-            if (isNewBest) {
-                newHighEl.classList.remove('hidden');
-            } else {
-                newHighEl.classList.add('hidden');
-            }
-
-            switchScreen('results');
-        }
-    </script>
-
-</body></html>
+function switchTab(name, btn) {
+    ['overview','history','goals'].forEach(t2 => {
+        const el = document.getElementById('tab-' + t2);
+        if (el) el.style.display = 'none';
+    });
+    document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+    const show = document.getElementById('tab-' + name);
+    if (show) show.style.display = 'flex';
+    btn.classList.add('active');
+    updateProgress();
+}
+</script>
+</body>
+</html>
