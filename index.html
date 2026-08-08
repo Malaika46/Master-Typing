@@ -3,42 +3,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Master Typing Pro</title>
+    <title>Master Typing Pro // Gaming Edition</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=JetBrains+Mono:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;600;800&family=Montserrat:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         :root {
-            --void: #050810;
-            --deep: #090d1a;
-            --panel: #0f1525;
-            --lift: #161e33;
-            --edge: #1e2840;
-            --edge2: #263050;
+            /* Theme 1: Chroma RGB (Default Gaming Light Mode) */
+            --void: #f1f5f9; /* Sleek light slate gray */
+            --deep: #e2e8f0;
+            --panel: #ffffff;
+            --lift: #f8fafc;
+            --edge: rgba(15, 23, 42, 0.08);
+            --edge2: rgba(2, 132, 199, 0.18);
+            --rgb-neon: 2, 132, 199;
+            --rgb-neon2: 124, 58, 237;
+            --neon: #0284c7; /* Sky Blue 600 */
+            --neon2: #7c3aed; /* Violet 600 */
+            --flame: #ef4444;
+            --gold: #d97706;
+            --rose: #dc2626;
+            --sky: #0ea5e9;
 
-            --neon: #00f5c8;
-            --neon2: #7c6fff;
-            --flame: #ff6b35;
-            --gold: #ffd166;
-            --rose: #ff4d6d;
-            --sky: #00b4d8;
+            --text: #0f172a; /* Slate 900 */
+            --text-dim: #64748b; /* Slate 500 */
+            --text-mid: #334155; /* Slate 700 */
 
-            --text: #e8eaf6;
-            --text-dim: #6b7299;
-            --text-mid: #9ba3c7;
+            --mono: 'JetBrains Mono', monospace;
+            --display: 'JetBrains Mono', monospace;
+            --body: 'JetBrains Mono', monospace;
+            --number: 'JetBrains Mono', monospace;
 
-            --mono: 'Space Mono', monospace;
-            --display: 'Syne', sans-serif;
-            --body: 'DM Sans', sans-serif;
+            --glow-neon: 0 0 10px rgba(2, 132, 199, 0.12);
+            --glow-purple: 0 0 10px rgba(124, 58, 237, 0.12);
+            --glow-flame: 0 0 10px rgba(239, 68, 68, 0.12);
 
-            --glow-neon: 0 0 20px rgba(0, 245, 200, 0.3), 0 0 60px rgba(0, 245, 200, 0.1);
-            --glow-purple: 0 0 20px rgba(124, 111, 255, 0.4), 0 0 60px rgba(124, 111, 255, 0.15);
-            --glow-flame: 0 0 20px rgba(255, 107, 53, 0.4);
+            --rgb-panel: 255, 255, 255;
+            --grid-line: rgba(15, 23, 42, 0.04);
+            --bg-radial: rgba(2, 132, 199, 0.04);
+        }
+
+        body.theme-cyberpunk {
+            --void: #faf5ff; /* Faint purple background */
+            --deep: #f3e8ff;
+            --panel: #ffffff;
+            --lift: #fdfaff;
+            --edge: rgba(76, 29, 149, 0.08);
+            --edge2: rgba(219, 39, 119, 0.2);
+            --rgb-neon: 219, 39, 119;
+            --rgb-neon2: 8, 145, 178;
+            --neon: #db2777; /* Deep Pink */
+            --neon2: #0891b2; /* Cyan */
+            --flame: #7c3aed;
+            --gold: #b45309;
+            --rose: #e11d48;
+            --sky: #06b6d4;
+            --text: #1e1b4b; /* Deep Indigo 950 */
+            --text-dim: #6366f1;
+            --text-mid: #4338ca;
+            --glow-neon: 0 0 10px rgba(219, 39, 119, 0.12);
+            --rgb-panel: 255, 255, 255;
+            --grid-line: rgba(76, 29, 149, 0.03);
+            --bg-radial: rgba(219, 39, 119, 0.04);
+        }
+
+        body.theme-doom {
+            --void: #fff5f5; /* Faint red background */
+            --deep: #fee2e2;
+            --panel: #ffffff;
+            --lift: #fffafb;
+            --edge: rgba(127, 29, 29, 0.08);
+            --edge2: rgba(220, 38, 38, 0.2);
+            --rgb-neon: 220, 38, 38;
+            --rgb-neon2: 234, 88, 12;
+            --neon: #dc2626; /* Crimson Red */
+            --neon2: #ea580c; /* Orange */
+            --flame: #b91c1c;
+            --gold: #ca8a04;
+            --rose: #b91c1c;
+            --sky: #db2777;
+            --text: #450a0a; /* Deep Red 950 */
+            --text-dim: #ef4444;
+            --text-mid: #991b1b;
+            --glow-neon: 0 0 10px rgba(220, 38, 38, 0.12);
+            --rgb-panel: 255, 255, 255;
+            --grid-line: rgba(127, 29, 29, 0.03);
+            --bg-radial: rgba(220, 38, 38, 0.04);
+        }
+
+        body.theme-matrix {
+            --void: #f0fdf4; /* Faint green background */
+            --deep: #dcfce7;
+            --panel: #ffffff;
+            --lift: #fcfdfd;
+            --edge: rgba(20, 83, 45, 0.08);
+            --edge2: rgba(22, 163, 74, 0.2);
+            --rgb-neon: 22, 163, 74;
+            --rgb-neon2: 15, 118, 110;
+            --neon: #16a34a; /* Matrix Green */
+            --neon2: #0f766e; /* Teal */
+            --flame: #15803d;
+            --gold: #ca8a04;
+            --rose: #be123c;
+            --sky: #0d9488;
+            --text: #052e16; /* Deep Green 950 */
+            --text-dim: #16a34a;
+            --text-mid: #15803d;
+            --glow-neon: 0 0 10px rgba(22, 163, 74, 0.12);
+            --rgb-panel: 255, 255, 255;
+            --grid-line: rgba(20, 83, 45, 0.03);
+            --bg-radial: rgba(22, 163, 74, 0.04);
+        }
+
+        body.theme-prestige {
+            --void: #fafaf9; /* Faint warm-gray background */
+            --deep: #f5f5f4;
+            --panel: #ffffff;
+            --lift: #fafaf9;
+            --edge: rgba(68, 64, 60, 0.08);
+            --edge2: rgba(202, 138, 4, 0.2);
+            --rgb-neon: 202, 138, 4;
+            --rgb-neon2: 133, 77, 14;
+            --neon: #ca8a04; /* Gold */
+            --neon2: #854d0e; /* Bronze */
+            --flame: #ea580c;
+            --gold: #854d0e;
+            --rose: #be123c;
+            --sky: #4f46e5;
+            --text: #1c1917; /* Warm Charcoal 950 */
+            --text-dim: #78716c;
+            --text-mid: #44403c;
+            --glow-neon: 0 0 10px rgba(202, 138, 4, 0.12);
+            --rgb-panel: 255, 255, 255;
+            --grid-line: rgba(68, 64, 60, 0.03);
+            --bg-radial: rgba(202, 138, 4, 0.04);
         }
 
         html { scroll-behavior: smooth; }
@@ -50,30 +153,98 @@
             min-height: 100vh;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
+            transition: background 0.4s ease, color 0.4s ease;
+            position: relative;
         }
 
-        /* ── NOISE OVERLAY ── */
+        /* ── CYBER GLOW BG GRID ── */
         body::before {
             content: '';
             position: fixed;
             inset: 0;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+            background-image: 
+                radial-gradient(circle at 50% 50%, var(--bg-radial) 0%, transparent 80%),
+                linear-gradient(var(--grid-line) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+            background-size: 100% 100%, 30px 30px, 30px 30px;
             pointer-events: none;
-            z-index: 0;
-            opacity: 0.6;
+            z-index: 1;
         }
 
-        /* ── GRID BG ── */
         body::after {
             content: '';
             position: fixed;
             inset: 0;
-            background-image: 
-                linear-gradient(rgba(0,245,200,0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0,245,200,0.03) 1px, transparent 1px);
-            background-size: 60px 60px;
+            background: 
+                radial-gradient(circle at 10% 10%, rgba(var(--rgb-neon), 0.06) 0%, transparent 50%),
+                radial-gradient(circle at 90% 90%, rgba(var(--rgb-neon2), 0.06) 0%, transparent 50%);
             pointer-events: none;
-            z-index: 0;
+            z-index: 2;
+        }
+
+        .glass, .stat-card, .btn-ghost, .btn-primary, .opt-pill, select, .toggle, .progress-item, .lb-row, #text-display, .mode-card, .ticker-wrap, .divider, .prog-bar {
+            transition: background 0.4s ease, border-color 0.4s ease, color 0.4s ease, transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        /* ── CYBERBOX DECORATION ── */
+        .cyber-box {
+            position: relative;
+            background: var(--panel);
+            border: 1px solid var(--edge);
+            border-radius: 4px !important;
+        }
+        .cyber-box::before {
+            content: '';
+            position: absolute;
+            top: -1px; left: -1px;
+            width: 10px; height: 10px;
+            border-top: 2px solid var(--neon);
+            border-left: 2px solid var(--neon);
+            pointer-events: none;
+            transition: border-color 0.4s;
+        }
+        .cyber-box::after {
+            content: '';
+            position: absolute;
+            bottom: -1px; right: -1px;
+            width: 10px; height: 10px;
+            border-bottom: 2px solid var(--neon2);
+            border-right: 2px solid var(--neon2);
+            pointer-events: none;
+            transition: border-color 0.4s;
+        }
+
+        .stat-card {
+            background: var(--panel);
+            border: 1px solid var(--edge);
+            border-radius: 4px;
+            padding: 24px;
+            position: relative;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s;
+        }
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: -1px; left: -1px;
+            width: 8px; height: 8px;
+            border-top: 2px solid var(--neon);
+            border-left: 2px solid var(--neon);
+            pointer-events: none;
+        }
+        .stat-card::after {
+            content: '';
+            position: absolute;
+            bottom: -1px; right: -1px;
+            width: 8px; height: 8px;
+            border-bottom: 2px solid var(--neon2);
+            border-right: 2px solid var(--neon2);
+            pointer-events: none;
+        }
+        .stat-card:hover {
+            border-color: var(--neon);
+            transform: translateY(-3px);
+            box-shadow: var(--glow-neon);
         }
 
         /* ── SCREENS ── */
@@ -89,73 +260,107 @@
         }
         .screen.active { display: flex; }
 
-        .max-w { max-width: 880px; width: 100%; margin: 0 auto; }
+        .max-w { max-width: 920px; width: 100%; margin: 0 auto; }
 
         /* ── ANIMATIONS ── */
         @keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
-        @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
         @keyframes scanline { 0% { transform:translateY(-100%); } 100% { transform:translateY(100vh); } }
         @keyframes blink { 0%,100% { opacity:1; } 50% { opacity:0; } }
-        @keyframes pulse-ring { 0% { transform:scale(0.9); opacity:1; } 100% { transform:scale(1.6); opacity:0; } }
         @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         @keyframes floatY { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-8px); } }
-        @keyframes gradShift { 0%,100% { background-position:0% 50%; } 50% { background-position:100% 50%; } }
-        @keyframes spin { to { transform:rotate(360deg); } }
-        @keyframes countUp { from { opacity:0; transform:scale(0.5); } to { opacity:1; transform:scale(1); } }
-        @keyframes barFill { from { width:0; } to { width:var(--target-w); } }
-        @keyframes waveBar { 0%,100% { scaleY:0.6; } 50% { scaleY:1; } }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-8px); }
+            40%, 80% { transform: translateX(8px); }
+        }
 
         .fu { animation: fadeUp 0.5s ease forwards; }
         .fu1 { animation: fadeUp 0.5s 0.1s ease both; }
         .fu2 { animation: fadeUp 0.5s 0.2s ease both; }
         .fu3 { animation: fadeUp 0.5s 0.3s ease both; }
         .fu4 { animation: fadeUp 0.5s 0.4s ease both; }
+        .fu5 { animation: fadeUp 0.5s 0.5s ease both; }
+
+        .shake { animation: shake 0.2s ease-in-out; }
+
+        /* ── LOW SHIELD PULSE EFFECT ── */
+        body.low-shield-pulse {
+            animation: low-shield-flash 1s infinite alternate;
+        }
+        @keyframes low-shield-flash {
+            0% { box-shadow: inset 0 0 20px rgba(255, 59, 48, 0.15); }
+            100% { box-shadow: inset 0 0 50px rgba(255, 59, 48, 0.5); }
+        }
 
         /* ── SCANLINE EFFECT ── */
         .scanline-wrap { position:fixed; inset:0; pointer-events:none; z-index:9; overflow:hidden; }
         .scanline-wrap::after {
             content:'';
             position:absolute;
-            left:0; width:100%; height:2px;
-            background: linear-gradient(transparent, rgba(0,245,200,0.06), transparent);
-            animation: scanline 8s linear infinite;
+            left:0; width:100%; height:3px;
+            background: linear-gradient(transparent, rgba(var(--rgb-neon), 0.08), transparent);
+            animation: scanline 6s linear infinite;
         }
 
         /* ── GLASS PANEL ── */
         .glass {
-            background: rgba(15,21,37,0.8);
+            background: rgba(var(--rgb-panel, 255, 255, 255), 0.8);
             border: 1px solid var(--edge);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
         }
 
-        .glass-neon {
-            background: rgba(0,245,200,0.04);
-            border: 1px solid rgba(0,245,200,0.15);
+        /* ── GLITCH EFFECT ── */
+        .glitch-text {
+            position: relative;
+            font-family: var(--display);
+            text-transform: uppercase;
+        }
+        .glitch-text::before {
+            content: attr(data-text);
+            position: absolute;
+            left: 2px;
+            text-shadow: -2px 0 var(--flame);
+            background: transparent;
+            overflow: hidden;
+            clip: rect(0, 900px, 0, 0); 
+            animation: noise-anim 2.5s infinite linear alternate-reverse;
+        }
+        .glitch-text::after {
+            content: attr(data-text);
+            position: absolute;
+            left: -2px;
+            text-shadow: -2px 0 var(--neon);
+            background: transparent;
+            overflow: hidden;
+            clip: rect(0, 900px, 0, 0); 
+            animation: noise-anim-2 2.5s infinite linear alternate-reverse;
+        }
+        @keyframes noise-anim {
+            0% { clip: rect(10px, 9999px, 50px, 0); }
+            100% { clip: rect(40px, 9999px, 5px, 0); }
+        }
+        @keyframes noise-anim-2 {
+            0% { clip: rect(60px, 9999px, 110px, 0); }
+            100% { clip: rect(30px, 9999px, 90px, 0); }
         }
 
-        /* ── NEON TEXT ── */
-        .neon-text {
-            color: var(--neon);
-            text-shadow: 0 0 20px rgba(0,245,200,0.6), 0 0 40px rgba(0,245,200,0.3);
-        }
         .grad-text {
             background: linear-gradient(135deg, var(--neon), var(--neon2));
             background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        .flame-text { color: var(--flame); text-shadow: var(--glow-flame); }
 
         /* ── BUTTONS ── */
         .btn-primary {
-            background: linear-gradient(135deg, var(--neon2), var(--neon));
+            background: linear-gradient(135deg, var(--neon), var(--neon2));
             color: var(--void);
             border: none;
             padding: 14px 32px;
             border-radius: 4px;
             font-family: var(--display);
-            font-weight: 700;
+            font-weight: 800;
             font-size: 13px;
             letter-spacing: 0.1em;
             text-transform: uppercase;
@@ -163,6 +368,10 @@
             transition: all 0.2s;
             position: relative;
             overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--glow-neon);
         }
         .btn-primary::before {
             content: '';
@@ -172,8 +381,8 @@
             opacity: 0;
             transition: opacity 0.2s;
         }
-        .btn-primary:hover::before { opacity: 0.1; }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: var(--glow-neon); }
+        .btn-primary:hover::before { opacity: 0.15; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 25px rgba(var(--rgb-neon), 0.7); }
         .btn-primary:active { transform: translateY(0); }
 
         .btn-ghost {
@@ -185,12 +394,12 @@
             font-family: var(--display);
             font-weight: 600;
             font-size: 13px;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.05em;
             text-transform: uppercase;
             cursor: pointer;
             transition: all 0.2s;
         }
-        .btn-ghost:hover { border-color: var(--neon); color: var(--neon); }
+        .btn-ghost:hover { border-color: var(--neon); color: var(--neon); background: rgba(var(--rgb-neon), 0.05); box-shadow: 0 0 15px rgba(var(--rgb-neon), 0.15); }
 
         /* ── TICKER ── */
         .ticker-wrap {
@@ -198,27 +407,27 @@
             overflow: hidden;
             border-top: 1px solid var(--edge);
             border-bottom: 1px solid var(--edge);
-            padding: 10px 0;
-            background: rgba(0,245,200,0.02);
+            padding: 12px 0;
+            background: var(--deep);
         }
         .ticker-inner {
             display: flex;
             gap: 60px;
             white-space: nowrap;
-            animation: ticker 20s linear infinite;
+            animation: ticker 25s linear infinite;
             width: max-content;
         }
         .ticker-item {
             font-family: var(--mono);
             font-size: 10px;
             color: var(--text-dim);
-            letter-spacing: 0.15em;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
             display: flex;
             align-items: center;
             gap: 12px;
         }
-        .ticker-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--neon); }
+        .ticker-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--neon); box-shadow: var(--glow-neon); }
 
         /* ── NAV ── */
         .nav {
@@ -230,11 +439,11 @@
         }
         .logo {
             font-family: var(--display);
-            font-size: 18px;
-            font-weight: 800;
-            letter-spacing: -0.02em;
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: 0.05em;
         }
-        .logo span { color: var(--neon); }
+        .logo span { color: var(--neon); text-shadow: var(--glow-neon); }
         .back-btn {
             display: flex;
             align-items: center;
@@ -242,47 +451,29 @@
             background: none;
             border: none;
             color: var(--text-dim);
-            font-family: var(--mono);
+            font-family: var(--display);
+            font-weight: 700;
             font-size: 12px;
             cursor: pointer;
             transition: color 0.2s;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.1em;
         }
         .back-btn:hover { color: var(--neon); }
 
-        /* ── STAT CARDS ── */
-        .stat-card {
-            background: var(--panel);
-            border: 1px solid var(--edge);
-            border-radius: 2px;
-            padding: 24px;
-            transition: border-color 0.3s, transform 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-        .stat-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0;
-            width: 2px; height: 100%;
-            background: var(--neon);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        .stat-card:hover { border-color: var(--neon2); transform: translateY(-3px); }
-        .stat-card:hover::before { opacity: 1; }
+        /* ── STATS ── */
         .stat-label {
-            font-family: var(--mono);
-            font-size: 9px;
-            letter-spacing: 0.2em;
+            font-family: var(--display);
+            font-weight: 600;
+            font-size: 10px;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
             color: var(--text-dim);
             margin-bottom: 8px;
         }
         .stat-val {
             font-family: var(--display);
-            font-size: 36px;
-            font-weight: 800;
+            font-size: 38px;
+            font-weight: 900;
             color: var(--text);
             line-height: 1;
         }
@@ -291,43 +482,46 @@
         .opt-row { display: flex; gap: 8px; flex-wrap: wrap; }
         .opt-pill {
             padding: 10px 20px;
-            border-radius: 2px;
-            font-family: var(--mono);
+            border-radius: 4px;
+            font-family: var(--display);
+            font-weight: 700;
             font-size: 12px;
-            letter-spacing: 0.1em;
-            border: 1px solid var(--edge2);
+            letter-spacing: 0.05em;
+            border: 1px solid var(--edge);
             background: var(--panel);
             color: var(--text-mid);
             cursor: pointer;
             transition: all 0.2s;
-            text-transform: uppercase;
         }
         .opt-pill.active {
             border-color: var(--neon);
-            background: rgba(0,245,200,0.08);
+            background: var(--deep);
             color: var(--neon);
+            box-shadow: 0 0 10px rgba(var(--rgb-neon), 0.2);
         }
         .opt-pill:hover:not(.active) { border-color: var(--neon2); color: var(--neon2); }
 
         .mode-card {
             padding: 20px;
-            border: 1px solid var(--edge2);
-            border-radius: 2px;
+            border: 1px solid var(--edge);
+            border-radius: 4px;
             background: var(--panel);
             cursor: pointer;
             transition: all 0.2s;
             flex: 1;
+            position: relative;
         }
-        .mode-card.active { border-color: var(--neon); background: rgba(0,245,200,0.05); }
+        .mode-card.active { border-color: var(--neon); background: var(--deep); box-shadow: 0 0 12px rgba(var(--rgb-neon), 0.15); }
         .mode-card:hover:not(.active) { border-color: var(--neon2); }
-        .mode-title { font-family: var(--display); font-weight: 700; font-size: 14px; margin-bottom: 4px; }
-        .mode-desc { font-size: 12px; color: var(--text-dim); font-family: var(--mono); }
+        .mode-title { font-family: var(--display); font-weight: 800; font-size: 13px; margin-bottom: 4px; letter-spacing: 0.05em; text-transform: uppercase; }
+        .mode-desc { font-size: 12px; color: var(--text-dim); }
 
         /* ── SECTION LABEL ── */
         .sec-label {
-            font-family: var(--mono);
-            font-size: 10px;
-            letter-spacing: 0.25em;
+            font-family: var(--display);
+            font-weight: 700;
+            font-size: 11px;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
             color: var(--text-dim);
             margin-bottom: 12px;
@@ -346,12 +540,13 @@
         select {
             width: 100%;
             background: var(--panel);
-            border: 1px solid var(--edge2);
+            border: 1px solid var(--edge);
             color: var(--text);
             padding: 12px 16px;
-            border-radius: 2px;
-            font-family: var(--mono);
-            font-size: 12px;
+            border-radius: 4px;
+            font-family: var(--display);
+            font-weight: 600;
+            font-size: 13px;
             appearance: none;
             cursor: pointer;
             outline: none;
@@ -361,11 +556,11 @@
 
         /* ── TOGGLE ── */
         .toggle-wrap { display: flex; align-items: center; justify-content: space-between; }
-        .toggle-label { font-size: 13px; color: var(--text-mid); font-family: var(--mono); letter-spacing: 0.05em; }
+        .toggle-label { font-size: 12px; color: var(--text-mid); font-family: var(--display); font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }
         .toggle {
-            width: 44px; height: 24px;
+            width: 44px; height: 22px;
             background: var(--edge2);
-            border-radius: 12px;
+            border-radius: 11px;
             position: relative;
             cursor: pointer;
             transition: background 0.3s;
@@ -374,82 +569,102 @@
         .toggle::after {
             content: '';
             position: absolute;
-            width: 18px; height: 18px;
-            background: var(--text-dim);
+            width: 16px; height: 16px;
+            background: var(--void);
             border-radius: 50%;
             top: 3px; left: 3px;
             transition: all 0.3s;
         }
-        .toggle.on { background: rgba(0,245,200,0.2); border: 1px solid var(--neon); }
-        .toggle.on::after { left: 23px; background: var(--neon); box-shadow: var(--glow-neon); }
+        .toggle.on { background: var(--neon); }
+        .toggle.on::after { left: 25px; background: var(--void); }
 
-        /* ── GAMEPLAY ── */
+        /* ── GAMEPLAY DISPLAY ── */
         #text-display {
-            font-family: var(--mono);
-            font-size: 20px;
-            line-height: 1.9;
-            letter-spacing: 0.03em;
-            color: rgba(107, 114, 153, 0.5);
-            background: var(--panel);
-            border: 1px solid var(--edge);
-            border-radius: 2px;
-            padding: 36px 40px;
-            max-height: 200px;
+            font-family: var(--body);
+            font-size: 24px;
+            font-weight: 600;
+            line-height: 1.8;
+            letter-spacing: 0.02em;
+            color: var(--text-mid);
+            background: rgba(var(--rgb-panel, 255, 255, 255), 0.9);
+            border: 1.5px solid var(--edge2);
+            border-radius: 8px;
+            padding: 40px 48px;
+            max-height: 230px;
             overflow: hidden;
             position: relative;
             user-select: none;
+            box-shadow: 0 8px 32px rgba(var(--rgb-neon), 0.08), inset 0 2px 4px rgba(0,0,0,0.02);
+            transition: all 0.3s ease;
         }
-        .char-correct { color: var(--neon); }
+        .char-correct {
+            color: #10b981;
+            text-shadow: 0 0 1px rgba(16, 185, 129, 0.25);
+        }
         .char-wrong {
             color: var(--rose);
-            border-bottom: 2px solid rgba(255,77,109,0.5);
+            background: rgba(220, 38, 38, 0.08);
+            border-bottom: 2px solid var(--rose);
+            text-decoration: none;
         }
         .char-active {
-            color: var(--text);
+            color: var(--neon);
             position: relative;
+            background: rgba(var(--rgb-neon), 0.08);
+            border-radius: 3px;
         }
         .char-active::before {
             content: '';
             position: absolute;
             left: -2px; top: 10%; height: 80%; width: 2px;
             background: var(--neon);
-            box-shadow: var(--glow-neon);
             animation: blink 1s step-end infinite;
             border-radius: 1px;
+            box-shadow: var(--glow-neon);
         }
 
-        /* ── TIMER ── */
-        .timer-ring { transform: rotate(-90deg); }
-        .ring-track { stroke: var(--edge2); }
-        .ring-fill {
-            stroke: var(--neon);
-            stroke-linecap: round;
-            transition: stroke-dashoffset 1s linear, stroke 0.3s;
-            filter: drop-shadow(0 0 4px rgba(0,245,200,0.5));
+        /* ── GAMEPLAY CONTROLS ── */
+        .gameplay-control-btn {
+            background: var(--panel);
+            border: 1px solid var(--edge);
+            width: 38px;
+            height: 38px;
+            border-radius: 6px;
+            color: var(--text-dim);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+        .gameplay-control-btn:hover {
+            border-color: var(--neon);
+            color: var(--neon);
+            background: rgba(var(--rgb-neon), 0.1);
+            box-shadow: 0 0 10px rgba(var(--rgb-neon), 0.2);
         }
 
         /* ── HUD STAT ── */
-        .hud-stat { display: flex; flex-direction: column; gap: 2px; }
-        .hud-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-dim); }
-        .hud-val { font-family: var(--display); font-size: 24px; font-weight: 800; color: var(--text); line-height: 1; }
+        .hud-stat { display: flex; flex-direction: column; gap: 4px; }
+        .hud-label { font-family: var(--display); font-weight: 800; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dim); }
+        .hud-val { font-family: var(--display); font-size: 26px; font-weight: 900; color: var(--text); line-height: 1; }
 
         /* ── PROGRESS BAR ── */
-        .prog-bar { height: 2px; background: var(--edge); border-radius: 1px; overflow: hidden; }
+        .prog-bar { height: 6px; background: var(--deep); border-radius: 3px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); }
         .prog-fill {
             height: 100%;
-            background: linear-gradient(90deg, var(--neon2), var(--neon));
-            border-radius: 1px;
+            background: linear-gradient(90deg, var(--neon), var(--sky));
+            border-radius: 3px;
             transition: width 0.3s ease;
-            box-shadow: 0 0 8px var(--neon);
         }
 
         /* ── RESULTS ── */
         .result-big {
             font-family: var(--display);
-            font-size: 80px;
-            font-weight: 800;
+            font-size: 92px;
+            font-weight: 900;
             line-height: 1;
-            letter-spacing: -0.03em;
+            letter-spacing: -0.02em;
         }
 
         /* ── CHART ── */
@@ -457,8 +672,12 @@
             background: linear-gradient(to top, var(--neon2), var(--neon));
             border-radius: 2px 2px 0 0;
             position: relative;
-            transition: height 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 0 8px rgba(var(--rgb-neon), 0.2);
+            transition: height 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s;
             min-height: 4px;
+        }
+        .chart-bar:hover {
+            box-shadow: 0 0 16px var(--neon);
         }
         .chart-bar:hover::after {
             content: attr(data-val);
@@ -470,6 +689,7 @@
             font-size: 10px;
             color: var(--neon);
             white-space: nowrap;
+            font-weight: 700;
         }
 
         /* ── LEADERBOARD ── */
@@ -479,15 +699,15 @@
             justify-content: space-between;
             padding: 14px 20px;
             border: 1px solid var(--edge);
-            border-radius: 2px;
+            border-radius: 4px;
             background: var(--panel);
-            transition: border-color 0.2s;
+            transition: all 0.2s;
         }
         .lb-row:hover { border-color: var(--neon2); }
-        .lb-row.you { border-color: var(--neon); background: rgba(0,245,200,0.04); }
+        .lb-row.you { border-color: var(--neon); background: var(--lift); box-shadow: 0 0 10px rgba(var(--rgb-neon), 0.1); }
         .lb-rank { font-family: var(--mono); font-size: 11px; color: var(--text-dim); width: 36px; }
-        .lb-name { font-family: var(--display); font-weight: 600; font-size: 14px; }
-        .lb-wpm { font-family: var(--mono); font-size: 13px; color: var(--neon); }
+        .lb-name { font-family: var(--body); font-weight: 700; font-size: 14px; }
+        .lb-wpm { font-family: var(--mono); font-size: 13px; color: var(--neon); font-weight: 700; }
 
         /* ── PODIUM ── */
         .podium-bar {
@@ -495,18 +715,22 @@
             flex-direction: column;
             align-items: center;
             justify-content: flex-end;
-            border-radius: 2px 2px 0 0;
+            border-radius: 4px 4px 0 0;
+            background: var(--panel);
+            border: 1px solid var(--edge);
+            border-bottom: none;
+            position: relative;
         }
-        .podium-name { font-family: var(--display); font-size: 12px; font-weight: 700; margin-bottom: 6px; }
-        .podium-wpm { font-family: var(--mono); font-size: 10px; color: var(--text-dim); margin-bottom: 10px; }
+        .podium-name { font-family: var(--display); font-size: 12px; font-weight: 800; margin-bottom: 6px; }
+        .podium-wpm { font-family: var(--mono); font-size: 11px; color: var(--neon); margin-bottom: 10px; font-weight: 700; }
 
         /* ── PAUSE OVERLAY ── */
         #screen-pause {
             position: fixed;
             inset: 0;
             z-index: 100;
-            background: rgba(5,8,16,0.92);
-            backdrop-filter: blur(16px);
+            background: rgba(var(--rgb-panel, 255, 255, 255), 0.95);
+            backdrop-filter: blur(12px);
             display: none;
             align-items: center;
             justify-content: center;
@@ -518,33 +742,33 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 16px 20px;
+            padding: 18px 24px;
             border: 1px solid var(--edge);
-            border-radius: 2px;
+            border-radius: 4px;
             background: var(--panel);
         }
         .progress-bar-track {
             flex: 1;
-            height: 4px;
+            height: 6px;
             background: var(--edge2);
-            border-radius: 2px;
-            margin: 0 16px;
+            border-radius: 3px;
+            margin: 0 20px;
             overflow: hidden;
         }
         .progress-bar-fill {
             height: 100%;
-            border-radius: 2px;
-            background: linear-gradient(90deg, var(--neon2), var(--neon));
-            box-shadow: 0 0 6px var(--neon);
+            border-radius: 3px;
+            background: var(--neon);
         }
 
         /* ── TABS ── */
         .tab-bar { display: flex; gap: 0; border-bottom: 1px solid var(--edge); margin-bottom: 24px; }
         .tab {
-            padding: 12px 20px;
-            font-family: var(--mono);
-            font-size: 11px;
-            letter-spacing: 0.12em;
+            padding: 14px 24px;
+            font-family: var(--display);
+            font-weight: 700;
+            font-size: 12px;
+            letter-spacing: 0.05em;
             text-transform: uppercase;
             color: var(--text-dim);
             cursor: pointer;
@@ -556,7 +780,7 @@
             border-left: none;
             border-right: none;
         }
-        .tab.active { color: var(--neon); border-bottom-color: var(--neon); }
+        .tab.active { color: var(--neon); border-bottom-color: var(--neon); text-shadow: var(--glow-neon); }
         .tab:hover:not(.active) { color: var(--text-mid); }
 
         /* ── STREAK BADGE ── */
@@ -565,13 +789,89 @@
             align-items: center;
             gap: 8px;
             padding: 8px 16px;
-            background: rgba(255,209,102,0.08);
-            border: 1px solid rgba(255,209,102,0.25);
-            border-radius: 2px;
-            font-family: var(--mono);
-            font-size: 11px;
+            background: rgba(255, 184, 0, 0.08);
+            border: 1px solid rgba(255, 184, 0, 0.25);
+            border-radius: 4px;
+            font-family: var(--display);
+            font-weight: 700;
+            font-size: 12px;
             color: var(--gold);
-            letter-spacing: 0.08em;
+        }
+
+        /* ── VIRTUAL KEYBOARD ── */
+        .keyboard-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            width: 100%;
+            max-width: 780px;
+            margin: 12px auto 0 auto;
+            background: rgba(var(--rgb-panel), 0.7);
+            border: 1px solid var(--edge);
+            padding: 18px;
+            border-radius: 8px;
+            box-shadow: 0 8px 32px rgba(var(--rgb-neon), 0.05);
+            backdrop-filter: blur(8px);
+        }
+        .key-row {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+        }
+        .key {
+            background: var(--lift);
+            border: 1px solid var(--edge);
+            color: var(--text-mid);
+            font-family: var(--display);
+            font-size: 13px;
+            font-weight: 700;
+            width: 46px;
+            height: 46px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            transition: all 0.1s cubic-bezier(0.16, 1, 0.3, 1);
+            user-select: none;
+        }
+        .key.active {
+            background: rgba(var(--rgb-neon), 0.15);
+            color: var(--neon);
+            border-color: var(--neon);
+            transform: scale(0.92);
+            box-shadow: 0 0 15px rgba(var(--rgb-neon), 0.3);
+        }
+        .key.next-key {
+            border: 1.5px dashed var(--neon);
+            color: var(--neon);
+            box-shadow: 0 0 10px rgba(var(--rgb-neon), 0.2);
+            animation: pulse-key 1.5s infinite alternate;
+        }
+        @keyframes pulse-key {
+            0% { opacity: 0.7; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.05); }
+        }
+
+        /* Keyboard Chroma RGB Wave Effect */
+        .keyboard-chroma .key {
+            animation: chroma-wave 6s infinite linear;
+        }
+        .keyboard-chroma .key:nth-child(2) { animation-delay: 0.1s; }
+        .keyboard-chroma .key:nth-child(3) { animation-delay: 0.2s; }
+        .keyboard-chroma .key:nth-child(4) { animation-delay: 0.3s; }
+        .keyboard-chroma .key:nth-child(5) { animation-delay: 0.4s; }
+        .keyboard-chroma .key:nth-child(6) { animation-delay: 0.5s; }
+        .keyboard-chroma .key:nth-child(7) { animation-delay: 0.6s; }
+        .keyboard-chroma .key:nth-child(8) { animation-delay: 0.7s; }
+        .keyboard-chroma .key:nth-child(9) { animation-delay: 0.8s; }
+        .keyboard-chroma .key:nth-child(10) { animation-delay: 0.9s; }
+
+        @keyframes chroma-wave {
+            0% { border-color: rgba(var(--rgb-neon), 0.3); box-shadow: 0 0 6px rgba(var(--rgb-neon), 0.08); }
+            33% { border-color: rgba(var(--rgb-neon2), 0.3); box-shadow: 0 0 6px rgba(var(--rgb-neon2), 0.08); }
+            66% { border-color: rgba(239, 68, 68, 0.3); box-shadow: 0 0 6px rgba(239, 68, 68, 0.08); }
+            100% { border-color: rgba(var(--rgb-neon), 0.3); box-shadow: 0 0 6px rgba(var(--rgb-neon), 0.08); }
         }
 
         /* ── GRID LAYOUTS ── */
@@ -579,11 +879,11 @@
         .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
         .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
 
-        @media (max-width: 640px) {
+        @media (max-width: 768px) {
             .grid-4 { grid-template-columns: repeat(2, 1fr); }
             .grid-3 { grid-template-columns: 1fr 1fr; }
-            .result-big { font-size: 56px; }
-            #text-display { font-size: 16px; padding: 24px 20px; }
+            .result-big { font-size: 68px; }
+            #text-display { font-size: 18px; padding: 24px 20px; }
         }
 
         /* ── SPLASH ── */
@@ -597,133 +897,270 @@
 
         .splash-logo {
             font-family: var(--display);
-            font-size: 72px;
-            font-weight: 800;
-            letter-spacing: -0.04em;
-            line-height: 1;
+            font-size: 84px;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            line-height: 0.85;
             animation: floatY 4s ease-in-out infinite;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .hint-pulse {
-            font-family: var(--mono);
-            font-size: 10px;
-            letter-spacing: 0.3em;
+            font-family: var(--display);
+            font-weight: 700;
+            font-size: 12px;
+            letter-spacing: 0.15em;
             text-transform: uppercase;
-            color: var(--text-dim);
+            color: var(--neon);
+            text-shadow: var(--glow-neon);
             animation: blink 2s ease-in-out infinite;
-            margin-top: 60px;
+        }
+
+        #boot-terminal {
+            font-family: var(--mono);
+            font-size: 11px;
+            color: var(--neon);
+            text-align: left;
+            width: 340px;
+            height: 90px;
+            overflow-y: auto;
+            margin-top: 24px;
+            opacity: 0.8;
+            line-height: 1.6;
+            border-left: 2px solid var(--neon);
+            padding-left: 14px;
+            background: rgba(var(--rgb-neon), 0.05);
+            /* Custom terminal scrollbar */
+            scrollbar-width: thin;
+            scrollbar-color: rgba(var(--rgb-neon), 0.3) transparent;
+        }
+        #boot-terminal::-webkit-scrollbar {
+            width: 4px;
+        }
+        #boot-terminal::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        #boot-terminal::-webkit-scrollbar-thumb {
+            background: rgba(var(--rgb-neon), 0.3);
+            border-radius: 2px;
         }
 
         /* ── SCROLLBAR ── */
-        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: var(--void); }
-        ::-webkit-scrollbar-thumb { background: var(--edge2); border-radius: 2px; }
+        ::-webkit-scrollbar-thumb { background: var(--edge2); border-radius: 3px; }
 
         .divider { height: 1px; background: var(--edge); width: 100%; }
         .spacer-sm { height: 16px; }
         .spacer { height: 32px; }
         .spacer-lg { height: 48px; }
+
+        /* ── RESPONSIVE COMPONENT CLASSES ── */
+        .deploy-card {
+            cursor: pointer;
+            padding: 36px 32px;
+            border-color: var(--edge2);
+        }
+        .deploy-title {
+            font-family: var(--display);
+            font-size: 24px;
+            font-weight: 900;
+            color: var(--text);
+            margin-bottom: 6px;
+            letter-spacing: 0.02em;
+        }
+        .deploy-subtitle {
+            font-size: 13px;
+            color: var(--text-dim);
+            font-family: var(--mono);
+        }
+
+        /* ── SCREEN RESPONSIVENESS & CENTERING ── */
+        .screen {
+            justify-content: center;
+        }
+        @media (max-height: 800px) {
+            .screen { padding: 20px 24px; }
+            .nav { margin-bottom: 24px; }
+            .ticker-wrap { margin-bottom: 20px; }
+            .grid-4 { margin-bottom: 20px; }
+            #text-display { padding: 28px 36px; max-height: 180px; }
+            .keyboard-container { padding: 12px; margin-top: 8px; }
+            .key { width: 40px; height: 40px; font-size: 11px; }
+            .splash-logo { font-size: 68px; }
+            .deploy-card { padding: 24px 20px; }
+            .deploy-title { font-size: 20px; }
+            .stat-val { font-size: 30px; }
+            .result-big { font-size: 60px; }
+        }
+        @media (max-height: 660px) {
+            .screen { padding: 12px 16px; }
+            .nav { margin-bottom: 12px; }
+            .ticker-wrap { margin-bottom: 10px; }
+            .grid-4 { margin-bottom: 10px; }
+            #text-display { padding: 18px 24px; max-height: 130px; font-size: 21px; }
+            .keyboard-container { padding: 8px; margin-top: 4px; }
+            .key { width: 34px; height: 34px; font-size: 10px; }
+            .splash-logo { font-size: 52px; }
+            #boot-terminal { height: 60px; margin-top: 16px; }
+            .mode-card { padding: 12px; }
+            .opt-pill { padding: 6px 12px; font-size: 11px; }
+            .deploy-card { padding: 16px; }
+            .deploy-title { font-size: 18px; }
+            .stat-val { font-size: 24px; }
+            .result-big { font-size: 48px; }
+            .stat-card { padding: 16px; }
+        }
+
+        /* ── CURSOR GLOW EFFECT ── */
+        .cursor-glow {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(var(--rgb-neon), 0.1) 0%, rgba(var(--rgb-neon), 0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0;
+            will-change: transform;
+            transition: opacity 0.5s ease;
+            transform: translate3d(-50%, -50%, 0);
+            left: 0;
+            top: 0;
+        }
     </style>
 </head>
 <body>
 
-<!-- Scanline -->
+<!-- Scanline overlay -->
 <div class="scanline-wrap"></div>
+
+<!-- Spark Particles Canvas -->
+<canvas id="particle-canvas" style="position:fixed; inset:0; pointer-events:none; z-index:9999;"></canvas>
+
+<!-- Cursor Glow Background Element -->
+<div class="cursor-glow" id="cursor-glow"></div>
 
 <!-- =================== SPLASH =================== -->
 <section id="screen-splash" class="screen active" onclick="goTo('dashboard')">
     <div style="text-align:center; display:flex; flex-direction:column; align-items:center;">
         <p class="fu" style="font-family:var(--mono); font-size:10px; letter-spacing:0.3em; text-transform:uppercase; color:var(--text-dim); margin-bottom:24px;">
-            v 2.0 — Professional Edition
+            VER 3.0 — CYBER ESPORTS EDITION
         </p>
         <div class="splash-logo fu1">
-            <span class="grad-text">MASTER</span><br>
-            <span style="color:var(--text);">TYPING</span>
+            <span class="grad-text glitch-text" data-text="MASTER">MASTER</span>
+            <span class="glitch-text" data-text="TYPING" style="color:var(--text);">TYPING</span>
         </div>
-        <div style="display:flex; gap:32px; margin-top:40px;" class="fu2">
+        
+        <!-- Booting Terminal simulator -->
+        <div id="boot-terminal"></div>
+
+        <div style="display:flex; gap:32px; margin-top:32px;" class="fu2">
             <div style="text-align:center;">
-                <div style="font-family:var(--mono); font-size:20px; color:var(--neon);" id="sp-tests">0</div>
-                <div style="font-family:var(--mono); font-size:9px; color:var(--text-dim); letter-spacing:0.2em; margin-top:4px;">TESTS</div>
+                <div style="font-family:var(--number); font-size:20px; color:var(--neon); font-weight:800;" id="sp-tests">0</div>
+                <div style="font-family:var(--mono); font-size:9px; color:var(--text-dim); letter-spacing:0.2em; margin-top:4px;">MISSIONS</div>
             </div>
             <div style="width:1px; background:var(--edge);"></div>
             <div style="text-align:center;">
-                <div style="font-family:var(--mono); font-size:20px; color:var(--neon);" id="sp-best">0</div>
-                <div style="font-family:var(--mono); font-size:9px; color:var(--text-dim); letter-spacing:0.2em; margin-top:4px;">BEST WPM</div>
+                <div style="font-family:var(--number); font-size:20px; color:var(--neon); font-weight:800;" id="sp-best">0</div>
+                <div style="font-family:var(--mono); font-size:9px; color:var(--text-dim); letter-spacing:0.2em; margin-top:4px;">CRIT WPM</div>
             </div>
             <div style="width:1px; background:var(--edge);"></div>
             <div style="text-align:center;">
-                <div style="font-family:var(--mono); font-size:20px; color:var(--neon);" id="sp-streak">3</div>
+                <div style="font-family:var(--number); font-size:20px; color:var(--neon); font-weight:800;" id="sp-streak">0</div>
                 <div style="font-family:var(--mono); font-size:9px; color:var(--text-dim); letter-spacing:0.2em; margin-top:4px;">STREAK</div>
             </div>
         </div>
-        <p class="hint-pulse">tap anywhere to enter</p>
+        <p class="hint-pulse" style="margin-top:40px;">PRESS ANY KEY TO STANDBY</p>
     </div>
 </section>
 
 <!-- =================== DASHBOARD =================== -->
 <section id="screen-dashboard" class="screen">
     <div class="max-w">
-        <div class="ticker-wrap fu" style="margin-bottom:40px; border-radius:2px;">
+        <div class="ticker-wrap fu" style="margin-bottom:32px;">
             <div class="ticker-inner">
-                <div class="ticker-item"><span class="ticker-dot"></span>GLOBAL TOP WPM: 145</div>
-                <div class="ticker-item"><span class="ticker-dot"></span>YOUR RANK: #428</div>
-                <div class="ticker-item"><span class="ticker-dot"></span>TESTS TODAY: 12,840</div>
-                <div class="ticker-item"><span class="ticker-dot"></span>AVG ACCURACY: 94.2%</div>
-                <div class="ticker-item"><span class="ticker-dot"></span>GLOBAL TOP WPM: 145</div>
-                <div class="ticker-item"><span class="ticker-dot"></span>YOUR RANK: #428</div>
-                <div class="ticker-item"><span class="ticker-dot"></span>TESTS TODAY: 12,840</div>
-                <div class="ticker-item"><span class="ticker-dot"></span>AVG ACCURACY: 94.2%</div>
+                <div class="ticker-item"><span class="ticker-dot"></span>NEURAL LEAGUE TOP WPM: 168</div>
+                <div class="ticker-item"><span class="ticker-dot"></span>STATUS: SYSTEM OPERATIONAL</div>
+                <div class="ticker-item"><span class="ticker-dot"></span>GLOBAL MATCHES TODAY: 48,210</div>
+                <div class="ticker-item"><span class="ticker-dot"></span>SYNAPSE ACCURACY: 98.4%</div>
+                <div class="ticker-item"><span class="ticker-dot"></span>NEURAL LEAGUE TOP WPM: 168</div>
+                <div class="ticker-item"><span class="ticker-dot"></span>STATUS: SYSTEM OPERATIONAL</div>
+                <div class="ticker-item"><span class="ticker-dot"></span>GLOBAL MATCHES TODAY: 48,210</div>
+                <div class="ticker-item"><span class="ticker-dot"></span>SYNAPSE ACCURACY: 98.4%</div>
             </div>
         </div>
 
         <nav class="nav">
             <div class="logo">M<span>T</span>PRO</div>
-            <div class="streak-badge">
-                <iconify-icon icon="solar:fire-bold" style="color:var(--gold);"></iconify-icon>
-                3 Day Streak
+            <div style="display:flex; align-items:center; gap:16px;">
+                <!-- Rank Badge -->
+                <div class="rank-badge-hud" id="hud-rank-badge" style="display:flex; align-items:center; gap:8px; padding:8px 14px; border-radius:4px; background:rgba(255,255,255,0.03); border:1px solid var(--edge); font-family:var(--display); font-weight:700; font-size:12px;">
+                    <iconify-icon id="hud-rank-icon" icon="solar:shield-unique-outline" style="font-size:18px; color:var(--neon);"></iconify-icon>
+                    <span id="hud-rank-name" style="letter-spacing:0.05em; text-transform:uppercase;">Bronze Recruit</span>
+                </div>
+                <div class="streak-badge">
+                    <iconify-icon icon="solar:fire-bold" style="color:var(--gold);"></iconify-icon>
+                    <span id="streak-days">3 Day Streak</span>
+                </div>
             </div>
         </nav>
 
-        <!-- Stats -->
+        <!-- Stats Grid -->
         <div class="grid-4 fu1" style="margin-bottom:32px;">
             <div class="stat-card">
-                <div class="stat-label">Avg WPM</div>
+                <div class="stat-label">Avg WPM (Last 10)</div>
                 <div class="stat-val" id="dash-avg">0</div>
             </div>
             <div class="stat-card">
-                <div class="stat-label">Best Score</div>
+                <div class="stat-label">Max WPM Peak</div>
                 <div class="stat-val grad-text" id="dash-best">0</div>
             </div>
             <div class="stat-card">
-                <div class="stat-label">Tests Taken</div>
+                <div class="stat-label">Missions Completed</div>
                 <div class="stat-val" id="dash-tests">0</div>
             </div>
-            <div class="stat-card">
-                <div class="stat-label">Global Rank</div>
-                <div class="stat-val" style="color:var(--neon2);">#428</div>
+            <div class="stat-card" id="dash-rank-card" style="position:relative; overflow:hidden;">
+                <div class="stat-label">Neural Rating Rank</div>
+                <div class="stat-val" id="dash-rank-val" style="font-size:18px; font-weight:900; margin-top:6px; display:flex; align-items:center; gap:8px;">
+                    <iconify-icon id="dash-rank-icon" icon="solar:shield-unique-outline" style="color:var(--neon); font-size:24px;"></iconify-icon>
+                    Recruit
+                </div>
+                <!-- Progression bar -->
+                <div style="margin-top:10px;">
+                    <div style="display:flex; justify-content:space-between; font-family:var(--mono); font-size:8px; color:var(--text-dim); margin-bottom:4px; text-transform:uppercase; letter-spacing:0.05em;">
+                        <span>Next rank progress</span>
+                        <span id="dash-rank-pct">0%</span>
+                    </div>
+                    <div class="prog-bar" style="height:3px;">
+                        <div class="prog-fill" id="dash-rank-progress" style="width:0%;"></div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- Main Menu -->
+        <!-- Main Dashboard Actions -->
         <div class="grid-2 fu2" style="gap:16px; margin-bottom:16px;">
-            <div class="stat-card" style="cursor:pointer; padding:36px 32px; border-color:rgba(124,111,255,0.3);" onclick="goTo('customization')" onmouseenter="this.style.borderColor='var(--neon2)'" onmouseleave="this.style.borderColor='rgba(124,111,255,0.3)'">
-                <iconify-icon icon="solar:keyboard-bold-duotone" style="font-size:36px; color:var(--neon2); margin-bottom:16px; display:block;"></iconify-icon>
-                <div style="font-family:var(--display); font-size:22px; font-weight:800; color:var(--text); margin-bottom:6px;">Start New Test</div>
-                <div style="font-size:13px; color:var(--text-dim); font-family:var(--mono);">Customize your test settings</div>
-                <div style="margin-top:24px; display:flex; align-items:center; gap:8px; color:var(--neon2); font-family:var(--mono); font-size:11px; letter-spacing:0.1em; text-transform:uppercase;">
-                    Begin <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
+            <div class="stat-card cyber-box deploy-card" onclick="goTo('customization')">
+                <iconify-icon icon="solar:keyboard-bold-duotone" style="font-size:44px; color:var(--neon2); margin-bottom:16px; display:block; filter: drop-shadow(0 0 10px var(--neon2));"></iconify-icon>
+                <div class="deploy-title">DEPLOY MISSION</div>
+                <div class="deploy-subtitle">Customize operational constraints and start keying.</div>
+                <div style="margin-top:24px; display:flex; align-items:center; gap:8px; color:var(--neon); font-family:var(--mono); font-size:11px; letter-spacing:0.15em; text-transform:uppercase; font-weight:700;">
+                    INITIALIZE DEPLOYMENT <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
                 </div>
             </div>
             <div style="display:flex; flex-direction:column; gap:16px;">
-                <div class="stat-card" style="cursor:pointer; flex:1;" onclick="goTo('leaderboard')">
-                    <iconify-icon icon="solar:cup-star-bold-duotone" style="font-size:24px; color:var(--gold); margin-bottom:12px; display:block;"></iconify-icon>
-                    <div style="font-family:var(--display); font-size:16px; font-weight:700; color:var(--text);">Leaderboard</div>
-                    <div style="font-size:12px; color:var(--text-dim); font-family:var(--mono); margin-top:4px;">Global rankings</div>
+                <div class="stat-card cyber-box" style="cursor:pointer; flex:1;" onclick="goTo('leaderboard')">
+                    <iconify-icon icon="solar:cup-star-bold-duotone" style="font-size:26px; color:var(--gold); margin-bottom:12px; display:block; filter: drop-shadow(0 0 8px var(--gold));"></iconify-icon>
+                    <div style="font-family:var(--display); font-size:17px; font-weight:800; color:var(--text); letter-spacing:0.05em;">SYNAPSE LEADERBOARD</div>
+                    <div style="font-size:12px; color:var(--text-dim); font-family:var(--mono); margin-top:4px;">Global top typing commanders</div>
                 </div>
-                <div class="stat-card" style="cursor:pointer; flex:1;" onclick="goTo('progress')">
-                    <iconify-icon icon="solar:chart-2-bold-duotone" style="font-size:24px; color:var(--sky); margin-bottom:12px; display:block;"></iconify-icon>
-                    <div style="font-family:var(--display); font-size:16px; font-weight:700; color:var(--text);">My Progress</div>
-                    <div style="font-size:12px; color:var(--text-dim); font-family:var(--mono); margin-top:4px;">Track growth over time</div>
+                <div class="stat-card cyber-box" style="cursor:pointer; flex:1;" onclick="goTo('progress')">
+                    <iconify-icon icon="solar:chart-2-bold-duotone" style="font-size:26px; color:var(--sky); margin-bottom:12px; display:block; filter: drop-shadow(0 0 8px var(--sky));"></iconify-icon>
+                    <div style="font-family:var(--display); font-size:17px; font-weight:800; color:var(--text); letter-spacing:0.05em;">INTELLIGENCE REPORT</div>
+                    <div style="font-size:12px; color:var(--text-dim); font-family:var(--mono); margin-top:4px;">Track cognitive processing & precision</div>
                 </div>
             </div>
         </div>
@@ -735,16 +1172,16 @@
     <div class="max-w">
         <nav class="nav">
             <button class="back-btn" onclick="goTo('dashboard')">
-                <iconify-icon icon="solar:arrow-left-linear"></iconify-icon> BACK
+                <iconify-icon icon="solar:arrow-left-linear"></iconify-icon> RETURN
             </button>
-            <div class="logo">TEST <span>SETUP</span></div>
+            <div class="logo">LOADOUT <span>CONFIG</span></div>
             <div style="width:80px;"></div>
         </nav>
 
         <div style="display:flex; flex-direction:column; gap:28px;">
             <!-- Duration -->
             <div class="fu1">
-                <div class="sec-label">Duration</div>
+                <div class="sec-label">OPERATIONAL WINDOW (Duration)</div>
                 <div class="opt-row" id="dur-opts">
                     <button class="opt-pill active" onclick="setDur(15,this)">15 SEC</button>
                     <button class="opt-pill" onclick="setDur(30,this)">30 SEC</button>
@@ -755,51 +1192,84 @@
 
             <!-- Mode -->
             <div class="fu2">
-                <div class="sec-label">Text Mode</div>
+                <div class="sec-label">MISSION DATABASE (Mode)</div>
                 <div style="display:flex; gap:12px;" id="mode-opts">
                     <div class="mode-card active" onclick="setMode('random',this)">
-                        <iconify-icon icon="solar:text-bold-duotone" style="font-size:20px; color:var(--neon); margin-bottom:8px; display:block;"></iconify-icon>
-                        <div class="mode-title">Random Words</div>
-                        <div class="mode-desc">Standard vocabulary</div>
+                        <iconify-icon icon="solar:text-bold-duotone" style="font-size:24px; color:var(--neon); margin-bottom:8px; display:block;"></iconify-icon>
+                        <div class="mode-title">Random Ops</div>
+                        <div class="mode-desc">Standard cyber dictionary</div>
                     </div>
                     <div class="mode-card" onclick="setMode('quotes',this)">
-                        <iconify-icon icon="solar:code-bold-duotone" style="font-size:20px; color:var(--neon2); margin-bottom:8px; display:block;"></iconify-icon>
-                        <div class="mode-title">Code Quotes</div>
-                        <div class="mode-desc">Punctuation & caps</div>
+                        <iconify-icon icon="solar:code-bold-duotone" style="font-size:24px; color:var(--neon2); margin-bottom:8px; display:block;"></iconify-icon>
+                        <div class="mode-title">Code Arrays</div>
+                        <div class="mode-desc">Coding syntax & formatting</div>
                     </div>
                     <div class="mode-card" onclick="setMode('numbers',this)">
-                        <iconify-icon icon="solar:hashtag-bold-duotone" style="font-size:20px; color:var(--flame); margin-bottom:8px; display:block;"></iconify-icon>
-                        <div class="mode-title">Numbers</div>
-                        <div class="mode-desc">Numeric challenge</div>
+                        <iconify-icon icon="solar:hashtag-bold-duotone" style="font-size:24px; color:var(--flame); margin-bottom:8px; display:block;"></iconify-icon>
+                        <div class="mode-title">Binary Matrix</div>
+                        <div class="mode-desc">Numeric sequencing challenge</div>
                     </div>
                 </div>
             </div>
 
-            <!-- Difficulty & Toggles -->
-            <div class="grid-2 fu3">
+            <!-- Color Theme -->
+            <div class="fu3">
+                <div class="sec-label">VISUAL SPECTRUM SKIN (Theme)</div>
+                <div class="opt-row" id="theme-opts">
+                    <button class="opt-pill active" onclick="setTheme('chroma',this)">🌈 CHROMA RGB</button>
+                    <button class="opt-pill" onclick="setTheme('cyberpunk',this)">🎛️ CYBER NEON</button>
+                    <button class="opt-pill" onclick="setTheme('doom',this)">🔥 DOOM MOLTEN</button>
+                    <button class="opt-pill" onclick="setTheme('matrix',this)">📟 MATRIX CORE</button>
+                    <button class="opt-pill" onclick="setTheme('prestige',this)">🏆 PRESTIGE GOLD</button>
+                </div>
+            </div>
+
+            <!-- Tactical Settings -->
+            <div class="grid-2 fu4">
                 <div>
-                    <div class="sec-label">Difficulty</div>
+                    <div class="sec-label">AI Aggression (Difficulty)</div>
                     <select id="sel-diff">
-                        <option value="easy">Easy</option>
-                        <option value="medium" selected>Medium</option>
-                        <option value="hard">Hard</option>
+                        <option value="easy">EASY (BASIC TERMINOLOGY)</option>
+                        <option value="medium" selected>MEDIUM (STANDARD SYNTAX)</option>
+                        <option value="hard">HARD (OVERHEAT COMPILATION)</option>
                     </select>
                 </div>
-                <div style="display:flex; flex-direction:column; gap:20px; justify-content:center;">
-                    <div class="toggle-wrap">
-                        <span class="toggle-label">Show mistakes instantly</span>
-                        <button class="toggle on" id="tog-mistakes" onclick="this.classList.toggle('on')"></button>
-                    </div>
-                    <div class="toggle-wrap">
-                        <span class="toggle-label">Sound effects</span>
-                        <button class="toggle" id="tog-sound" onclick="this.classList.toggle('on')"></button>
+                <div>
+                    <div class="sec-label">Audio Synth Presets</div>
+                    <div style="display:grid; grid-template-columns:1fr 1.2fr; gap:8px;">
+                        <select id="sel-sound-mode">
+                            <option value="clicky" selected>Cherry MX Blue</option>
+                            <option value="tactile">Cherry MX Brown</option>
+                            <option value="blaster">Arcade Blaster</option>
+                            <option value="mute">Muted</option>
+                        </select>
+                        <div class="toggle-wrap" style="background:var(--panel); border:1px solid var(--edge); padding:6px 12px; border-radius:4px;">
+                            <span class="toggle-label" style="font-size:9px;">BG CYBER BASS</span>
+                            <button class="toggle" id="tog-music" onclick="toggleBgMusic()"></button>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <button class="btn-primary fu4" onclick="initTest()" style="display:flex; align-items:center; justify-content:center; gap:10px; width:100%;">
-                <iconify-icon icon="solar:play-bold"></iconify-icon>
-                LAUNCH TEST
+            <div class="fu4" style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+                <div class="toggle-wrap" style="background:var(--panel); border:1px solid var(--edge); padding:12px 16px; border-radius:4px;">
+                    <span class="toggle-label">Instantly Highlight Mistakes</span>
+                    <button class="toggle on" id="tog-mistakes" onclick="this.classList.toggle('on')"></button>
+                </div>
+                <div class="toggle-wrap" style="background:var(--panel); border:1px solid var(--edge); padding:12px 16px; border-radius:4px;">
+                    <span class="toggle-label">Keyboard Visualizer Style</span>
+                    <select id="sel-kbd-effect">
+                        <option value="chroma" selected>RGB Chroma Wave</option>
+                        <option value="steady">Steady Theme Glow</option>
+                        <option value="reactive">Reactive Splash</option>
+                        <option value="stealth">Stealth Dark</option>
+                    </select>
+                </div>
+            </div>
+
+            <button class="btn-primary fu5" onclick="initTest()" style="display:flex; align-items:center; justify-content:center; gap:10px; width:100%; border-radius:4px;">
+                <iconify-icon icon="solar:play-bold" style="font-size:16px;"></iconify-icon>
+                DEPLOY SYSTEM ENGAGEMENT
             </button>
         </div>
     </div>
@@ -809,52 +1279,95 @@
 <section id="screen-gameplay" class="screen">
     <div class="max-w" style="display:flex; flex-direction:column; gap:20px; width:100%;">
         
-        <!-- HUD -->
-        <div class="glass" style="display:flex; align-items:center; justify-content:space-between; padding:16px 24px; border-radius:2px;">
-            <div style="display:flex; align-items:center; gap:24px;">
-                <!-- Timer Ring -->
-                <div style="position:relative; width:56px; height:56px; flex-shrink:0;">
-                    <svg width="56" height="56" viewBox="0 0 56 56" class="timer-ring">
-                        <circle class="ring-track" stroke-width="3" stroke="currentColor" fill="transparent" r="24" cx="28" cy="28"/>
-                        <circle id="ring-fill" class="ring-fill" stroke-width="3" stroke-dasharray="150.8" stroke-dashoffset="0" fill="transparent" r="24" cx="28" cy="28"/>
-                    </svg>
-                    <span id="timer-txt" style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-size:13px; font-weight:700; color:var(--text);">15</span>
-                </div>
-                <div class="hud-stat">
-                    <span class="hud-label">WPM</span>
-                    <span class="hud-val" id="live-wpm">0</span>
-                </div>
-                <div class="hud-stat">
-                    <span class="hud-label">Accuracy</span>
-                    <span class="hud-val"><span id="live-acc">100</span><span style="font-size:14px; color:var(--text-dim);">%</span></span>
-                </div>
-                <div class="hud-stat">
-                    <span class="hud-label">Errors</span>
-                    <span class="hud-val" id="live-err" style="color:var(--rose);">0</span>
+        <!-- TOP STATUS LINE (Matches Screenshot 2) -->
+        <div style="display:flex; justify-content:space-between; align-items:center; font-family:var(--display); font-size:12px; color:var(--text-mid); letter-spacing:0.12em; padding: 0 4px;">
+            <div style="display:flex; align-items:center; gap:10px;">
+                <span>PROGRESS:</span>
+                <span id="game-progress-pct" style="color:var(--neon); font-weight:800; font-family:var(--number);">0%</span>
+                <span style="color:var(--text-dim); font-family:var(--mono); letter-spacing:0;" id="game-progress-bar">[--------------------]</span>
+            </div>
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span id="timer-txt" style="color:var(--neon); font-weight:800; font-family:var(--number);">00:15</span>
+                <span style="color:var(--text-dim);">REMAINING</span>
+            </div>
+        </div>
+
+        <!-- DUAL CIRCULAR GAUGES (Matches Screenshot 2) -->
+        <div style="display:flex; justify-content:center; align-items:center; gap:56px; margin: 8px 0;">
+            <!-- WPM circular gauge -->
+            <div style="position:relative; width:142px; height:142px; display:flex; flex-direction:column; align-items:center; justify-content:center;">
+                <svg width="142" height="142" viewBox="0 0 142 142" style="transform: rotate(-90deg); position:absolute; top:0; left:0;">
+                    <circle cx="71" cy="71" r="62" stroke="rgba(0, 0, 0, 0.05)" stroke-width="8" fill="transparent"/>
+                    <circle id="wpm-gauge-fill" cx="71" cy="71" r="62" stroke="var(--neon)" stroke-width="8" fill="transparent" stroke-dasharray="389.56" stroke-dashoffset="389.56" stroke-linecap="round" style="transition: stroke-dashoffset 0.35s ease; filter: drop-shadow(0 0 8px var(--neon));"/>
+                </svg>
+                <div style="text-align:center; z-index:2; margin-top:2px;">
+                    <div style="font-family:var(--display); font-size:10px; color:var(--text-dim); letter-spacing:0.12em; font-weight:700; margin-bottom:2px;">WPM</div>
+                    <div id="live-wpm" style="font-family:var(--number); font-size:44px; font-weight:800; color:var(--text); line-height:1; text-shadow:0 0 15px rgba(var(--rgb-neon), 0.25);">0</div>
+                    <div style="font-family:var(--display); font-size:8px; color:var(--text-dim); letter-spacing:0.06em; font-weight:700; margin-top:3px; text-transform:uppercase;">Words Per Minute</div>
                 </div>
             </div>
+
+            <!-- Accuracy circular gauge -->
+            <div style="position:relative; width:112px; height:112px; display:flex; flex-direction:column; align-items:center; justify-content:center;">
+                <svg width="112" height="112" viewBox="0 0 112 112" style="transform: rotate(-90deg); position:absolute; top:0; left:0;">
+                    <circle cx="56" cy="56" r="48" stroke="rgba(0, 0, 0, 0.05)" stroke-width="6" fill="transparent"/>
+                    <circle id="acc-gauge-fill" cx="56" cy="56" r="48" stroke="var(--neon2)" stroke-width="6" fill="transparent" stroke-dasharray="301.59" stroke-dashoffset="301.59" stroke-linecap="round" style="transition: stroke-dashoffset 0.35s ease; filter: drop-shadow(0 0 8px var(--neon2));"/>
+                </svg>
+                <div style="text-align:center; z-index:2; margin-top:1px;">
+                    <div style="font-family:var(--display); font-size:9px; color:var(--text-dim); letter-spacing:0.12em; font-weight:700; margin-bottom:1px;">ACCURACY</div>
+                    <div style="font-family:var(--number); font-size:28px; font-weight:800; color:var(--text); line-height:1; text-shadow:0 0 10px rgba(var(--rgb-neon2), 0.2);"><span id="live-acc">100</span><span style="font-size:14px; color:var(--text-dim); font-family:var(--body);">%</span></div>
+                    <div style="font-family:var(--display); font-size:7px; color:var(--text-dim); letter-spacing:0.06em; font-weight:700; margin-top:3px; text-transform:uppercase;">Accuracy Rate</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Floating UI toolbar for pause/restart/frenzy -->
+        <div style="display:flex; justify-content:space-between; align-items:center; padding:0 4px;">
+            <!-- Combo & Shield -->
+            <div style="display:flex; align-items:center; gap:12px;">
+                <div id="hud-combo-stat" style="opacity:0; display:flex; align-items:center; gap:6px; background:rgba(255,184,0,0.1); border:1px solid rgba(255,184,0,0.3); padding:4px 12px; border-radius:4px; font-family:var(--display); font-size:11px; color:var(--gold); font-weight:700; transition:all 0.25s;">
+                    <iconify-icon icon="solar:fire-bold"></iconify-icon> STREAK: <span id="live-combo">0</span>x
+                </div>
+                <!-- Shield status -->
+                <div style="display:flex; align-items:center; gap:8px; background:rgba(255,59,48,0.1); border:1px solid rgba(255,59,48,0.3); padding:4px 12px; border-radius:4px; font-family:var(--display); font-size:11px; color:var(--rose); font-weight:700;">
+                    <iconify-icon icon="solar:heart-bold"></iconify-icon> 
+                    <span>SHIELD:</span>
+                    <span id="shield-pct">100%</span>
+                    <div style="width:50px; height:4px; background:rgba(255,59,48,0.2); border-radius:2px; overflow:hidden; display:inline-block; margin-left:4px;">
+                        <div id="shield-fill" style="width:100%; height:100%; background:var(--rose); transition:width 0.2s ease;"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Controls -->
             <div style="display:flex; gap:8px;">
-                <button onclick="pauseTest()" style="background:var(--panel); border:1px solid var(--edge); width:40px; height:40px; border-radius:2px; color:var(--text-dim); cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all 0.2s;" onmouseenter="this.style.borderColor='var(--neon)';this.style.color='var(--neon)'" onmouseleave="this.style.borderColor='var(--edge)';this.style.color='var(--text-dim)'">
-                    <iconify-icon icon="solar:pause-bold" style="font-size:16px;"></iconify-icon>
+                <button onclick="pauseTest()" class="gameplay-control-btn" title="Pause Session">
+                    <iconify-icon icon="solar:pause-bold"></iconify-icon>
                 </button>
-                <button onclick="initTest()" style="background:var(--panel); border:1px solid var(--edge); width:40px; height:40px; border-radius:2px; color:var(--text-dim); cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all 0.2s;" onmouseenter="this.style.borderColor='var(--neon)';this.style.color='var(--neon)'" onmouseleave="this.style.borderColor='var(--edge)';this.style.color='var(--text-dim)'">
-                    <iconify-icon icon="solar:restart-bold" style="font-size:16px;"></iconify-icon>
+                <button onclick="initTest()" class="gameplay-control-btn" title="Restart Session">
+                    <iconify-icon icon="solar:restart-bold"></iconify-icon>
                 </button>
             </div>
         </div>
 
-        <!-- Progress Bar -->
-        <div class="prog-bar">
-            <div class="prog-fill" id="prog-fill" style="width:0%;"></div>
+        <!-- Text Display Container (Matches Screenshot 2) -->
+        <div style="position:relative; width:100%;">
+            <div id="text-display"></div>
+            <!-- Frenzy Overdrive Overlay -->
+            <div id="frenzy-overlay" style="display:none; position:absolute; bottom:12px; left:50%; transform:translateX(-50%); font-family:var(--display); font-size:14px; font-weight:900; color:var(--gold); text-shadow:0 0 10px var(--gold); letter-spacing:0.1em; animation: blink 0.5s infinite alternate; background:rgba(0,0,0,0.85); padding:6px 18px; border-radius:20px; border:1px solid var(--gold); z-index:10;">
+                🔥 NEURAL OVERDRIVE ACTIVE 🔥
+            </div>
         </div>
 
-        <!-- Text Display -->
-        <div id="text-display"></div>
+        <!-- Standby Hint -->
+        <div style="display:flex; align-items:center; justify-content:center; gap:8px; font-family:var(--mono); font-size:9.5px; color:var(--text-dim); letter-spacing:0.15em; text-transform:uppercase; margin-top:-6px;">
+            <iconify-icon icon="solar:keyboard-linear" style="font-size:13px; color:var(--neon);"></iconify-icon>
+            STANDBY FOR KEYBOARD TRANSCRIPTION INPUT
+        </div>
 
-        <!-- Hint -->
-        <div style="display:flex; align-items:center; justify-content:center; gap:8px; font-family:var(--mono); font-size:10px; color:var(--text-dim); letter-spacing:0.15em; text-transform:uppercase;">
-            <iconify-icon icon="solar:keyboard-linear"></iconify-icon>
-            Start typing to begin
+        <!-- Virtual Keyboard visualizer -->
+        <div class="keyboard-container keyboard-chroma" id="game-keyboard">
+            <!-- Dynamically populated -->
         </div>
 
         <!-- WPM Graph -->
@@ -864,14 +1377,14 @@
 
 <!-- =================== PAUSE OVERLAY =================== -->
 <section id="screen-pause">
-    <div class="glass" style="border-radius:2px; padding:48px 40px; max-width:360px; width:100%; margin:24px; text-align:center; border-color:rgba(0,245,200,0.15);">
-        <iconify-icon icon="solar:pause-circle-bold-duotone" style="font-size:48px; color:var(--neon); margin-bottom:20px; display:block;"></iconify-icon>
-        <div style="font-family:var(--display); font-size:28px; font-weight:800; margin-bottom:8px;">PAUSED</div>
-        <div style="font-family:var(--mono); font-size:11px; color:var(--text-dim); letter-spacing:0.15em; margin-bottom:32px;">TIME REMAINING: <span id="pause-time" style="color:var(--neon);">0s</span></div>
-        <div style="display:flex; flex-direction:column; gap:10px;">
-            <button class="btn-primary" onclick="resumeTest()" style="width:100%;">RESUME</button>
-            <button class="btn-ghost" onclick="initTest()" style="width:100%;">RESTART</button>
-            <button style="background:none; border:none; color:var(--text-dim); font-family:var(--mono); font-size:11px; letter-spacing:0.1em; cursor:pointer; margin-top:4px; transition:color 0.2s; text-transform:uppercase;" onclick="goTo('dashboard')" onmouseenter="this.style.color='var(--text)'" onmouseleave="this.style.color='var(--text-dim)'">Exit to Dashboard</button>
+    <div class="glass cyber-box" style="padding:48px 40px; max-width:380px; width:100%; margin:24px; text-align:center; border-color:rgba(0,245,255,0.3);">
+        <iconify-icon icon="solar:pause-circle-bold-duotone" style="font-size:54px; color:var(--neon); margin-bottom:20px; display:block; filter: drop-shadow(0 0 10px var(--neon));"></iconify-icon>
+        <div style="font-family:var(--display); font-size:28px; font-weight:900; margin-bottom:8px; letter-spacing:0.05em;">SYSTEM PAUSED</div>
+        <div style="font-family:var(--mono); font-size:11px; color:var(--text-dim); letter-spacing:0.15em; margin-bottom:32px;">WINDOW TIME LEFT: <span id="pause-time" style="color:var(--neon); font-weight:700;">0s</span></div>
+        <div style="display:flex; flex-direction:column; gap:12px;">
+            <button class="btn-primary" onclick="resumeTest()" style="width:100%;">RESUME MISSION</button>
+            <button class="btn-ghost" onclick="initTest()" style="width:100%;">REBOOT OPERATION</button>
+            <button style="background:none; border:none; color:var(--text-dim); font-family:var(--mono); font-size:11px; letter-spacing:0.15em; cursor:pointer; margin-top:8px; transition:color 0.2s; text-transform:uppercase; font-weight:700;" onclick="goTo('dashboard')" onmouseenter="this.style.color='var(--text)'" onmouseleave="this.style.color='var(--text-dim)'">ABORT TO STATION</button>
         </div>
     </div>
 </section>
@@ -879,116 +1392,128 @@
 <!-- =================== RESULTS =================== -->
 <section id="screen-results" class="screen">
     <div class="max-w">
-        <div style="text-align:center; margin-bottom:40px;" class="fu">
-            <div id="new-best-badge" style="display:none; margin-bottom:16px; display:inline-flex; align-items:center; gap:8px; padding:8px 16px; background:rgba(0,245,200,0.08); border:1px solid rgba(0,245,200,0.3); border-radius:2px; font-family:var(--mono); font-size:10px; letter-spacing:0.15em; color:var(--neon); text-transform:uppercase;">
-                <iconify-icon icon="solar:cup-star-bold"></iconify-icon> NEW HIGH SCORE
+        <div style="text-align:center; margin-bottom:40px; display: flex; flex-direction: column; align-items: center;" class="fu">
+            <div id="new-best-badge" style="display:none; align-items:center; gap:8px; padding:8px 16px; background:rgba(0,245,200,0.08); border:1px solid rgba(0,245,200,0.3); border-radius:4px; font-family:var(--mono); font-size:10px; letter-spacing:0.15em; color:var(--neon); text-transform:uppercase; margin-bottom:20px;">
+                <iconify-icon icon="solar:cup-star-bold"></iconify-icon> NEW HIGHEST CRIT SCORE RECORDED
             </div>
             <div class="result-big grad-text" id="res-wpm">0</div>
-            <div style="font-family:var(--mono); font-size:11px; color:var(--text-dim); letter-spacing:0.25em; text-transform:uppercase; margin-top:8px;">Words Per Minute</div>
+            <div style="font-family:var(--display); font-size:12px; color:var(--text-dim); letter-spacing:0.25em; text-transform:uppercase; margin-top:8px; font-weight:700;">WORDS PER MINUTE (VELOCITY)</div>
         </div>
 
         <div class="grid-3 fu1" style="margin-bottom:24px;">
             <div class="stat-card" style="text-align:center;">
-                <div class="stat-label">Accuracy</div>
+                <div class="stat-label">Calibration (Acc)</div>
                 <div class="stat-val" id="res-acc" style="color:var(--neon);">0%</div>
             </div>
             <div class="stat-card" style="text-align:center;">
-                <div class="stat-label">Errors</div>
+                <div class="stat-label">Misfires (Errors)</div>
                 <div class="stat-val" id="res-err" style="color:var(--rose);">0</div>
             </div>
             <div class="stat-card" style="text-align:center;">
-                <div class="stat-label">Time Taken</div>
+                <div class="stat-label">Time Window Elapsed</div>
                 <div class="stat-val" id="res-time">0s</div>
             </div>
             <div class="stat-card" style="text-align:center;">
-                <div class="stat-label">Correct Chars</div>
+                <div class="stat-label">Successful Transcripts</div>
                 <div class="stat-val" id="res-correct" style="color:var(--neon);">0</div>
             </div>
             <div class="stat-card" style="text-align:center;">
-                <div class="stat-label">Total Typed</div>
+                <div class="stat-label">Total Transcripts Attempted</div>
                 <div class="stat-val" id="res-total">0</div>
             </div>
             <div class="stat-card" style="text-align:center;">
-                <div class="stat-label">Consistency</div>
+                <div class="stat-label">Frenzy Consistency</div>
                 <div class="stat-val" id="res-cons">0%</div>
+            </div>
+
+            <!-- Rank Card Emblem in Results -->
+            <div class="stat-card" style="grid-column: span 3; display: flex; align-items: center; justify-content: center; gap: 24px; padding: 24px;">
+                <iconify-icon id="res-rank-icon" icon="solar:shield-unique-outline" style="font-size: 56px; color: var(--neon); filter: drop-shadow(0 0 10px var(--neon));"></iconify-icon>
+                <div style="text-align: left;">
+                    <div style="font-family: var(--mono); font-size: 10px; color: var(--text-dim); letter-spacing: 0.1em; text-transform: uppercase;">Current System Level Rating</div>
+                    <div id="res-rank-name" style="font-family: var(--display); font-size: 24px; font-weight: 900; color: var(--text); letter-spacing:0.02em;">Bronze Recruit</div>
+                    <div id="res-rank-desc" style="font-family: var(--mono); font-size: 11px; color: var(--neon2); margin-top: 4px;">Tier 1 Terminal Operator</div>
+                </div>
             </div>
         </div>
 
         <div style="display:flex; gap:12px; flex-wrap:wrap;" class="fu2">
-            <button class="btn-primary" onclick="initTest()" style="flex:1; display:flex; align-items:center; justify-content:center; gap:8px; min-width:160px;">
-                <iconify-icon icon="solar:restart-bold"></iconify-icon> TRY AGAIN
+            <button class="btn-primary" onclick="initTest()" style="flex:1; display:flex; align-items:center; justify-content:center; gap:8px; min-width:160px; border-radius:4px;">
+                <iconify-icon icon="solar:restart-bold"></iconify-icon> REDEPLOY MISSION
             </button>
-            <button class="btn-ghost" onclick="goTo('dashboard')" style="flex:1; display:flex; align-items:center; justify-content:center; gap:8px; min-width:160px;">
-                <iconify-icon icon="solar:home-smile-linear"></iconify-icon> DASHBOARD
+            <button class="btn-ghost" onclick="goTo('dashboard')" style="flex:1; display:flex; align-items:center; justify-content:center; gap:8px; min-width:160px; border-radius:4px;">
+                <iconify-icon icon="solar:home-smile-linear"></iconify-icon> RETURN TO STATION
             </button>
-            <button class="btn-ghost" onclick="goTo('progress')" style="flex:1; display:flex; align-items:center; justify-content:center; gap:8px; min-width:160px;">
-                <iconify-icon icon="solar:chart-2-linear"></iconify-icon> MY PROGRESS
+            <button class="btn-ghost" onclick="goTo('progress')" style="flex:1; display:flex; align-items:center; justify-content:center; gap:8px; min-width:160px; border-radius:4px;">
+                <iconify-icon icon="solar:chart-2-linear"></iconify-icon> COGNITIVE RECORDS
             </button>
         </div>
     </div>
 </section>
 
-<!-- =================== PROGRESS (NEW SCREEN) =================== -->
+<!-- =================== PROGRESS =================== -->
 <section id="screen-progress" class="screen">
     <div class="max-w">
         <nav class="nav">
             <button class="back-btn" onclick="goTo('dashboard')">
-                <iconify-icon icon="solar:arrow-left-linear"></iconify-icon> BACK
+                <iconify-icon icon="solar:arrow-left-linear"></iconify-icon> RETURN
             </button>
-            <div class="logo">MY <span>PROGRESS</span></div>
+            <div class="logo">OPERATIONAL <span>LOGS</span></div>
             <div style="width:80px;"></div>
         </nav>
 
         <div class="tab-bar fu">
             <button class="tab active" onclick="switchTab('overview',this)">Overview</button>
-            <button class="tab" onclick="switchTab('history',this)">History</button>
-            <button class="tab" onclick="switchTab('goals',this)">Goals</button>
+            <button class="tab" onclick="switchTab('history',this)">Mission Logs</button>
+            <button class="tab" onclick="switchTab('goals',this)">Trophies</button>
         </div>
 
         <!-- OVERVIEW TAB -->
         <div id="tab-overview" style="display:flex; flex-direction:column; gap:24px;">
             <div class="grid-3 fu1">
                 <div class="stat-card" style="text-align:center;">
-                    <div class="stat-label">Personal Best</div>
+                    <div class="stat-label">Personal Peak velocity</div>
                     <div class="stat-val grad-text" id="pr-best">0</div>
                     <div style="font-family:var(--mono); font-size:9px; color:var(--text-dim); margin-top:4px; letter-spacing:0.15em;">WPM</div>
                 </div>
                 <div class="stat-card" style="text-align:center;">
-                    <div class="stat-label">Avg WPM (Last 10)</div>
+                    <div class="stat-label">Rolling Avg (10 ops)</div>
                     <div class="stat-val" id="pr-avg">0</div>
+                    <div style="font-family:var(--mono); font-size:9px; color:var(--text-dim); margin-top:4px; letter-spacing:0.15em;">WPM</div>
                 </div>
                 <div class="stat-card" style="text-align:center;">
-                    <div class="stat-label">Total Tests</div>
+                    <div class="stat-label">Total Engagements</div>
                     <div class="stat-val" id="pr-total">0</div>
+                    <div style="font-family:var(--mono); font-size:9px; color:var(--text-dim); margin-top:4px; letter-spacing:0.15em;">MISSIONS</div>
                 </div>
             </div>
 
             <!-- WPM History Chart -->
             <div class="fu2">
-                <div class="sec-label">WPM History</div>
-                <div style="background:var(--panel); border:1px solid var(--edge); border-radius:2px; padding:24px; height:140px; display:flex; align-items:flex-end; gap:4px; overflow:hidden;" id="history-chart">
-                    <div style="font-family:var(--mono); font-size:11px; color:var(--text-dim); margin:auto; letter-spacing:0.1em;">No data yet. Take a test!</div>
+                <div class="sec-label">VELOCITY FREQUENCY MONITOR</div>
+                <div class="cyber-box" style="padding:24px; height:150px; display:flex; align-items:flex-end; gap:4px; overflow:hidden;" id="history-chart">
+                    <div style="font-family:var(--mono); font-size:11px; color:var(--text-dim); margin:auto; letter-spacing:0.1em;">NO DATA STREAMS INJECTED YET</div>
                 </div>
             </div>
 
             <!-- Skill Breakdown -->
             <div class="fu3">
-                <div class="sec-label">Skill Breakdown</div>
+                <div class="sec-label">OPERATOR STAT PROFILE</div>
                 <div style="display:flex; flex-direction:column; gap:8px;">
-                    <div class="progress-item">
-                        <div style="font-family:var(--mono); font-size:11px; color:var(--text-mid); width:90px; letter-spacing:0.05em;">Speed</div>
+                    <div class="progress-item cyber-box">
+                        <div style="font-family:var(--display); font-size:11px; font-weight:700; color:var(--text-mid); width:120px; letter-spacing:0.05em;">SYNAPTIC SPEED</div>
                         <div class="progress-bar-track"><div class="progress-bar-fill" id="skill-speed" style="width:0%;"></div></div>
-                        <div style="font-family:var(--mono); font-size:12px; color:var(--neon); width:36px; text-align:right;" id="skill-speed-val">0%</div>
+                        <div style="font-family:var(--mono); font-size:12px; color:var(--neon); width:40px; text-align:right; font-weight:700;" id="skill-speed-val">0%</div>
                     </div>
-                    <div class="progress-item">
-                        <div style="font-family:var(--mono); font-size:11px; color:var(--text-mid); width:90px; letter-spacing:0.05em;">Accuracy</div>
+                    <div class="progress-item cyber-box">
+                        <div style="font-family:var(--display); font-size:11px; font-weight:700; color:var(--text-mid); width:120px; letter-spacing:0.05em;">SHOT PRECISION</div>
                         <div class="progress-bar-track"><div class="progress-bar-fill" id="skill-acc" style="width:0%; background:linear-gradient(90deg, var(--neon2), var(--sky));"></div></div>
-                        <div style="font-family:var(--mono); font-size:12px; color:var(--sky); width:36px; text-align:right;" id="skill-acc-val">0%</div>
+                        <div style="font-family:var(--mono); font-size:12px; color:var(--sky); width:40px; text-align:right; font-weight:700;" id="skill-acc-val">0%</div>
                     </div>
-                    <div class="progress-item">
-                        <div style="font-family:var(--mono); font-size:11px; color:var(--text-mid); width:90px; letter-spacing:0.05em;">Consistency</div>
+                    <div class="progress-item cyber-box">
+                        <div style="font-family:var(--display); font-size:11px; font-weight:700; color:var(--text-mid); width:120px; letter-spacing:0.05em;">MATRIX FREQUENCY</div>
                         <div class="progress-bar-track"><div class="progress-bar-fill" id="skill-cons" style="width:0%; background:linear-gradient(90deg, var(--flame), var(--gold));"></div></div>
-                        <div style="font-family:var(--mono); font-size:12px; color:var(--gold); width:36px; text-align:right;" id="skill-cons-val">0%</div>
+                        <div style="font-family:var(--mono); font-size:12px; color:var(--gold); width:40px; text-align:right; font-weight:700;" id="skill-cons-val">0%</div>
                     </div>
                 </div>
             </div>
@@ -997,35 +1522,35 @@
         <!-- HISTORY TAB -->
         <div id="tab-history" style="display:none; flex-direction:column; gap:10px;">
             <div id="history-list">
-                <div style="font-family:var(--mono); font-size:11px; color:var(--text-dim); text-align:center; padding:40px; letter-spacing:0.1em;">NO TESTS YET</div>
+                <div style="font-family:var(--mono); font-size:11px; color:var(--text-dim); text-align:center; padding:40px; letter-spacing:0.1em;">NO DATA STREAMS INJECTED YET</div>
             </div>
         </div>
 
         <!-- GOALS TAB -->
         <div id="tab-goals" style="display:none; flex-direction:column; gap:16px;">
-            <div class="glass" style="border-radius:2px; padding:24px; border-color:rgba(0,245,200,0.15);">
-                <div style="font-family:var(--display); font-size:16px; font-weight:700; margin-bottom:4px;">Reach 60 WPM</div>
-                <div style="font-family:var(--mono); font-size:11px; color:var(--text-dim); margin-bottom:16px; letter-spacing:0.05em;">Beginner Goal</div>
+            <div class="glass cyber-box" style="padding:24px; border-color:rgba(0,245,200,0.35);">
+                <div style="font-family:var(--display); font-size:16px; font-weight:800; margin-bottom:4px; letter-spacing:0.05em;">COMMANDER BREADTH (60 WPM)</div>
+                <div style="font-family:var(--mono); font-size:11px; color:var(--text-dim); margin-bottom:16px; letter-spacing:0.05em;">Bronze - Silver Qualifier Badge</div>
                 <div class="prog-bar" style="height:6px;">
                     <div class="prog-fill" id="goal1-fill" style="width:0%;"></div>
                 </div>
-                <div style="font-family:var(--mono); font-size:10px; color:var(--text-dim); margin-top:8px;" id="goal1-txt">0 / 60 WPM</div>
+                <div style="font-family:var(--mono); font-size:10px; color:var(--text-dim); margin-top:8px; font-weight:700;" id="goal1-txt">0 / 60 WPM</div>
             </div>
-            <div class="glass" style="border-radius:2px; padding:24px; border-color:rgba(124,111,255,0.2);">
-                <div style="font-family:var(--display); font-size:16px; font-weight:700; margin-bottom:4px;">Reach 100 WPM</div>
-                <div style="font-family:var(--mono); font-size:11px; color:var(--text-dim); margin-bottom:16px; letter-spacing:0.05em;">Intermediate Goal</div>
+            <div class="glass cyber-box" style="padding:24px; border-color:rgba(189,0,255,0.35);">
+                <div style="font-family:var(--display); font-size:16px; font-weight:800; margin-bottom:4px; letter-spacing:0.05em;">HYPER REFLEX CORE (100 WPM)</div>
+                <div style="font-family:var(--mono); font-size:11px; color:var(--text-dim); margin-bottom:16px; letter-spacing:0.05em;">Gold - Diamond Sentinel Badge</div>
                 <div class="prog-bar" style="height:6px;">
-                    <div style="height:100%; border-radius:1px; background:linear-gradient(90deg, var(--neon2), var(--sky)); transition:width 1s;" id="goal2-fill" style="width:0%;"></div>
+                    <div id="goal2-fill" style="height:100%; border-radius:1px; background:linear-gradient(90deg, var(--neon2), var(--sky)); transition:width 1s; width:0%;"></div>
                 </div>
-                <div style="font-family:var(--mono); font-size:10px; color:var(--text-dim); margin-top:8px;" id="goal2-txt">0 / 100 WPM</div>
+                <div style="font-family:var(--mono); font-size:10px; color:var(--text-dim); margin-top:8px; font-weight:700;" id="goal2-txt">0 / 100 WPM</div>
             </div>
-            <div class="glass" style="border-radius:2px; padding:24px; border-color:rgba(255,209,102,0.15);">
-                <div style="font-family:var(--display); font-size:16px; font-weight:700; margin-bottom:4px;">Complete 50 Tests</div>
-                <div style="font-family:var(--mono); font-size:11px; color:var(--text-dim); margin-bottom:16px; letter-spacing:0.05em;">Dedication Badge</div>
+            <div class="glass cyber-box" style="padding:24px; border-color:rgba(255,184,0,0.35);">
+                <div style="font-family:var(--display); font-size:16px; font-weight:800; margin-bottom:4px; letter-spacing:0.05em;">TERMINAL DRILL SERGEANT (50 Ops)</div>
+                <div style="font-family:var(--mono); font-size:11px; color:var(--text-dim); margin-bottom:16px; letter-spacing:0.05em;">Mission dedication trophy</div>
                 <div class="prog-bar" style="height:6px;">
-                    <div style="height:100%; border-radius:1px; background:linear-gradient(90deg, var(--flame), var(--gold)); transition:width 1s;" id="goal3-fill" style="width:0%;"></div>
+                    <div id="goal3-fill" style="height:100%; border-radius:1px; background:linear-gradient(90deg, var(--flame), var(--gold)); transition:width 1s; width:0%;"></div>
                 </div>
-                <div style="font-family:var(--mono); font-size:10px; color:var(--text-dim); margin-top:8px;" id="goal3-txt">0 / 50 Tests</div>
+                <div style="font-family:var(--mono); font-size:10px; color:var(--text-dim); margin-top:8px; font-weight:700;" id="goal3-txt">0 / 50 Missions</div>
             </div>
         </div>
     </div>
@@ -1036,33 +1561,36 @@
     <div class="max-w">
         <nav class="nav">
             <button class="back-btn" onclick="goTo('dashboard')">
-                <iconify-icon icon="solar:arrow-left-linear"></iconify-icon> BACK
+                <iconify-icon icon="solar:arrow-left-linear"></iconify-icon> RETURN
             </button>
-            <div class="logo">RANK<span>INGS</span></div>
+            <div class="logo">COMMANDER <span>RATING</span></div>
             <div style="width:80px;"></div>
         </nav>
 
         <!-- Podium -->
-        <div style="display:flex; align-items:flex-end; justify-content:center; gap:12px; height:180px; margin-bottom:32px;" class="fu1">
+        <div style="display:flex; align-items:flex-end; justify-content:center; gap:16px; height:190px; margin-bottom:32px;" class="fu1">
             <div style="display:flex; flex-direction:column; align-items:center;">
                 <div class="podium-name" style="color:var(--text-mid);">AlexK</div>
                 <div class="podium-wpm">132 WPM</div>
-                <div style="width:80px; height:90px; background:var(--lift); border:1px solid var(--text-dim); border-radius:2px 2px 0 0; display:flex; align-items:center; justify-content:center;">
-                    <span style="font-family:var(--display); font-size:28px; font-weight:800; color:var(--text-mid);">2</span>
+                <div style="width:84px; height:90px; background:var(--lift); border:1px solid var(--text-dim); border-radius:4px 4px 0 0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px;">
+                    <iconify-icon icon="solar:shield-star-outline" style="font-size:24px; color:var(--text-mid);"></iconify-icon>
+                    <span style="font-family:var(--display); font-size:24px; font-weight:900; color:var(--text-mid);">2</span>
                 </div>
             </div>
             <div style="display:flex; flex-direction:column; align-items:center;">
                 <div class="podium-name" style="color:var(--gold);">TypeGod</div>
-                <div class="podium-wpm">145 WPM</div>
-                <div style="width:96px; height:128px; background:linear-gradient(to top, var(--neon2), var(--neon)); border-radius:2px 2px 0 0; display:flex; align-items:center; justify-content:center; box-shadow:var(--glow-neon);">
-                    <span style="font-family:var(--display); font-size:36px; font-weight:800; color:var(--void);">1</span>
+                <div class="podium-wpm">152 WPM</div>
+                <div style="width:100px; height:124px; background:linear-gradient(to top, var(--neon2), var(--neon)); border-radius:4px 4px 0 0; display:flex; flex-direction:column; align-items:center; justify-content:center; box-shadow:var(--glow-neon); gap:6px;">
+                    <iconify-icon icon="solar:crown-minimalistic-bold-duotone" style="font-size:32px; color:var(--void);"></iconify-icon>
+                    <span style="font-family:var(--display); font-size:32px; font-weight:900; color:var(--void);">1</span>
                 </div>
             </div>
             <div style="display:flex; flex-direction:column; align-items:center;">
                 <div class="podium-name" style="color:var(--flame);">Sarah99</div>
                 <div class="podium-wpm">128 WPM</div>
-                <div style="width:80px; height:68px; background:var(--lift); border:1px solid var(--flame); border-radius:2px 2px 0 0; display:flex; align-items:center; justify-content:center;">
-                    <span style="font-family:var(--display); font-size:28px; font-weight:800; color:var(--flame);">3</span>
+                <div style="width:84px; height:70px; background:var(--lift); border:1px solid var(--flame); border-radius:4px 4px 0 0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px;">
+                    <iconify-icon icon="solar:shield-unique-outline" style="font-size:20px; color:var(--flame);"></iconify-icon>
+                    <span style="font-family:var(--display); font-size:20px; font-weight:900; color:var(--flame);">3</span>
                 </div>
             </div>
         </div>
@@ -1088,10 +1616,10 @@
                 <span class="lb-name">NightOwl</span>
                 <span style="font-family:var(--mono); font-size:11px; color:var(--text-dim);">112 WPM</span>
             </div>
-            <div class="divider"></div>
+            <div class="divider" style="margin:8px 0;"></div>
             <div class="lb-row you">
                 <span class="lb-rank" style="color:var(--neon);">428</span>
-                <span class="lb-name" style="color:var(--neon);">You <span style="font-weight:400; color:var(--text-dim); font-size:12px;">(current)</span></span>
+                <span class="lb-name" style="color:var(--neon);">You <span style="font-weight:400; color:var(--text-dim); font-size:12px;">(current rank)</span></span>
                 <span class="lb-wpm" id="lb-your-wpm">0 WPM</span>
             </div>
         </div>
@@ -1103,21 +1631,334 @@
 //  DATA & CONFIG
 // =============================================
 const TEXTS = {
-    random: "the quick brown fox jumps over the lazy dog pack my box with five dozen liquor jugs how vexingly quick daft zebras jump sphinx of black quartz judge my vow ocean brief custom method chapter silent detail verify logic matrix syntax build framework quantum neural pixel stream vector array cloud cipher hash scope route cache query sync push pull merge fetch parse layer grid wave node link".split(" "),
+    random: "innovation synergy infrastructure dashboard database analytics repository configuration architecture development execution strategy collaboration performance optimization integration deployment scalable enterprise framework methodology standard transaction solution resource management operations network compliance secure diagnostic virtual parallel interface terminal directory logic output processor memory environment variable context argument parameter function expression quality system efficiency productivity outcome precision benchmark leadership communication workflow".split(" "),
     quotes: [
-        "Programs must be written for people to read, and only incidentally for machines to execute.",
-        "Any fool can write code that a computer can understand. Good programmers write code that humans can understand.",
-        "First, solve the problem. Then, write the code.",
-        "Simplicity is the soul of efficiency.",
-        "In order to understand recursion, one must first understand recursion."
+        "Success is not final, failure is not fatal: it is the courage to continue that counts.",
+        "Focus on being productive instead of busy. Consistency is the ultimate key to mastering any skill.",
+        "Precision beats speed, and timing beats force. Build a stable foundation before accelerating.",
+        "Simplicity is the ultimate sophistication. Clean code, focused minds, and clear goals drive progress.",
+        "The only way to do great work is to love what you do. Strive for excellence in every keystroke."
     ],
-    numbers: "4729 8153 6047 2938 7461 3852 9176 5234 8062 1473 6928 3017 5849 2736 9401 7253 4618 8302 1567 4923".split(" ")
+    numbers: "10 25 50 100 250 500 1000 2026 2027 15 30 45 60 75 90 120 150 180 200 300 400 600 800".split(" ")
 };
+
+const KEYBOARD_LAYOUT = [
+    ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-"],
+    ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p"],
+    ["a", "s", "d", "f", "g", "h", "j", "k", "l", ";"],
+    ["z", "x", "c", "v", "b", "n", "m", ",", ".", "/"],
+    ["space"]
+];
 
 const CIRC = 150.8;
 
-let app = { dur: 15, mode: 'random', bestWpm: 0, testCount: 0, history: [] };
-let t = { chars: [], typed: [], timeLeft: 15, timer: null, running: false, paused: false, correct: 0, errors: 0, start: null, wpmLog: [] };
+let app = { dur: 15, mode: 'random', bestWpm: 0, testCount: 0, history: [], theme: 'chroma' };
+let t = { chars: [], typed: [], timeLeft: 15, timer: null, running: false, paused: false, correct: 0, errors: 0, start: null, wpmLog: [], combo: 0, shield: 100 };
+
+// =============================================
+//  AUDIO ENGINE (SYNTHESIZED SWITCHES)
+// =============================================
+let audioCtx = null;
+let synthLoop = null;
+let synthBeatCount = 0;
+
+function getAudioContext() {
+    if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+    }
+    return audioCtx;
+}
+
+function playSynthSound(type) {
+    const enabled = document.getElementById('tog-sound') ? document.getElementById('tog-sound').classList.contains('on') : true;
+    if (!enabled && type !== 'error') return;
+
+    try {
+        const ctx = getAudioContext();
+        const now = ctx.currentTime;
+        
+        if (type === 'error') {
+            // Sawtooth buzzer for typos
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.type = 'sawtooth';
+            osc.frequency.setValueAtTime(140, now);
+            osc.frequency.exponentialRampToValueAtTime(50, now + 0.12);
+            gain.gain.setValueAtTime(0.12, now);
+            gain.gain.linearRampToValueAtTime(0.001, now + 0.12);
+            osc.start(now);
+            osc.stop(now + 0.12);
+            return;
+        }
+        
+        const soundMode = document.getElementById('sel-sound-mode') ? document.getElementById('sel-sound-mode').value : 'clicky';
+        if (soundMode === 'mute') return;
+        
+        if (soundMode === 'blaster') {
+            // Sci-fi blaster pop
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.type = 'sawtooth';
+            osc.frequency.setValueAtTime(1500, now);
+            osc.frequency.exponentialRampToValueAtTime(100, now + 0.1);
+            gain.gain.setValueAtTime(0.04, now);
+            gain.gain.linearRampToValueAtTime(0.001, now + 0.1);
+            osc.start(now);
+            osc.stop(now + 0.1);
+        } else if (soundMode === 'clicky') {
+            // Mechanical blue switch click
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(2400, now);
+            osc.frequency.exponentialRampToValueAtTime(800, now + 0.015);
+            gain.gain.setValueAtTime(0.03, now);
+            gain.gain.linearRampToValueAtTime(0.001, now + 0.015);
+            osc.start(now);
+            osc.stop(now + 0.015);
+        } else if (soundMode === 'tactile') {
+            // Soft brown switch pop
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(450, now);
+            osc.frequency.exponentialRampToValueAtTime(120, now + 0.025);
+            gain.gain.setValueAtTime(0.08, now);
+            gain.gain.linearRampToValueAtTime(0.001, now + 0.025);
+            osc.start(now);
+            osc.stop(now + 0.025);
+        }
+    } catch (e) {
+        console.warn('Audio click failed:', e);
+    }
+}
+
+function playSuccessSound() {
+    try {
+        const ctx = getAudioContext();
+        const now = ctx.currentTime;
+        const notes = [261.63, 329.63, 392.00, 523.25]; // C4, E4, G4, C5 arpeggio
+
+        notes.forEach((freq, idx) => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, now + idx * 0.1);
+            gain.gain.setValueAtTime(0, now + idx * 0.1);
+            gain.gain.linearRampToValueAtTime(0.05, now + idx * 0.1 + 0.02);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.1 + 0.4);
+            osc.start(now + idx * 0.1);
+            osc.stop(now + idx * 0.1 + 0.4);
+        });
+    } catch (e) {
+        console.warn('Success audio failed:', e);
+    }
+}
+
+function toggleBgMusic() {
+    const btn = document.getElementById('tog-music');
+    if (!btn) return;
+    
+    if (!btn.classList.contains('on')) {
+        btn.classList.add('on');
+        startBgMusic();
+    } else {
+        btn.classList.remove('on');
+        stopBgMusic();
+    }
+}
+
+function startBgMusic() {
+    if (synthLoop) clearInterval(synthLoop);
+    const ctx = getAudioContext();
+    
+    synthLoop = setInterval(() => {
+        if (t.paused || !t.running) return;
+        const now = ctx.currentTime;
+        
+        // Cyber bass kick
+        if (synthBeatCount % 2 === 0) {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(100, now);
+            osc.frequency.exponentialRampToValueAtTime(30, now + 0.15);
+            gain.gain.setValueAtTime(0.06, now);
+            gain.gain.linearRampToValueAtTime(0.001, now + 0.15);
+            osc.start(now);
+            osc.stop(now + 0.15);
+        }
+        
+        // Synth ambient pad note
+        if (synthBeatCount % 8 === 0) {
+            const scale = [146.83, 164.81, 196.00, 220.00]; // D3, E3, G3, A3
+            const freq = scale[Math.floor(Math.random() * scale.length)];
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            const filter = ctx.createBiquadFilter();
+            
+            osc.connect(filter);
+            filter.connect(gain);
+            gain.connect(ctx.destination);
+            
+            osc.type = 'sawtooth';
+            filter.type = 'lowpass';
+            filter.frequency.setValueAtTime(450, now);
+            
+            osc.frequency.setValueAtTime(freq, now);
+            gain.gain.setValueAtTime(0, now);
+            gain.gain.linearRampToValueAtTime(0.02, now + 0.3);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + 1.5);
+            osc.start(now);
+            osc.stop(now + 1.5);
+        }
+        
+        synthBeatCount = (synthBeatCount + 1) % 16;
+    }, 280);
+}
+
+function stopBgMusic() {
+    if (synthLoop) {
+        clearInterval(synthLoop);
+        synthLoop = null;
+    }
+}
+
+// =============================================
+//  PARTICLES & SPARKS
+// =============================================
+let particles = [];
+const particleCanvas = document.getElementById('particle-canvas');
+let particleCtx = null;
+
+if (particleCanvas) {
+    particleCtx = particleCanvas.getContext('2d');
+    window.addEventListener('resize', () => {
+        particleCanvas.width = window.innerWidth;
+        particleCanvas.height = window.innerHeight;
+    });
+    particleCanvas.width = window.innerWidth;
+    particleCanvas.height = window.innerHeight;
+}
+
+function spawnSparks(x, y, color) {
+    if (!particleCtx) return;
+    for (let i = 0; i < 6; i++) {
+        particles.push({
+            x: x,
+            y: y,
+            vx: (Math.random() - 0.5) * 5,
+            vy: (Math.random() - 0.7) * 6 - 1,
+            radius: Math.random() * 2.5 + 1,
+            color: color || 'var(--neon)',
+            alpha: 1,
+            decay: Math.random() * 0.04 + 0.02
+        });
+    }
+}
+
+function updateParticles() {
+    if (!particleCtx) return;
+    particleCtx.clearRect(0, 0, particleCanvas.width, particleCanvas.height);
+    
+    for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += 0.12; // light gravity
+        p.alpha -= p.decay;
+        
+        if (p.alpha <= 0) {
+            particles.splice(i, 1);
+            continue;
+        }
+        
+        particleCtx.save();
+        particleCtx.globalAlpha = p.alpha;
+        particleCtx.beginPath();
+        particleCtx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        
+        let drawColor = p.color;
+        if (p.color.startsWith('var(')) {
+            const varName = p.color.substring(4, p.color.length - 1);
+            drawColor = getComputedStyle(document.body).getPropertyValue(varName).trim();
+        }
+        particleCtx.fillStyle = drawColor || '#00f5ff';
+        particleCtx.shadowBlur = 8;
+        particleCtx.shadowColor = drawColor || '#00f5ff';
+        particleCtx.fill();
+        particleCtx.restore();
+    }
+    requestAnimationFrame(updateParticles);
+}
+requestAnimationFrame(updateParticles);
+
+// =============================================
+//  GAMING RANKS
+// =============================================
+function getRankInfo(wpm) {
+    if (wpm < 30) return { name: "Bronze Recruit", nextWpm: 30, color: "#cd7f32", class: "rank-bronze", icon: "solar:shield-unique-outline", tier: "Tier I Operator" };
+    if (wpm < 50) return { name: "Silver Specialist", nextWpm: 50, color: "#c0c0c0", class: "rank-silver", icon: "solar:shield-star-outline", tier: "Tier II Specialist" };
+    if (wpm < 70) return { name: "Gold Vanguard", nextWpm: 70, color: "#ffd700", class: "rank-gold", icon: "solar:shield-keyhole-bold-duotone", tier: "Tier III Leader" };
+    if (wpm < 90) return { name: "Platinum Sentinel", nextWpm: 90, color: "#00f5ff", class: "rank-platinum", icon: "solar:shield-plus-bold-duotone", tier: "Tier IV Sentinel" };
+    if (wpm < 110) return { name: "Diamond Legend", nextWpm: 110, color: "#bd00ff", class: "rank-diamond", icon: "solar:shield-check-bold-duotone", tier: "Tier V Legend" };
+    return { name: "Apex Predator", nextWpm: 999, color: "#ff3333", class: "rank-apex", icon: "solar:crown-minimalistic-bold-duotone", tier: "Ultimate Apex" };
+}
+
+// =============================================
+//  BOOT SEQUENCY SIMULATOR
+// =============================================
+const bootLogs = [
+    "BOOT PROTOCOL INITIALIZED...",
+    "DETECTING SYSTEM CORE AUDITS...",
+    "ESTABLISHING NEURAL DECK SYNAPSE...",
+    "RESOLVING KEYBOARD MATRIX...",
+    "LOADING SECTOR DATA DICTIONARY...",
+    "INTEGRATING MERCURY-WHITE SCHEME...",
+    "VIRTUAL RGB CHROMA SYNCED...",
+    "FRENZY COMBOS ENGAGED...",
+    "CALIBRATING INPUT PRECISION BUFFER...",
+    "OPERATOR TRANSCRIPTION MODULE STANDBY."
+];
+function runBootSequence() {
+    const term = document.getElementById('boot-terminal');
+    if (!term) return;
+    term.innerHTML = '';
+    let logIdx = 0;
+    
+    function addLog() {
+        if (logIdx < bootLogs.length) {
+            const p = document.createElement('div');
+            p.textContent = `> ${bootLogs[logIdx]}`;
+            term.appendChild(p);
+            term.scrollTop = term.scrollHeight;
+            logIdx++;
+            setTimeout(addLog, 250 + Math.random() * 200);
+        } else {
+            const tap = document.createElement('div');
+            tap.className = 'hint-pulse';
+            tap.style.cssText = 'color: var(--neon); font-weight: bold; margin-top: 8px;';
+            tap.textContent = ">> KEY MATRIX READY <<";
+            term.appendChild(tap);
+        }
+    }
+    addLog();
+}
 
 // =============================================
 //  INIT
@@ -1125,15 +1966,42 @@ let t = { chars: [], typed: [], timeLeft: 15, timer: null, running: false, pause
 window.addEventListener('DOMContentLoaded', () => {
     load();
     updateDash();
+    runBootSequence();
+    
     document.getElementById('sp-best').textContent = app.bestWpm;
     document.getElementById('sp-tests').textContent = app.testCount;
+    document.getElementById('sp-streak').textContent = app.history.length ? "3" : "0";
+    
     document.addEventListener('keydown', onKey);
+
+    // Mouse Glow effect
+    window.addEventListener('mousemove', (e) => {
+        const glow = document.getElementById('cursor-glow');
+        if (glow) {
+            glow.style.transform = `translate3d(calc(${e.clientX}px - 50%), calc(${e.clientY}px - 50%), 0)`;
+            glow.style.opacity = '1';
+        }
+    });
+    window.addEventListener('mouseleave', () => {
+        const glow = document.getElementById('cursor-glow');
+        if (glow) {
+            glow.style.opacity = '0';
+        }
+    });
 });
 
 function load() {
     try {
         const d = localStorage.getItem('mtp2_data');
-        if (d) { const p = JSON.parse(d); Object.assign(app, p); }
+        if (d) {
+            const p = JSON.parse(d);
+            Object.assign(app, p);
+        }
+        if (app.theme) {
+            setTheme(app.theme);
+        } else {
+            setTheme('chroma');
+        }
     } catch(e) {}
 }
 
@@ -1165,13 +2033,67 @@ function goTo(id) {
 function updateDash() {
     document.getElementById('dash-best').textContent = app.bestWpm;
     document.getElementById('dash-tests').textContent = app.testCount;
+    
     const avg = app.history.length ? Math.round(app.history.slice(-10).reduce((a,b) => a + b.wpm, 0) / Math.min(app.history.length, 10)) : 0;
     document.getElementById('dash-avg').textContent = avg;
+
+    // Gaming Rank calculation
+    const r = getRankInfo(app.bestWpm);
+    const badgeName = document.getElementById('hud-rank-name');
+    const badgeIcon = document.getElementById('hud-rank-icon');
+    if (badgeName) {
+        badgeName.textContent = r.name;
+        badgeName.style.color = r.color;
+    }
+    if (badgeIcon) {
+        badgeIcon.setAttribute('icon', r.icon);
+        badgeIcon.style.color = r.color;
+    }
+
+    const rankVal = document.getElementById('dash-rank-val');
+    const rankIcon = document.getElementById('dash-rank-icon');
+    if (rankVal) {
+        rankVal.innerHTML = `<iconify-icon icon="${r.icon}" style="color:${r.color}; font-size:24px;"></iconify-icon> ${r.name}`;
+    }
+
+    const pctEl = document.getElementById('dash-rank-pct');
+    const progBar = document.getElementById('dash-rank-progress');
+    if (pctEl && progBar) {
+        let prevRankWpm = 0;
+        if (r.name.includes("Silver")) prevRankWpm = 30;
+        else if (r.name.includes("Gold")) prevRankWpm = 50;
+        else if (r.name.includes("Platinum")) prevRankWpm = 70;
+        else if (r.name.includes("Diamond")) prevRankWpm = 90;
+        else if (r.name.includes("Apex")) prevRankWpm = 110;
+
+        let diff = r.nextWpm - prevRankWpm;
+        let earned = app.bestWpm - prevRankWpm;
+        let pct = diff > 0 ? Math.max(0, Math.min(100, Math.round((earned / diff) * 100))) : 100;
+        if (r.name.includes("Apex")) pct = 100;
+        
+        pctEl.textContent = pct + '%';
+        progBar.style.width = pct + '%';
+        progBar.style.background = r.color;
+    }
 }
 
 // =============================================
-//  CUSTOMIZATION
+//  CUSTOMIZATION theme management
 // =============================================
+function setTheme(val, btn) {
+    app.theme = val;
+    save();
+    document.body.className = 'theme-' + val;
+    
+    const pills = document.querySelectorAll('#theme-opts .opt-pill');
+    pills.forEach(b => {
+        b.classList.remove('active');
+        if (b.getAttribute('onclick').includes(`'${val}'`)) {
+            b.classList.add('active');
+        }
+    });
+}
+
 function setDur(val, btn) {
     app.dur = val;
     document.querySelectorAll('#dur-opts .opt-pill').forEach(b => b.classList.remove('active'));
@@ -1185,34 +2107,130 @@ function setMode(val, card) {
 }
 
 // =============================================
-//  GAMEPLAY
+//  GAMEPLAY CORE
 // =============================================
 function genText() {
     const bank = TEXTS[app.mode] || TEXTS.random;
     if (app.mode === 'quotes') return bank[Math.floor(Math.random() * bank.length)];
-    return Array.from({length: 50}, () => bank[Math.floor(Math.random() * bank.length)]).join(' ');
+    
+    // Customize length based on duration
+    const count = app.dur >= 60 ? 80 : 45;
+    return Array.from({length: count}, () => bank[Math.floor(Math.random() * bank.length)]).join(' ');
+}
+
+function renderKeyboard() {
+    const container = document.getElementById('game-keyboard');
+    if (!container) return;
+    container.innerHTML = '';
+    
+    const effect = document.getElementById('sel-kbd-effect') ? document.getElementById('sel-kbd-effect').value : 'chroma';
+    container.className = 'keyboard-container';
+    if (effect === 'chroma') {
+        container.classList.add('keyboard-chroma');
+    } else if (effect === 'stealth') {
+        container.style.opacity = '0.15';
+    }
+
+    KEYBOARD_LAYOUT.forEach(row => {
+        const rowEl = document.createElement('div');
+        rowEl.className = 'key-row';
+        row.forEach(key => {
+            const keyEl = document.createElement('div');
+            keyEl.className = 'key';
+            keyEl.id = 'key-' + (key === ' ' ? 'space' : key.toLowerCase());
+            
+            // Adjust styles for special keys
+            if (key === 'space') {
+                keyEl.style.width = '240px';
+                keyEl.textContent = 'SPACE';
+            } else {
+                keyEl.textContent = key.toUpperCase();
+            }
+            rowEl.appendChild(keyEl);
+        });
+        container.appendChild(rowEl);
+    });
+}
+
+function getBaseKey(char) {
+    const shiftMap = {
+        '!': '1', '@': '2', '#': '3', '$': '4', '%': '5', '^': '6', '&': '7', '*': '8', '(': '9', ')': '0',
+        '_': '-', '+': '=', '{': '[', '}': ']', '|': '\\', ':': ';', '"': "'", '<': ',', '>': '.', '?': '/'
+    };
+    return shiftMap[char] || char;
+}
+
+function highlightNextKey() {
+    document.querySelectorAll('.key.next-key').forEach(k => k.classList.remove('next-key'));
+    
+    if (t.typed.length < t.chars.length) {
+        const nextChar = t.chars[t.typed.length].toLowerCase();
+        const baseChar = getBaseKey(nextChar);
+        let targetId = 'key-' + baseChar;
+        if (nextChar === ' ') targetId = 'key-space';
+        const nextEl = document.getElementById(targetId);
+        if (nextEl) {
+            nextEl.classList.add('next-key');
+        }
+    }
 }
 
 function initTest() {
     goTo('gameplay');
     clearInterval(t.timer);
-    t = { chars: [], typed: [], timeLeft: app.dur, timer: null, running: false, paused: false, correct: 0, errors: 0, start: null, wpmLog: [] };
+    
+    t = { 
+        chars: [], 
+        typed: [], 
+        timeLeft: app.dur, 
+        timer: null, 
+        running: false, 
+        paused: false, 
+        correct: 0, 
+        errors: 0, 
+        start: null, 
+        wpmLog: [],
+        combo: 0,
+        shield: 100
+    };
+    
     t.chars = genText().split('');
 
-    document.getElementById('timer-txt').textContent = t.timeLeft;
-    document.getElementById('ring-fill').style.strokeDashoffset = '0';
-    document.getElementById('ring-fill').style.stroke = 'var(--neon)';
+    // Format time left as MM:SS
+    const min = Math.floor(t.timeLeft / 60);
+    const sec = t.timeLeft % 60;
+    const timeStr = `${min.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`;
+    document.getElementById('timer-txt').textContent = timeStr;
+    
+    // Reset circular gauges
+    const wpmGauge = document.getElementById('wpm-gauge-fill');
+    if (wpmGauge) wpmGauge.style.strokeDashoffset = '389.56';
+    
+    const accGauge = document.getElementById('acc-gauge-fill');
+    if (accGauge) accGauge.style.strokeDashoffset = '0'; // 100% full
+    
     document.getElementById('live-wpm').textContent = '0';
     document.getElementById('live-acc').textContent = '100';
-    document.getElementById('live-err').textContent = '0';
-    document.getElementById('prog-fill').style.width = '0%';
-    document.getElementById('wpm-graph').innerHTML = '';
+    document.getElementById('game-progress-bar').textContent = `[${'-'.repeat(20)}]`;
+    document.getElementById('game-progress-pct').textContent = '0%';
+    
+    const comboStat = document.getElementById('hud-combo-stat');
+    if (comboStat) comboStat.style.opacity = '0';
+    
+    const frenzy = document.getElementById('frenzy-overlay');
+    if (frenzy) frenzy.style.display = 'none';
 
+    document.body.classList.remove('low-shield-pulse');
+    updateShield(100);
+    
+    renderKeyboard();
     renderText();
+    highlightNextKey();
 }
 
 function renderText() {
     const el = document.getElementById('text-display');
+    if (!el) return;
     el.innerHTML = '';
     t.chars.forEach((c, i) => {
         const s = document.createElement('span');
@@ -1224,7 +2242,8 @@ function renderText() {
         }
         el.appendChild(s);
     });
-    // autoscroll
+    
+    // Auto scroll the game display box
     const active = el.querySelector('.char-active');
     if (active) {
         const er = el.getBoundingClientRect(), sr = active.getBoundingClientRect();
@@ -1233,18 +2252,61 @@ function renderText() {
     }
 }
 
+function updateShield(val) {
+    t.shield = Math.max(0, Math.min(100, val));
+    const fill = document.getElementById('shield-fill');
+    const txt = document.getElementById('shield-pct');
+    if (fill) fill.style.width = t.shield + '%';
+    if (txt) txt.textContent = t.shield + '%';
+    
+    if (t.shield <= 30) {
+        document.body.classList.add('low-shield-pulse');
+    } else {
+        document.body.classList.remove('low-shield-pulse');
+    }
+}
+
+function shakeDisplay() {
+    const el = document.getElementById('text-display');
+    if (el) {
+        el.classList.add('shake');
+        setTimeout(() => el.classList.remove('shake'), 200);
+    }
+}
+
 function onKey(e) {
+    // Splash screen click transition
+    const splash = document.getElementById('screen-splash');
+    if (splash && splash.classList.contains('active')) {
+        goTo('dashboard');
+        return;
+    }
+
     const gp = document.getElementById('screen-gameplay');
     if (!gp.classList.contains('active') || t.paused) return;
     if (e.ctrlKey || e.altKey || e.metaKey) return;
-    if (e.key.length > 1 && e.key !== 'Backspace') return;
 
-    if (e.key === ' ') e.preventDefault();
+    let targetChar = e.key;
 
+    // Backspace logic
     if (e.key === 'Backspace') {
-        if (t.typed.length > 0) { t.typed.pop(); renderText(); }
+        e.preventDefault();
+        if (t.typed.length > 0) {
+            const popped = t.typed.pop();
+            const popIdx = t.typed.length;
+            if (popped === t.chars[popIdx]) {
+                t.correct = Math.max(0, t.correct - 1);
+            }
+            updateHUD();
+            renderText();
+            highlightNextKey();
+            playSynthSound('clicky');
+        }
         return;
     }
+
+    if (e.key.length > 1) return;
+    if (e.key === ' ') e.preventDefault();
 
     if (!t.running) {
         t.running = true;
@@ -1254,11 +2316,86 @@ function onKey(e) {
 
     const idx = t.typed.length;
     if (idx < t.chars.length) {
-        t.typed.push(e.key);
-        if (e.key === t.chars[idx]) t.correct++;
-        else t.errors++;
+        t.typed.push(targetChar);
+        const isCorrect = (targetChar === t.chars[idx]);
+        
+        // Handle visual keyboard highlights
+        let lookupChar = getBaseKey(targetChar.toLowerCase());
+        if (targetChar === ' ') lookupChar = 'space';
+        const keyEl = document.getElementById('key-' + lookupChar);
+        if (keyEl) {
+            keyEl.classList.add('active');
+            setTimeout(() => keyEl.classList.remove('active'), 80);
+            
+            // Spawns ripple effect on keyboard if selected
+            const effect = document.getElementById('sel-kbd-effect') ? document.getElementById('sel-kbd-effect').value : 'chroma';
+            if (effect === 'reactive') {
+                keyEl.style.background = 'rgba(var(--rgb-neon), 0.3)';
+                keyEl.style.boxShadow = '0 0 20px var(--neon)';
+                setTimeout(() => {
+                    keyEl.style.background = '';
+                    keyEl.style.boxShadow = '';
+                }, 300);
+            }
+        }
+
+        if (isCorrect) {
+            t.correct++;
+            t.combo++;
+            
+            // Shield restore on correct hits
+            updateShield(t.shield + 1.5);
+            playSynthSound('click');
+            
+            // Spawn sparks particles at text cursor
+            const activeSpan = document.querySelector('.char-active');
+            if (activeSpan) {
+                const rect = activeSpan.getBoundingClientRect();
+                // Find particle offset coordinates relative to viewport
+                const scrollX = window.scrollX || window.pageXOffset;
+                const scrollY = window.scrollY || window.pageYOffset;
+                spawnSparks(rect.left + rect.width/2 + scrollX, rect.top + rect.height/2 + scrollY, 'var(--neon)');
+            }
+            
+            // Handle Combo streaks
+            if (t.combo >= 5) {
+                const comboStat = document.getElementById('hud-combo-stat');
+                const comboVal = document.getElementById('live-combo');
+                if (comboStat && comboVal) {
+                    comboStat.style.opacity = '1';
+                    comboStat.style.transform = 'scale(1.2)';
+                    setTimeout(() => comboStat.style.transform = 'scale(1.0)', 150);
+                    comboVal.textContent = t.combo;
+                }
+                
+                // Frenzy overdrive indicator
+                if (t.combo === 25) {
+                    const frenzy = document.getElementById('frenzy-overlay');
+                    if (frenzy) frenzy.style.display = 'block';
+                }
+            }
+        } else {
+            t.errors++;
+            t.combo = 0; // Combo reset
+            
+            // Damage shield on mistake
+            updateShield(t.shield - 12);
+            shakeDisplay();
+            playSynthSound('error');
+            
+            const comboStat = document.getElementById('hud-combo-stat');
+            if (comboStat) {
+                comboStat.style.opacity = '0';
+            }
+            
+            const frenzy = document.getElementById('frenzy-overlay');
+            if (frenzy) frenzy.style.display = 'none';
+        }
+        
         updateHUD();
         renderText();
+        highlightNextKey();
+        
         if (t.typed.length >= t.chars.length) endTest();
     }
 }
@@ -1266,21 +2403,17 @@ function onKey(e) {
 function startTimer() {
     t.timer = setInterval(() => {
         t.timeLeft--;
-        document.getElementById('timer-txt').textContent = t.timeLeft;
+        
+        // Format time left as MM:SS (e.g. 00:15)
+        const min = Math.floor(t.timeLeft / 60);
+        const sec = t.timeLeft % 60;
+        const timeStr = `${min.toString().padStart(2, '0')}:${sec.toString().padStart(2, '0')}`;
+        document.getElementById('timer-txt').textContent = timeStr;
 
-        const ratio = t.timeLeft / app.dur;
-        const offset = CIRC * ratio;
-        const ring = document.getElementById('ring-fill');
-        ring.style.strokeDashoffset = CIRC - (CIRC * (1 - ratio));
-        document.getElementById('prog-fill').style.width = `${(1 - ratio) * 100}%`;
-
-        if (t.timeLeft <= 5) ring.style.stroke = 'var(--rose)';
-
-        // log wpm for graph
+        // log live speed for results graph
         const elapsed = (Date.now() - t.start) / 60000;
         const wpm = elapsed > 0 ? Math.round((t.correct / 5) / elapsed) : 0;
         t.wpmLog.push(wpm);
-        updateMiniGraph();
 
         updateHUD();
         if (t.timeLeft <= 0) endTest();
@@ -1292,22 +2425,34 @@ function updateHUD() {
     const elapsed = (Date.now() - t.start) / 60000;
     const wpm = elapsed > 0 ? Math.max(0, Math.round((t.correct / 5) / elapsed)) : 0;
     const acc = t.typed.length === 0 ? 100 : Math.round((t.correct / t.typed.length) * 100);
+    
+    // Update live text values
     document.getElementById('live-wpm').textContent = wpm;
     document.getElementById('live-acc').textContent = acc;
-    document.getElementById('live-err').textContent = t.errors;
-}
+    
+    // Update circular WPM gauge (Limit WPM scale to 120 WPM for visual mapping)
+    const wpmLimit = 120;
+    const wpmRatio = Math.min(1, wpm / wpmLimit);
+    const wpmGauge = document.getElementById('wpm-gauge-fill');
+    if (wpmGauge) {
+        wpmGauge.style.strokeDashoffset = 389.56 * (1 - wpmRatio);
+    }
+    
+    // Update circular Accuracy gauge (0 to 100%)
+    const accRatio = acc / 100;
+    const accGauge = document.getElementById('acc-gauge-fill');
+    if (accGauge) {
+        accGauge.style.strokeDashoffset = 301.59 * (1 - accRatio);
+    }
 
-function updateMiniGraph() {
-    const graph = document.getElementById('wpm-graph');
-    graph.innerHTML = '';
-    const vals = t.wpmLog.slice(-30);
-    const max = Math.max(...vals, 1);
-    vals.forEach(v => {
-        const bar = document.createElement('div');
-        bar.style.cssText = `flex:1; min-width:4px; height:${Math.max(4, (v/max)*40)}px; background:linear-gradient(to top, var(--neon2), var(--neon)); border-radius:1px; opacity:0.7;`;
-        bar.setAttribute('data-val', v);
-        graph.appendChild(bar);
-    });
+    // Update progress bar
+    const pctDone = Math.round((t.typed.length / t.chars.length) * 100);
+    document.getElementById('game-progress-pct').textContent = pctDone + '%';
+    
+    const totalBars = 20;
+    const filledBars = Math.round((pctDone / 100) * totalBars);
+    const emptyBars = totalBars - filledBars;
+    document.getElementById('game-progress-bar').textContent = `[${'='.repeat(filledBars)}${'-'.repeat(emptyBars)}]`;
 }
 
 // =============================================
@@ -1324,10 +2469,9 @@ function pauseTest() {
 function resumeTest() {
     document.getElementById('screen-pause').classList.remove('active');
     let count = 3;
-    // Show countdown
     const td = document.getElementById('text-display');
     const overlay = document.createElement('div');
-    overlay.style.cssText = 'position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(9,13,26,0.85);z-index:10;border-radius:2px;font-family:var(--display);font-size:64px;font-weight:800;color:var(--neon);';
+    overlay.style.cssText = 'position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(var(--rgb-panel, 255, 255, 255), 0.95);z-index:100;font-family:var(--display);font-size:64px;font-weight:900;color:var(--neon);border:1px solid var(--edge);text-shadow:var(--glow-neon);';
     overlay.id = 'countdown-overlay';
     overlay.textContent = count;
     td.parentElement.style.position = 'relative';
@@ -1335,8 +2479,9 @@ function resumeTest() {
 
     const ci = setInterval(() => {
         count--;
-        if (count > 0) { overlay.textContent = count; }
-        else {
+        if (count > 0) { 
+            overlay.textContent = count; 
+        } else {
             clearInterval(ci);
             overlay.remove();
             t.paused = false;
@@ -1347,11 +2492,12 @@ function resumeTest() {
 }
 
 // =============================================
-//  END TEST
+//  END TEST & RESULTS SUMMARY
 // =============================================
 function endTest() {
     clearInterval(t.timer);
     t.running = false;
+    document.body.classList.remove('low-shield-pulse');
 
     const elapsed = Math.max(1, app.dur - t.timeLeft);
     const wpm = Math.max(0, Math.round((t.correct / 5) / (elapsed / 60)));
@@ -1360,7 +2506,10 @@ function endTest() {
 
     app.testCount++;
     let isNew = false;
-    if (wpm > app.bestWpm) { app.bestWpm = wpm; isNew = true; }
+    if (wpm > app.bestWpm) { 
+        app.bestWpm = wpm; 
+        isNew = true; 
+    }
     app.history.push({ wpm, acc, cons, time: elapsed, date: new Date().toISOString() });
     save();
 
@@ -1373,13 +2522,31 @@ function endTest() {
     document.getElementById('res-cons').textContent = cons + '%';
 
     const badge = document.getElementById('new-best-badge');
-    badge.style.display = isNew ? 'inline-flex' : 'none';
+    if (badge) badge.style.display = isNew ? 'inline-flex' : 'none';
 
+    // Renders the military rank emblem & details
+    const r = getRankInfo(wpm);
+    const resRankName = document.getElementById('res-rank-name');
+    const resRankDesc = document.getElementById('res-rank-desc');
+    const resRankIcon = document.getElementById('res-rank-icon');
+    
+    if (resRankName) {
+        resRankName.textContent = r.name;
+        resRankName.style.color = r.color;
+    }
+    if (resRankDesc) resRankDesc.textContent = r.tier;
+    if (resRankIcon) {
+        resRankIcon.setAttribute('icon', r.icon);
+        resRankIcon.style.color = r.color;
+        resRankIcon.style.filter = `drop-shadow(0 0 10px ${r.color})`;
+    }
+
+    playSuccessSound();
     goTo('results');
 }
 
 // =============================================
-//  PROGRESS SCREEN
+//  PROGRESS GRAPHING
 // =============================================
 function updateProgress() {
     const h = app.history;
@@ -1391,7 +2558,9 @@ function updateProgress() {
 
     const avgAcc = h.length ? Math.round(h.reduce((a,b) => a+b.acc,0) / h.length) : 0;
     const avgCons = h.length ? Math.round(h.reduce((a,b) => a+(b.cons||0),0) / h.length) : 0;
-    const speedPct = Math.min(100, Math.round((app.bestWpm / 150) * 100));
+    
+    // Scale speed relative to high skill cap 140 WPM
+    const speedPct = Math.min(100, Math.round((app.bestWpm / 140) * 100));
 
     setTimeout(() => {
         document.getElementById('skill-speed').style.width = speedPct + '%';
@@ -1402,7 +2571,7 @@ function updateProgress() {
         document.getElementById('skill-cons-val').textContent = avgCons + '%';
     }, 200);
 
-    // Goals
+    // Trophies / Milestones goals
     const g1 = Math.min(100, Math.round((app.bestWpm / 60) * 100));
     const g2 = Math.min(100, Math.round((app.bestWpm / 100) * 100));
     const g3 = Math.min(100, Math.round((app.testCount / 50) * 100));
@@ -1412,13 +2581,13 @@ function updateProgress() {
         document.getElementById('goal2-fill').style.width = g2 + '%';
         document.getElementById('goal2-txt').textContent = app.bestWpm + ' / 100 WPM';
         document.getElementById('goal3-fill').style.width = g3 + '%';
-        document.getElementById('goal3-txt').textContent = app.testCount + ' / 50 Tests';
+        document.getElementById('goal3-txt').textContent = app.testCount + ' / 50 Missions';
     }, 300);
 
-    // History chart
+    // Render history glowing bar graph
     const chart = document.getElementById('history-chart');
     if (h.length === 0) {
-        chart.innerHTML = '<div style="font-family:var(--mono); font-size:11px; color:var(--text-dim); margin:auto; letter-spacing:0.1em;">No data yet. Take a test!</div>';
+        chart.innerHTML = '<div style="font-family:var(--display); font-weight:700; font-size:11px; color:var(--text-dim); margin:auto; letter-spacing:0.05em;">NO COGNITIVE TRANSCRIPTS AVAILABLE</div>';
     } else {
         const vals = h.slice(-20).map(x => x.wpm);
         const max = Math.max(...vals, 1);
@@ -1426,7 +2595,7 @@ function updateProgress() {
         chart.style.alignItems = 'flex-end';
         vals.forEach(v => {
             const bar = document.createElement('div');
-            const h2 = Math.max(8, Math.round((v / max) * 90));
+            const h2 = Math.max(8, Math.round((v / max) * 100));
             bar.className = 'chart-bar';
             bar.style.cssText = `flex:1; height:${h2}px;`;
             bar.setAttribute('data-val', v + ' WPM');
@@ -1434,22 +2603,22 @@ function updateProgress() {
         });
     }
 
-    // History list
+    // History logs list
     const list = document.getElementById('history-list');
     if (h.length === 0) {
-        list.innerHTML = '<div style="font-family:var(--mono); font-size:11px; color:var(--text-dim); text-align:center; padding:40px; letter-spacing:0.1em;">NO TESTS YET</div>';
+        list.innerHTML = '<div style="font-family:var(--display); font-weight:700; font-size:11px; color:var(--text-dim); text-align:center; padding:40px; letter-spacing:0.05em;">NO LOG ENTRIES REPORTED</div>';
     } else {
         list.innerHTML = '';
-        [...h].reverse().slice(0, 20).forEach((item, i) => {
+        [...h].reverse().slice(0, 15).forEach((item, i) => {
             const d = new Date(item.date);
             const dateStr = d.toLocaleDateString('en', {month:'short', day:'numeric'}) + ' ' + d.toLocaleTimeString('en', {hour:'2-digit', minute:'2-digit'});
             const row = document.createElement('div');
-            row.className = 'progress-item';
+            row.className = 'progress-item cyber-box';
             row.style.marginBottom = '6px';
             row.innerHTML = `
-                <div style="font-family:var(--mono); font-size:10px; color:var(--text-dim); width:80px; letter-spacing:0.05em;">${dateStr}</div>
-                <div style="font-family:var(--display); font-size:18px; font-weight:700; color:var(--neon);">${item.wpm}<span style="font-size:11px; color:var(--text-dim); font-family:var(--mono);"> WPM</span></div>
-                <div style="font-family:var(--mono); font-size:11px; color:var(--text-mid);">${item.acc}% acc</div>
+                <div style="font-family:var(--mono); font-size:10px; color:var(--text-dim); width:120px; letter-spacing:0.02em;">${dateStr}</div>
+                <div style="font-family:var(--display); font-size:18px; font-weight:800; color:var(--neon);">${item.wpm}<span style="font-size:11px; color:var(--text-dim); font-family:var(--display); font-weight:600;"> WPM</span></div>
+                <div style="font-family:var(--mono); font-weight:700; font-size:11px; color:var(--text-mid);">${item.acc}% ACC</div>
             `;
             list.appendChild(row);
         });
